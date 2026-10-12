@@ -1,17 +1,17 @@
 import { cn } from "@/lib/utils";
 
-/** Thin woven-textile accent inspired by huipil brocade bands. */
+/** Thin woven-textile accent inspired by huipil brocade bands, in orange shades. */
 export function HuipilStripe({ className }: { className?: string }) {
   return (
     <div aria-hidden className={cn("flex h-1 w-full", className)}>
-      <span className="flex-[3] bg-huipil-rose" />
-      <span className="flex-1 bg-huipil-marigold" />
-      <span className="flex-[2] bg-huipil-indigo" />
-      <span className="flex-1 bg-jade" />
-      <span className="flex-[2] bg-terra" />
-      <span className="flex-1 bg-huipil-marigold" />
-      <span className="flex-[3] bg-huipil-indigo" />
-      <span className="flex-1 bg-huipil-rose" />
+      <span className="flex-[3] bg-ember-4" />
+      <span className="flex-1 bg-ember-1" />
+      <span className="flex-[2] bg-ember-3" />
+      <span className="flex-1 bg-ember-6" />
+      <span className="flex-[2] bg-ember-2" />
+      <span className="flex-1 bg-ember-1" />
+      <span className="flex-[3] bg-ember-5" />
+      <span className="flex-1 bg-ember-3" />
     </div>
   );
 }

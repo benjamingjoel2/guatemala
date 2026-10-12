@@ -49,6 +49,7 @@ export const colors = {
   terracottaLight: "#c8623e",
   adobe: "#d9a47c",
   offWhite: "#f3eee6",
+  ember: ["#f2b38c", "#e48a5a", "#c8623e", "#a94e2f", "#8c3f24", "#6b2e18"],
   huipil: ["#b8336a", "#2d3f8f", "#e3a72f", "#2f7d6a"],
 };
 

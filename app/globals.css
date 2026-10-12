@@ -20,6 +20,15 @@
   --color-terra-light: #c8623e;
   --color-adobe: #94502a;
   --color-bone: #161a18;
+  /* Ember: orange shades for the logo mark and the accent stripe */
+  --color-ember-1: #f2b38c;
+  --color-ember-2: #e48a5a;
+  --color-ember-3: #c8623e;
+  --color-ember-4: #a94e2f;
+  --color-ember-5: #8c3f24;
+  --color-ember-6: #6b2e18;
+  /* Wordmark colour (lifted to a brighter orange inside .theme-dark) */
+  --color-logo: #a94e2f;
   /* Constant light text for solid accent fills (buttons, badges) */
   --color-cream: #f7f3ec;
   --color-huipil-rose: #b8336a;
@@ -59,6 +68,7 @@
   --color-line-strong: rgb(243 238 230 / 0.2);
   --color-mute: rgb(243 238 230 / 0.72);
   --color-faint: rgb(243 238 230 / 0.58);
+  --color-logo: #e07a4a;
   color: var(--color-bone);
 }
 
