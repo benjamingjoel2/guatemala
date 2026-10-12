@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 /** Tall image-led card with overlaid title; image zooms and copy lifts on hover. */
 export function ExperienceCard({ experience: e, className, size = "md" }: { experience: Experience; className?: string; size?: "md" | "lg" }) {
   return (
-    <article className={cn("group relative overflow-hidden bg-ink-2", size === "lg" ? "aspect-[4/5] md:aspect-auto md:min-h-[34rem]" : "aspect-[4/5]", className)}>
+    <article className={cn("theme-dark group relative overflow-hidden bg-ink-2", size === "lg" ? "aspect-[4/5] md:aspect-auto md:min-h-[34rem]" : "aspect-[4/5]", className)}>
       <Image
         src={e.image.src}
         alt={e.image.alt}

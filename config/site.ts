@@ -35,8 +35,11 @@ export const socials = [
   { label: "Pinterest", href: "https://pinterest.com/" },
 ];
 
-/** Brand palette — mirrored as CSS variables in app/globals.css */
+/** Brand palette — mirrored as CSS variables in app/globals.css (light theme, dark photo bands + footer) */
 export const colors = {
+  background: "#f7f3ec",
+  surface: "#efe8dd",
+  text: "#161a18",
   charcoal: "#111413",
   charcoalSoft: "#1a1e1c",
   jade: "#2f7d6a",

@@ -33,12 +33,16 @@ export function Header() {
   }, [menuOpen]);
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+  // Pages that open on a full-bleed photo get a dark header until the visitor scrolls
+  const darkHero = pathname === "/" || /^\/destinations\/[^/]+\/?$/.test(pathname);
+  const overDark = darkHero && !scrolled && !menuOpen;
 
   return (
     <>
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-40 transition-colors duration-300",
+        overDark && "theme-dark",
         scrolled || menuOpen ? "bg-ink/80 backdrop-blur-xl" : "bg-transparent",
       )}
     >
@@ -82,7 +86,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => planner.open()}
-            className="t-btn hidden items-center gap-2 bg-terra px-8 text-bone transition-colors duration-200 hover:bg-terra-dark md:flex"
+            className="t-btn hidden items-center gap-2 bg-terra px-8 text-cream transition-colors duration-200 hover:bg-terra-dark md:flex"
           >
             Start planning
           </button>
@@ -142,7 +146,7 @@ export function Header() {
                   setMenuOpen(false);
                   planner.open();
                 }}
-                className="t-btn h-12 w-full bg-terra text-bone"
+                className="t-btn h-12 w-full bg-terra text-cream"
               >
                 Start planning
               </button>

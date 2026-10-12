@@ -7,7 +7,7 @@ import { Parallax, Reveal, SplitHeading } from "@/components/ui/motion";
 
 export function FinalCta({ title = "Ready when you are. Let's plan your Guatemala." }: { title?: string }) {
   return (
-    <section className="relative overflow-hidden" aria-labelledby="final-cta-title">
+    <section className="theme-dark relative overflow-hidden bg-ink" aria-labelledby="final-cta-title">
       <Parallax className="absolute inset-0" distance={60}>
         <Image src={img.acatenangoSun.src} alt="" fill sizes="100vw" className="object-cover" />
       </Parallax>

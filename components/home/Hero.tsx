@@ -19,7 +19,7 @@ export function Hero() {
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <section ref={ref} className="relative flex min-h-[100svh] flex-col overflow-hidden" aria-labelledby="hero-title">
+    <section ref={ref} className="theme-dark relative flex min-h-[100svh] flex-col overflow-hidden bg-ink" aria-labelledby="hero-title">
       <motion.div style={{ scale: imgScale, y: imgY }} className="absolute inset-0">
         <Image
           src={img.antiguaStreetAgua.src}

@@ -7,7 +7,7 @@ const base =
   "group/btn relative inline-flex items-center justify-center gap-2 t-btn transition-colors duration-200 select-none whitespace-nowrap";
 
 const variants: Record<Variant, string> = {
-  accent: "bg-terra text-bone hover:bg-terra-dark px-6 h-12",
+  accent: "bg-terra text-cream hover:bg-terra-dark px-6 h-12",
   outline: "border border-line-strong text-bone hover:bg-bone hover:text-ink px-6 h-12",
   light: "bg-bone text-ink hover:bg-adobe px-6 h-12",
   ghost: "text-bone hover:text-adobe",

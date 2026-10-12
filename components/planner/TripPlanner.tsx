@@ -269,7 +269,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                         aria-checked={selected}
                         onClick={() => toggle("routes", r.id)}
                         className={cn(
-                          "group relative flex aspect-[4/5] flex-col justify-end overflow-hidden border text-left transition-colors md:aspect-[3/4]",
+                          "theme-dark group relative flex aspect-[4/5] flex-col justify-end overflow-hidden border text-left transition-colors md:aspect-[3/4]",
                           selected ? "border-jade-light" : "border-line",
                         )}
                       >
@@ -560,7 +560,7 @@ function Confirmation({
   ];
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="flex flex-col gap-8" role="status">
-      <span className="flex size-14 items-center justify-center rounded-full bg-jade">
+      <span className="flex size-14 items-center justify-center rounded-full bg-jade text-cream">
         <IconCheck className="size-6" />
       </span>
       <div className="flex flex-col gap-4">

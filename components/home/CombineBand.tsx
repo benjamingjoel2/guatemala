@@ -13,7 +13,7 @@ const steps = [
 /** Full-bleed image band with stacked "+ add-on" headings and a glass step strip (reference "combine" section). */
 export function CombineBand() {
   return (
-    <section className="relative" aria-labelledby="combine-title">
+    <section className="theme-dark relative bg-ink" aria-labelledby="combine-title">
       <Parallax className="absolute inset-0" distance={70}>
         <Image src={img.atitlanPier.src} alt="" fill sizes="100vw" className="object-cover" />
       </Parallax>

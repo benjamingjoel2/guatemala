@@ -55,7 +55,7 @@ export function DestinationsExplorer({ destinations }: { destinations: Destinati
         </ul>
 
         <div className="relative hidden lg:block">
-          <div className="sticky top-28 aspect-[4/5] overflow-hidden">
+          <div className="theme-dark sticky top-28 aspect-[4/5] overflow-hidden bg-ink">
             <AnimatePresence initial={false}>
               <motion.div
                 key={current.slug}
