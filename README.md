@@ -13,6 +13,14 @@ npm run build && npm start
 npm run lint
 ```
 
+## Static preview (GitHub Pages)
+
+```bash
+BASE_PATH=/guatemala NEXT_PUBLIC_SITE_URL=https://benjamingjoel2.github.io/guatemala scripts/build-static.sh
+```
+
+This writes a fully static build to `./out`, which is published on the `gh-pages` branch. The static build has no server, so the planner, contact and newsletter forms simulate a successful submission (see `lib/api.ts`). Deploy the normal `npm run build` to a Node host such as Vercel to get the real API routes.
+
 ## Where things live
 
 | Path | What it holds |

@@ -7,6 +7,7 @@ import { img } from "@/data/images";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { IconCheck } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import { postJson } from "@/lib/api";
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -25,11 +26,7 @@ export function GuideSignup({ compact = false }: { compact?: boolean }) {
     setError(null);
     setStatus("loading");
     try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), source: "guatemala-guide" }),
-      });
+      const res = await postJson("/api/newsletter", { email: email.trim(), source: "guatemala-guide" });
       if (!res.ok) throw new Error();
       setStatus("success");
     } catch {

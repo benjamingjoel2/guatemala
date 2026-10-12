@@ -6,6 +6,7 @@ import { Field, inputClass } from "@/components/ui/form";
 import { Arrow, buttonClass } from "@/components/ui/Button";
 import { IconCheck } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import { postJson } from "@/lib/api";
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -24,7 +25,7 @@ export function ContactForm() {
     if (Object.keys(errs).length) return;
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+      const res = await postJson("/api/contact", form);
       if (!res.ok) throw new Error();
       setStatus("done");
     } catch {
