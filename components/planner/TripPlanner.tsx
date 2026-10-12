@@ -12,6 +12,7 @@ import { Arrow, buttonClass } from "@/components/ui/Button";
 import { Price } from "@/components/ui/Price";
 import { IconCheck } from "@/components/ui/icons";
 import { cn, pad2 } from "@/lib/utils";
+import { postJson } from "@/lib/api";
 
 const STORAGE_KEY = "ab-trip-planner-v1";
 
@@ -125,17 +126,12 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
   async function submit() {
     setStatus("submitting");
     try {
-      const res = await fetch("/api/plan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const json = await res.json();
-      if (!res.ok || !json.ok) {
+      const { ok, json } = await postJson<{ ok: boolean; reference?: string; errors?: PlannerErrors; message?: string }>("/api/plan", data);
+      if (!ok || !json.ok) {
         if (json.errors) setErrors(json.errors);
         throw new Error(json.message ?? "Request failed");
       }
-      setReference(json.reference);
+      setReference(json.reference ?? null);
       setStatus("done");
       try {
         localStorage.removeItem(STORAGE_KEY);
