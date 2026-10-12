@@ -8,7 +8,7 @@ import { HuipilStripe } from "@/components/ui/HuipilStripe";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative pt-16 md:pt-20">
+    <footer className="theme-dark relative bg-ink pt-16 md:pt-20">
       {/* Full-bleed image band, like the reference footer visual */}
       <div className="gutter">
         <div className="relative mb-16 hidden h-[21rem] overflow-hidden md:mb-20 md:block">

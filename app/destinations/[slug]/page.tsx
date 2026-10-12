@@ -75,7 +75,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       {/* Hero */}
-      <section className="relative flex min-h-[80svh] flex-col justify-end overflow-hidden">
+      <section className="theme-dark relative flex min-h-[80svh] flex-col justify-end overflow-hidden bg-ink">
         <Image src={d.image.src} alt={d.image.alt} fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/10 to-ink" />
         <div className="gutter relative flex flex-col gap-6 pb-10 pt-32 md:pb-14">

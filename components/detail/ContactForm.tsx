@@ -37,7 +37,7 @@ export function ContactForm() {
     <AnimatePresence mode="wait">
       {status === "done" ? (
         <motion.div key="done" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-6" role="status">
-          <span className="flex size-12 items-center justify-center rounded-full bg-jade"><IconCheck className="size-5" /></span>
+          <span className="flex size-12 items-center justify-center rounded-full bg-jade text-cream"><IconCheck className="size-5" /></span>
           <h2 className="t-h3">Thank you, {form.name.split(" ")[0]}.</h2>
           <p className="t-lg font-normal text-mute">Your message is with our team in Antigua. We will reply to {form.email} within one working day.</p>
         </motion.div>

@@ -18,7 +18,7 @@ export default function PlanYourTripPage() {
   return (
     <div className="pt-[4.5rem]">
       <div className="grid lg:grid-cols-[minmax(0,26rem)_1fr] xl:grid-cols-[minmax(0,32rem)_1fr]">
-        <aside className="relative hidden lg:block">
+        <aside className="theme-dark relative hidden lg:block">
           <div className="sticky top-[4.5rem] h-[calc(100svh-4.5rem)]">
             <Image src={img.atitlanFlowers.src} alt={img.atitlanFlowers.alt} fill priority sizes="32rem" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />

@@ -115,7 +115,7 @@ export function Parallax({ children, className, distance = 80 }: { children: Rea
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [-distance, distance]);
   return (
-    <div ref={ref} className={cn("relative overflow-hidden", className)}>
+    <div ref={ref} className={cn(!className?.includes("absolute") && "relative", "overflow-hidden", className)}>
       <motion.div style={{ y, top: -distance, bottom: -distance }} className="absolute inset-x-0">
         {children}
       </motion.div>

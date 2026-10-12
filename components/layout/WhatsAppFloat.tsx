@@ -22,7 +22,7 @@ export function WhatsAppFloat() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 1.2, duration: 0.5 }}
       whileHover={{ scale: 1.06 }}
-      className="fixed bottom-5 right-5 z-30 flex size-14 items-center justify-center rounded-full bg-jade text-bone shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] ring-1 ring-bone/15 transition-colors hover:bg-[#25d366] md:bottom-8 md:right-8"
+      className="fixed bottom-5 right-5 z-30 flex size-14 items-center justify-center rounded-full bg-jade text-cream shadow-[0_10px_30px_-10px_rgba(0,0,0,0.35)] ring-1 ring-cream/30 transition-colors hover:bg-[#25d366] md:bottom-8 md:right-8"
     >
       <span aria-hidden className="absolute inset-0 animate-ping rounded-full bg-jade/40 [animation-duration:2.8s]" />
       <WhatsAppIcon className="relative size-7" />
