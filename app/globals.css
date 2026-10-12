@@ -32,6 +32,7 @@
   --color-faint: rgb(22 26 24 / 0.68);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, "Times New Roman", serif;
 
   --breakpoint-xs: 30rem;
 
@@ -62,35 +63,46 @@
 }
 
 /* Type scale — mirrors the reference's tight, heavy display rhythm */
+/* Headings: Cormorant Garamond — elegant serif, medium weight, near-neutral tracking */
 @utility t-display {
-  font-weight: 600;
-  line-height: 0.95;
-  letter-spacing: -0.055em;
-  font-size: clamp(3.5rem, 15vw, 11.875rem);
+  font-family: var(--font-serif);
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  font-size: clamp(4rem, 16.5vw, 13rem);
 }
 @utility t-h1 {
-  font-weight: 600;
+  font-family: var(--font-serif);
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
   line-height: 1;
-  letter-spacing: -0.05em;
-  font-size: clamp(2.75rem, 7vw, 6rem);
+  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 7.6vw, 6.75rem);
 }
 @utility t-h2 {
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.055em;
-  font-size: clamp(1.75rem, 4.4vw, 3.75rem);
+  font-family: var(--font-serif);
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-size: clamp(2rem, 4.8vw, 4.25rem);
 }
 @utility t-h3 {
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.06em;
-  font-size: clamp(1.75rem, 3.2vw, 2.8125rem);
+  font-family: var(--font-serif);
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  font-size: clamp(2rem, 3.5vw, 3.125rem);
 }
 @utility t-h4 {
+  font-family: var(--font-serif);
+  font-variant-numeric: lining-nums;
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.06em;
-  font-size: clamp(1.375rem, 2vw, 1.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  font-size: clamp(1.5rem, 2.2vw, 1.9375rem);
 }
 @utility t-xxl {
   font-weight: 600;
@@ -197,17 +209,20 @@
 .prose-ab h2 {
   margin-top: 2.25em;
   color: var(--color-bone);
-  font-weight: 600;
-  letter-spacing: -0.05em;
-  line-height: 1.15;
-  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+  font-family: var(--font-serif);
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  font-size: clamp(1.75rem, 2.9vw, 2.5rem);
 }
 .prose-ab h3 {
   margin-top: 1.75em;
   color: var(--color-bone);
+  font-family: var(--font-serif);
+  font-variant-numeric: lining-nums;
   font-weight: 600;
-  letter-spacing: -0.04em;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 .prose-ab a {
   color: var(--color-jade-light);
