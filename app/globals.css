@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — palette mirrors config/site.ts `colors`.
+ * Volcanic charcoal base, Maya-jade and terracotta accents, off-white type,
+ * hairline grid lines framing every cell.
+ */
+@theme {
+  --color-ink: #111413;
+  --color-ink-2: #1a1e1c;
+  --color-ink-3: #232825;
+  --color-jade: #2f7d6a;
+  --color-jade-light: #86c9b2;
+  --color-terra: #a94e2f;
+  --color-terra-dark: #8c3f24;
+  --color-terra-light: #c8623e;
+  --color-adobe: #d9a47c;
+  --color-bone: #f3eee6;
+  --color-huipil-rose: #b8336a;
+  --color-huipil-indigo: #2d3f8f;
+  --color-huipil-marigold: #e3a72f;
+
+  --color-line: rgb(243 238 230 / 0.1);
+  --color-line-strong: rgb(243 238 230 / 0.2);
+  --color-mute: rgb(243 238 230 / 0.68);
+  --color-faint: rgb(243 238 230 / 0.56);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --breakpoint-xs: 30rem;
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes rise {
+    from { transform: translateY(24px); }
+    to { transform: translateY(0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+/* Type scale — mirrors the reference's tight, heavy display rhythm */
+@utility t-display {
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  font-size: clamp(3.5rem, 15vw, 11.875rem);
+}
+@utility t-h1 {
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-size: clamp(2.75rem, 7vw, 6rem);
+}
+@utility t-h2 {
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+  font-size: clamp(1.75rem, 4.4vw, 3.75rem);
+}
+@utility t-h3 {
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-size: clamp(1.75rem, 3.2vw, 2.8125rem);
+}
+@utility t-h4 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.06em;
+  font-size: clamp(1.375rem, 2vw, 1.75rem);
+}
+@utility t-xxl {
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.06em;
+  font-size: clamp(1.125rem, 2vw, 1.75rem);
+}
+@utility t-xl {
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+}
+@utility t-lg {
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  font-size: 1.125rem;
+}
+@utility t-md {
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+  font-size: 1rem;
+}
+@utility t-xs {
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  font-size: 0.75rem;
+}
+@utility t-btn {
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-size: 0.875rem;
+}
+@utility t-eyebrow {
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+}
+
+/* Layout primitives */
+@utility gutter {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  @media (width >= 48rem) {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+@utility section-pad {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  @media (width >= 48rem) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+  }
+  ::selection {
+    background: var(--color-terra);
+    color: var(--color-bone);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-jade-light);
+    outline-offset: 2px;
+  }
+  input, select, textarea, button {
+    font: inherit;
+  }
+  /* Native date input icon on dark */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.6;
+  }
+}
+
+/* Long-form article typography (blog) */
+.prose-ab {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: rgb(243 238 230 / 0.82);
+}
+.prose-ab > * + * { margin-top: 1.25em; }
+.prose-ab h2 {
+  margin-top: 2.25em;
+  color: var(--color-bone);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.15;
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+}
+.prose-ab h3 {
+  margin-top: 1.75em;
+  color: var(--color-bone);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  font-size: 1.3rem;
+}
+.prose-ab a {
+  color: var(--color-jade-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose-ab a:hover { color: var(--color-bone); }
+.prose-ab strong { color: var(--color-bone); font-weight: 600; }
+.prose-ab ul, .prose-ab ol { padding-left: 1.25em; }
+.prose-ab ul { list-style: none; }
+.prose-ab ul li { position: relative; }
+.prose-ab ul li::before {
+  content: "";
+  position: absolute;
+  left: -1.1em;
+  top: 0.7em;
+  width: 0.4em;
+  height: 0.4em;
+  background: var(--color-terra);
+  transform: rotate(45deg);
+}
+.prose-ab ol { list-style: decimal; }
+.prose-ab li + li { margin-top: 0.5em; }
+.prose-ab blockquote {
+  border-left: 2px solid var(--color-jade);
+  padding-left: 1.25em;
+  color: var(--color-bone);
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+.prose-ab hr { border-color: var(--color-line); }
+.prose-ab table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.prose-ab th, .prose-ab td { border: 1px solid var(--color-line); padding: 0.6em 0.8em; text-align: left; }
