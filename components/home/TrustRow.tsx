@@ -1,5 +1,6 @@
 import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/motion";
+import { CountUp } from "@/components/ui/CountUp";
 
 const year = new Date().getFullYear();
 
@@ -22,7 +23,7 @@ export function TrustRow() {
             delay={i * 0.06}
             className="-mr-px flex flex-col gap-3 border-r border-t border-line p-5 md:p-8 [&:nth-child(-n+2)]:border-t-0 md:[&:nth-child(-n+3)]:border-t-0 xl:border-t-0"
           >
-            <span className="t-h3 text-adobe">{it.value}</span>
+            <CountUp value={it.value} className="t-h3 text-adobe" />
             <span className="t-md">{it.label}</span>
             <span className="t-xs text-mute">{it.text}</span>
           </Reveal>

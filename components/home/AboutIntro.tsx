@@ -4,6 +4,7 @@ import { site } from "@/config/site";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PlusLink } from "@/components/ui/Button";
 import { Parallax, Reveal, SplitHeading } from "@/components/ui/motion";
+import { CountUp } from "@/components/ui/CountUp";
 
 export function AboutIntro() {
   const years = new Date().getFullYear() - site.foundedYear;
@@ -24,14 +25,14 @@ export function AboutIntro() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <Reveal className="flex flex-col justify-between gap-10 border-t border-line pt-6" delay={0.05}>
               <div className="flex flex-col gap-4">
-                <span className="t-h3">{years}+</span>
+                <CountUp value={`${years}+`} className="t-h3" />
                 <span className="t-lg">Years planning Guatemala</span>
               </div>
               <span className="t-md font-normal text-mute">Born in Antigua, built on long friendships with local guides, drivers and families.</span>
             </Reveal>
             <Reveal className="flex flex-col justify-between gap-10 border-t border-line pt-6" delay={0.12}>
               <div className="flex flex-col gap-4">
-                <span className="t-h3">2,400+</span>
+                <CountUp value="2,400+" className="t-h3" />
                 <span className="t-lg">Travellers looked after</span>
               </div>
               <span className="t-md font-normal text-mute">Couples, families, solo explorers and honeymooners, each with a trip of their own.</span>
