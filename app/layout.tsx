@@ -11,7 +11,7 @@ import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["500", "600"],
+  weight: ["500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
