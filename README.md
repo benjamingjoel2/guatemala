@@ -13,6 +13,15 @@ npm run build && npm start
 npm run lint
 ```
 
+## Deployment
+
+Production runs on Vercel at https://antigua-and-beyond.vercel.app (project `antigua-and-beyond`, team `benjamin-sevo`). The project is connected to this GitHub repo:
+
+- Every push to the production branch (`claude/modest-bohr-9wxjav` for now; change it under Vercel → Settings → Git) deploys to production.
+- Pushes to any other branch get a preview deployment. Previews are protected by Vercel Authentication.
+- `NEXT_PUBLIC_SITE_URL` is set in the Vercel project's environment variables.
+- The `gh-pages` branch is skipped through the project's Ignored Build Step setting.
+
 ## Static preview (GitHub Pages)
 
 ```bash
