@@ -23,8 +23,8 @@ export function Logo({ className, onClick }: { className?: string; onClick?: () 
       className={cn("group inline-flex items-center gap-2.5 text-logo", className)}
     >
       <LogoMark className="size-[1.375rem] transition-transform duration-500 group-hover:-translate-y-0.5" />
-      <span className="whitespace-nowrap font-serif text-[1.75rem] font-semibold italic leading-none tracking-[-0.01em] md:text-[2rem]">
-        Antigua<span className="mx-[0.06em] inline-block text-[1.12em] font-medium">&amp;</span>Beyond
+      <span className="whitespace-nowrap font-serif text-[1.75rem] font-bold italic leading-none tracking-[-0.01em] md:text-[2rem]">
+        Antigua<span className="mx-[0.06em] inline-block text-[1.12em] font-semibold">&amp;</span>Beyond
       </span>
     </Link>
   );
