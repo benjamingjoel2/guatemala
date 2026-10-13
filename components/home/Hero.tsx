@@ -54,7 +54,7 @@ export function Hero() {
 
         <h1 id="hero-title" className="mt-10 md:mt-14">
           <span className="sr-only">Antigua &amp; Beyond: tailor-made trips to Guatemala. </span>
-          <span aria-hidden className="mb-1 block overflow-hidden font-serif text-[clamp(1.5rem,2.6vw,2.5rem)] font-semibold italic leading-tight text-bone/85 md:mb-0">
+          <span aria-hidden className="mb-1 block overflow-hidden font-serif text-[clamp(1.5rem,2.6vw,2.5rem)] font-medium italic leading-tight text-bone/85 md:mb-0">
             <motion.span className="block" initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1, ease, delay: 0.2 }}>
               Start in Antigua.
             </motion.span>

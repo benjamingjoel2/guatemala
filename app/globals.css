@@ -73,11 +73,11 @@
 }
 
 /* Type scale — mirrors the reference's tight, heavy display rhythm */
-/* Headings: Cormorant Garamond — elegant serif, semibold/bold, near-neutral tracking */
+/* Headings: Cormorant Garamond — elegant serif, medium weight, near-neutral tracking */
 @utility t-display {
   font-family: var(--font-serif);
   font-variant-numeric: lining-nums;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 0.92;
   letter-spacing: -0.025em;
   font-size: clamp(4rem, 16.5vw, 13rem);
@@ -85,7 +85,7 @@
 @utility t-h1 {
   font-family: var(--font-serif);
   font-variant-numeric: lining-nums;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: -0.02em;
   font-size: clamp(3rem, 7.6vw, 6.75rem);
@@ -93,7 +93,7 @@
 @utility t-h2 {
   font-family: var(--font-serif);
   font-variant-numeric: lining-nums;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.015em;
   font-size: clamp(2rem, 4.8vw, 4.25rem);
@@ -101,7 +101,7 @@
 @utility t-h3 {
   font-family: var(--font-serif);
   font-variant-numeric: lining-nums;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.01em;
   font-size: clamp(2rem, 3.5vw, 3.125rem);
@@ -109,7 +109,7 @@
 @utility t-h4 {
   font-family: var(--font-serif);
   font-variant-numeric: lining-nums;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.005em;
   font-size: clamp(1.5rem, 2.2vw, 1.9375rem);
@@ -221,7 +221,7 @@
   color: var(--color-bone);
   font-family: var(--font-serif);
   font-variant-numeric: lining-nums;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.1;
   font-size: clamp(1.75rem, 2.9vw, 2.5rem);
@@ -231,7 +231,7 @@
   color: var(--color-bone);
   font-family: var(--font-serif);
   font-variant-numeric: lining-nums;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.5rem;
 }
 .prose-ab a {
