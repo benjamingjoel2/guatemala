@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { destinations } from "@/data/destinations";
 import { site } from "@/config/site";
+import { pageMeta } from "@/lib/seo";
 import { Hero } from "@/components/home/Hero";
 import { TrustRow } from "@/components/home/TrustRow";
 import { RegionsShowcase } from "@/components/home/RegionsShowcase";
@@ -15,10 +16,17 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { GuideSignup } from "@/components/home/GuideSignup";
 import { FinalCta } from "@/components/home/FinalCta";
 
+const homeMeta = pageMeta({
+  title: "Tailor-made Guatemala trips",
+  description:
+    "Private, tailor-made Guatemala trips planned by one local specialist in Antigua: Lake Atitlán, Tikal, volcano hikes and the highlands, with 24/7 WhatsApp support.",
+  path: "/",
+});
+
 export const metadata: Metadata = {
+  ...homeMeta,
   title: { absolute: `${site.name} · Tailor-made Guatemala trips` },
-  description: site.description,
-  alternates: { canonical: "/" },
+  openGraph: { ...homeMeta.openGraph, title: `${site.name} · Tailor-made Guatemala trips` },
 };
 
 export default function HomePage() {

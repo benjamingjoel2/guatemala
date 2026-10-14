@@ -6,7 +6,7 @@ import { tours } from "@/data/tours";
 import { stays } from "@/data/stays";
 import { experiences } from "@/data/experiences";
 import { regionLabels } from "@/config/site";
-import { pageMeta } from "@/lib/seo";
+import { JsonLd, pageMeta } from "@/lib/seo";
 import { monthNames } from "@/lib/utils";
 import { routeForRegions } from "@/lib/routes";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -23,7 +23,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { ExperienceCard } from "@/components/cards/ExperienceCard";
 import { FinalCta } from "@/components/home/FinalCta";
 import { IconClock, IconMountain, IconPin } from "@/components/ui/icons";
-import { whatsappHref } from "@/config/site";
+import { site, whatsappHref } from "@/config/site";
 
 export function generateStaticParams() {
   return destinations.map((d) => ({ slug: d.slug }));
@@ -74,6 +74,19 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TouristDestination",
+          name: `${d.name}, Guatemala`,
+          description: d.excerpt,
+          url: `${site.url}/destinations/${d.slug}`,
+          image: [d.image.src, ...d.gallery.map((g) => g.src)].slice(0, 4),
+          touristType: d.highlights.map((h) => h.title),
+          containedInPlace: { "@type": "Country", name: "Guatemala" },
+          includesAttraction: d.thingsToDo.slice(0, 6).map((t) => ({ "@type": "TouristAttraction", name: t })),
+        }}
+      />
       {/* Hero */}
       <section className="theme-dark relative flex min-h-[80svh] flex-col justify-end overflow-hidden bg-ink">
         <Image src={d.image.src} alt={d.image.alt} fill priority sizes="100vw" className="object-cover" />

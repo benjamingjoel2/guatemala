@@ -42,9 +42,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     headline: meta.title,
     description: meta.excerpt,
     datePublished: meta.date,
-    image: meta.image.src,
-    author: { "@type": "Organization", name: meta.author },
-    publisher: { "@type": "Organization", name: site.name },
+    dateModified: meta.date,
+    image: [`${meta.image.src}&w=1200&h=630`],
+    url: `${site.url}/blog/${slug}`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${site.url}/blog/${slug}` },
+    articleSection: meta.category,
+    inLanguage: "en",
+    author: { "@type": "Organization", name: meta.author, url: site.url },
+    publisher: { "@id": `${site.url}/#organization` },
   };
 
   return (

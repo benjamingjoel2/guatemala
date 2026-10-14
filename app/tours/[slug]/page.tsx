@@ -3,7 +3,7 @@ import Link from "next/link";
 import { tours, getTour } from "@/data/tours";
 import { destinations } from "@/data/destinations";
 import { stays } from "@/data/stays";
-import { regionLabels, whatsappHref } from "@/config/site";
+import { regionLabels, site, whatsappHref } from "@/config/site";
 import { pageMeta } from "@/lib/seo";
 import { routeForRegions } from "@/lib/routes";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -57,9 +57,12 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
     "@type": "TouristTrip",
     name: t.title,
     description: t.summary,
+    url: `${site.url}/tours/${t.slug}`,
+    image: [t.image.src, ...t.gallery.map((g) => g.src)].slice(0, 4),
     touristType: t.bestFor,
+    provider: { "@id": `${site.url}/#organization` },
     itinerary: { "@type": "ItemList", itemListElement: stops.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: s })) },
-    offers: { "@type": "Offer", price: t.priceFrom, priceCurrency: "USD", availability: "https://schema.org/InStock" },
+    offers: { "@type": "Offer", price: t.priceFrom, priceCurrency: "USD", availability: "https://schema.org/InStock", url: `${site.url}/tours/${t.slug}` },
   };
 
   return (

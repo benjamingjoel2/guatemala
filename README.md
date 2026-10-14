@@ -22,6 +22,14 @@ Production runs on Vercel at https://antigua-and-beyond.vercel.app (project `ant
 - `NEXT_PUBLIC_SITE_URL` is set in the Vercel project's environment variables.
 - The `gh-pages` branch is skipped through the project's Ignored Build Step setting.
 
+## SEO
+
+- Per-page titles (brand suffix dropped when it would exceed ~60 characters), descriptions trimmed to ~158 characters, canonicals, Open Graph and Twitter tags (`lib/seo.tsx`)
+- JSON-LD: TravelAgency + WebSite (all pages), TouristDestination + FAQPage (destinations), TouristTrip (tours and experiences), BlogPosting, FAQPage (`/faq`), BreadcrumbList
+- `sitemap.xml` and `robots.txt` generated from `/data`; brand favicon (`app/icon.svg`, `app/apple-icon.png`)
+- Search Console: set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (and optionally `NEXT_PUBLIC_BING_SITE_VERIFICATION`) in Vercel, redeploy, then submit `/sitemap.xml`
+- The `gh-pages` branch now only redirects to the Vercel site (noindex), so there is no duplicate copy
+
 ## Static preview (GitHub Pages)
 
 ```bash
