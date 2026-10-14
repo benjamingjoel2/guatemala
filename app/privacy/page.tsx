@@ -2,7 +2,7 @@ import { pageMeta } from "@/lib/seo";
 import { LegalPage } from "@/components/detail/LegalPage";
 import { site, contact } from "@/config/site";
 
-export const metadata = pageMeta({ title: "Privacy policy", description: `How ${site.name} collects and uses your personal data.`, path: "/privacy" });
+export const metadata = pageMeta({ title: "Privacy policy", description: `How ${site.name} collects, uses and protects your personal data when you plan a Guatemala trip, sign up for our guide or contact us.`, path: "/privacy" });
 
 export default function PrivacyPage() {
   return (

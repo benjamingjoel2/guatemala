@@ -2,7 +2,7 @@ import { pageMeta } from "@/lib/seo";
 import { LegalPage } from "@/components/detail/LegalPage";
 import { site } from "@/config/site";
 
-export const metadata = pageMeta({ title: "Terms & conditions", description: `Booking terms and conditions for ${site.name}.`, path: "/terms" });
+export const metadata = pageMeta({ title: "Terms & conditions", description: `Booking terms for ${site.name} tailor-made Guatemala trips: quotes, deposits, payments, changes and cancellations, travel insurance and liability.`, path: "/terms" });
 
 export default function TermsPage() {
   return (

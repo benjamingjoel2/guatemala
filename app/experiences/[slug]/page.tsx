@@ -3,8 +3,8 @@ import Link from "next/link";
 import { experiences, getExperience } from "@/data/experiences";
 import { destinations } from "@/data/destinations";
 import { tours } from "@/data/tours";
-import { whatsappHref } from "@/config/site";
-import { pageMeta } from "@/lib/seo";
+import { site, whatsappHref } from "@/config/site";
+import { JsonLd, pageMeta } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SplitHeading, Reveal } from "@/components/ui/motion";
@@ -42,6 +42,20 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          name: e.title,
+          description: e.excerpt,
+          url: `${site.url}/experiences/${e.slug}`,
+          image: [e.image.src, ...e.gallery.map((g) => g.src)].slice(0, 4),
+          touristType: e.bestFor,
+          provider: { "@id": `${site.url}/#organization` },
+          itinerary: { "@type": "ItemList", itemListElement: places.map((p, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "TouristDestination", name: p.name } })) },
+          offers: { "@type": "Offer", price: e.priceFrom, priceCurrency: "USD", availability: "https://schema.org/InStock", url: `${site.url}/experiences/${e.slug}` },
+        }}
+      />
       <div className="gutter pt-[4.5rem]">
         <div className="flex flex-col gap-6 pb-10 pt-10 md:pt-14">
           <Breadcrumbs items={[{ label: "Experiences", href: "/experiences" }, { label: e.title }]} />

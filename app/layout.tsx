@@ -4,6 +4,7 @@ import "./globals.css";
 import { site } from "@/config/site";
 import { img } from "@/data/images";
 import { Providers } from "@/components/providers/Providers";
+import { JsonLd, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
@@ -29,27 +30,28 @@ export const metadata: Metadata = {
     images: [{ url: `${img.antiguaStreetAgua.src}&w=1200&h=630`, width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  // Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION (and optionally NEXT_PUBLIC_BING_SITE_VERIFICATION)
+  // in Vercel to verify the site in Google Search Console / Bing Webmaster Tools.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } : undefined,
+  },
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {
   themeColor: "#f7f3ec",
 };
 
-const orgJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TravelAgency",
-  name: site.name,
-  url: site.url,
-  description: site.description,
-  areaServed: "Guatemala",
-  address: { "@type": "PostalAddress", addressLocality: "Antigua Guatemala", addressCountry: "GT" },
-};
+
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="min-h-screen overflow-x-clip">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
+        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={websiteJsonLd} />
         <Providers>
           <Header />
           <main id="main">{children}</main>
