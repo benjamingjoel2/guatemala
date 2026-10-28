@@ -15,7 +15,7 @@ export const site = {
 };
 
 export const contact = {
-  email: "[EMAIL]",
+  email: "antiguaandbeyond@tourground.com",
   phone: "+502 0000 0000",
   phoneHref: "tel:+50200000000",
   /** Digits only, international format, for wa.me links */

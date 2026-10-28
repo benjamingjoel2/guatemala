@@ -42,7 +42,7 @@ This writes a fully static build to `./out`, which is published on the `gh-pages
 
 | Path | What it holds |
 | --- | --- |
-| `config/site.ts` | Brand name, palette, **currencies and conversion rates**, contact details (`[EMAIL]`, `[NUMBER]` placeholders), socials, navigation |
+| `config/site.ts` | Brand name, palette, **currencies and conversion rates**, contact details (email set; `[NUMBER]` WhatsApp placeholder), socials, navigation |
 | `data/types.ts` | Content model (Destination, Experience, Tour, Stay, Testimonial, FAQ, planner options) |
 | `data/*.ts` | Seed content: 12 destinations, 13 experiences, 8 tours, 8 stays, 6 placeholder testimonials, 11 FAQs, planner options |
 | `data/images.ts` | Image catalog. Swap any `src` to replace photography site-wide |
@@ -54,7 +54,7 @@ This writes a fully static build to `./out`, which is published on the `gh-pages
 
 ### Before launch
 
-- Replace `[EMAIL]`, `[NUMBER]`, the phone number and address in `config/site.ts`
+- Replace `[NUMBER]` (WhatsApp), the phone number and address in `config/site.ts`
 - Set `NEXT_PUBLIC_SITE_URL` for canonical URLs, the sitemap and OG tags
 - Replace placeholder testimonials (`data/testimonials.ts`, flagged `placeholder: true`)
 - Wire the `TODO`s in `app/api/*` to your email provider and CRM
