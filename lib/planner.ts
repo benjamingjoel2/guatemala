@@ -89,9 +89,9 @@ export function validateStep(step: number, d: PlannerData): PlannerErrors {
   if (step === 4) {
     if (d.name.trim().length < 2) e.name = "Please tell us your name.";
     if (!emailRe.test(d.email.trim())) e.email = "Please enter a valid email address.";
-    const needsPhone = d.contactMethods.includes("WhatsApp") || d.contactMethods.includes("Telephone");
+    const needsPhone = d.contactMethods.includes("Telephone");
     const digits = d.phone.replace(/\D/g, "");
-    if (needsPhone && digits.length < 6) e.phone = "Add a phone number so we can reach you on WhatsApp or by phone.";
+    if (needsPhone && digits.length < 6) e.phone = "Add a phone number so we can call you.";
     else if (d.phone && (digits.length < 6 || digits.length > 15)) e.phone = "Please enter a valid phone number.";
     if (d.contactMethods.length === 0) e.contactMethods = "Choose at least one way to contact you.";
     if (d.notes.length > 3000) e.notes = "Please keep this under 3,000 characters.";

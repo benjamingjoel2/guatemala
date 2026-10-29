@@ -6,7 +6,7 @@ export const faqs: SiteFaq[] = [
     category: "Planning",
     question: "How does planning with a specialist work?",
     answer:
-      "Tell us a little about who's travelling, when, and what excites you, and one of our Guatemala-based specialists will get in touch, usually within one working day. They'll sketch a first route and talk it through with you by email, WhatsApp or a call, then refine it until every hotel, guide and transfer feels right. There's no charge for planning and no obligation to book. Once you travel, the same specialist stays with you on the ground until the day you fly home.",
+      "Tell us a little about who's travelling, when, and what excites you, and one of our Guatemala-based specialists will get in touch, usually within one working day. They'll sketch a first route and talk it through with you by email or a call, then refine it until every hotel, guide and transfer feels right. There's no charge for planning and no obligation to book. Once you travel, the same specialist stays with you on the ground until the day you fly home.",
   },
   {
     id: "entry-requirements",

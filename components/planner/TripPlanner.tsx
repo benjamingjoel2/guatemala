@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { addOns, budgetOptions, contactMethods, countryCodes, routeCombos } from "@/data/planner";
-import { whatsappHref } from "@/config/site";
+import { contact, mailtoHref } from "@/config/site";
 import { emptyPlanner, plannerSteps, validateStep, type PlannerData, type PlannerErrors } from "@/lib/planner";
 import { Chip, Field, Fieldset, Stepper, inputClass } from "@/components/ui/form";
 import { Arrow, buttonClass } from "@/components/ui/Button";
@@ -32,6 +32,8 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [reference, setReference] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
+  // Honeypot for spam bots (kept out of saved progress)
+  const [website, setWebsite] = useState("");
   const headingRef = useRef<HTMLHeadingElement>(null);
   const firstRender = useRef(true);
 
@@ -41,7 +43,9 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const saved = JSON.parse(raw) as { data: PlannerData; step: number };
-        setData({ ...emptyPlanner, ...saved.data });
+        const restored = { ...emptyPlanner, ...saved.data };
+        const methods = restored.contactMethods.filter((m) => (contactMethods as readonly string[]).includes(m));
+        setData({ ...restored, contactMethods: methods.length ? methods : emptyPlanner.contactMethods });
         setStep(Math.min(Math.max(saved.step ?? 0, 0), plannerSteps.length - 1));
       }
     } catch {}
@@ -126,7 +130,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
   async function submit() {
     setStatus("submitting");
     try {
-      const { ok, json } = await postJson<{ ok: boolean; reference?: string; errors?: PlannerErrors; message?: string }>("/api/plan", data);
+      const { ok, json } = await postJson<{ ok: boolean; reference?: string; errors?: PlannerErrors; message?: string }>("/api/plan", { ...data, website });
       if (!ok || !json.ok) {
         if (json.errors) setErrors(json.errors);
         throw new Error(json.message ?? "Request failed");
@@ -451,7 +455,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                     className={inputClass}
                   />
                 </Field>
-                <Field label="Phone (with country code)" htmlFor="phone" error={errors.phone} hint="Needed if you'd like WhatsApp or a call">
+                <Field label="Phone (with country code)" htmlFor="phone" error={errors.phone} hint="Needed if you'd like us to call you">
                   <div className="flex gap-3">
                     <label htmlFor="phoneCode" className="sr-only">Country code</label>
                     <select
@@ -489,6 +493,10 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                     ))}
                   </div>
                 </Fieldset>
+<div aria-hidden="true" className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden">
+                  <label htmlFor="planner-website">Leave this field empty</label>
+                  <input id="planner-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
+                </div>
                 <Field label="Anything else we should know? (optional)" htmlFor="notes" error={errors.notes} className="md:col-span-2">
                   <textarea
                     id="notes"
@@ -510,8 +518,8 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
 
       {status === "error" && (
         <p role="alert" className="t-md mt-8 border border-adobe/50 bg-terra/10 p-4 text-adobe">
-          We couldn&apos;t send your request just now. Please try again, or message us on{" "}
-          <a href={whatsappHref()} className="underline" target="_blank" rel="noopener noreferrer">WhatsApp</a>.
+          We couldn&apos;t send your request just now. Please try again, or email us at{" "}
+          <a href={mailtoHref("Trip planning request")} className="underline">{contact.email}</a>.
         </p>
       )}
 
@@ -581,8 +589,8 @@ function Confirmation({
         ))}
       </dl>
       <div className="flex flex-col gap-3 sm:flex-row">
-        <a href={whatsappHref(`Hi! I just sent a trip request${reference ? ` (${reference})` : ""}.`)} target="_blank" rel="noopener noreferrer" className={buttonClass("accent")}>
-          Say hello on WhatsApp <Arrow />
+        <a href={mailtoHref(`Trip request${reference ? ` ${reference}` : ""}`)} className={buttonClass("accent")}>
+          Email your specialist <Arrow />
         </a>
         {onDone ? (
           <button type="button" onClick={onDone} className={buttonClass("outline")}>

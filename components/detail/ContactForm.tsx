@@ -13,6 +13,7 @@ const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 export function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [website, setWebsite] = useState(""); // honeypot for spam bots
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
 
   async function onSubmit(e: React.FormEvent) {
@@ -25,7 +26,7 @@ export function ContactForm() {
     if (Object.keys(errs).length) return;
     setStatus("sending");
     try {
-      const res = await postJson("/api/contact", form);
+      const res = await postJson("/api/contact", { ...form, website });
       if (!res.ok) throw new Error();
       setStatus("done");
     } catch {
@@ -50,6 +51,10 @@ export function ContactForm() {
             <Field label="Email" htmlFor="c-email" error={errors.email} required>
               <input id="c-email" type="email" autoComplete="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} aria-invalid={!!errors.email} aria-describedby={errors.email ? "c-email-error" : undefined} placeholder="Enter your email" className={inputClass} />
             </Field>
+          </div>
+<div aria-hidden="true" className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden">
+            <label htmlFor="contact-website">Leave this field empty</label>
+            <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
           </div>
           <Field label="Message" htmlFor="c-message" error={errors.message} required>
             <textarea id="c-message" rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} aria-invalid={!!errors.message} aria-describedby={errors.message ? "c-message-error" : undefined} placeholder="Tell us about your trip, or ask us anything" className={cn(inputClass, "resize-none")} />

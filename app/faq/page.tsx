@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/detail/PageHeader";
 import { Accordion } from "@/components/ui/Accordion";
 import { FinalCta } from "@/components/home/FinalCta";
 import { ButtonLink } from "@/components/ui/Button";
-import { whatsappHref } from "@/config/site";
+import { mailtoHref } from "@/config/site";
 
 export const metadata = pageMeta({
   title: "Guatemala travel FAQ",
@@ -49,8 +49,8 @@ export default function FaqPage() {
             ))}
             <div className="flex flex-col items-start gap-4 border border-line-strong bg-ink-2 p-8">
               <p className="t-h4">Still wondering about something?</p>
-              <p className="t-md font-normal text-mute">Message a specialist. We usually reply within the hour during Guatemala daytime.</p>
-              <ButtonLink href={whatsappHref("Hi! I have a question about travelling in Guatemala.")} external>Ask on WhatsApp</ButtonLink>
+              <p className="t-md font-normal text-mute">Email a specialist. We reply within one working day, usually much sooner.</p>
+              <ButtonLink href={mailtoHref("A question about travelling in Guatemala")}>Email a specialist</ButtonLink>
             </div>
           </div>
         </div>

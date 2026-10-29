@@ -22,6 +22,18 @@ Production runs on Vercel at https://antiguaandbeyond.tourground.com (custom dom
 - `NEXT_PUBLIC_SITE_URL` is set in the Vercel project's environment variables.
 - The `gh-pages` branch is skipped through the project's Ignored Build Step setting.
 
+## Enquiry emails
+
+The trip planner (`/api/plan`) and contact form (`/api/contact`) email each submission to the team via [Resend](https://resend.com), with reply-to set to the traveller. Set in Vercel → Settings → Environment Variables:
+
+| Variable | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | Required to send. Without it, submissions are only written to the server log |
+| `ENQUIRY_TO_EMAIL` | Inbox that receives enquiries (defaults to the contact email in `config/site.ts`) |
+| `EMAIL_FROM` | Sender, e.g. `Antigua & Beyond <planner@tourground.com>` once tourground.com is verified in Resend |
+
+Both forms include a hidden honeypot field; submissions that fill it are dropped silently.
+
 ## SEO
 
 - Per-page titles (brand suffix dropped when it would exceed ~60 characters), descriptions trimmed to ~158 characters, canonicals, Open Graph and Twitter tags (`lib/seo.tsx`)
@@ -42,7 +54,7 @@ This writes a fully static build to `./out`, which is published on the `gh-pages
 
 | Path | What it holds |
 | --- | --- |
-| `config/site.ts` | Brand name, palette, **currencies and conversion rates**, contact details (email set; `[NUMBER]` WhatsApp placeholder), socials, navigation |
+| `config/site.ts` | Brand name, palette, **currencies and conversion rates**, contact details (email, phone, address), socials, navigation |
 | `data/types.ts` | Content model (Destination, Experience, Tour, Stay, Testimonial, FAQ, planner options) |
 | `data/*.ts` | Seed content: 12 destinations, 13 experiences, 8 tours, 8 stays, 6 placeholder testimonials, 11 FAQs, planner options |
 | `data/images.ts` | Image catalog. Swap any `src` to replace photography site-wide |
@@ -50,11 +62,11 @@ This writes a fully static build to `./out`, which is published on the `gh-pages
 | `app/` | Routes. Index and `[slug]` pages are generated from `/data` |
 | `app/api/plan` | Trip planner endpoint: validates, logs the payload, `TODO` for email/CRM |
 | `app/api/newsletter`, `app/api/contact` | Guide signup and contact form endpoints (log + `TODO`) |
-| `components/` | `layout/` (header, footer, WhatsApp), `home/` sections, `cards/`, `detail/` page templates, `planner/`, `ui/` primitives |
+| `components/` | `layout/` (header, footer, logo, currency switcher), `home/` sections, `cards/`, `detail/` page templates, `planner/`, `ui/` primitives |
 
 ### Before launch
 
-- Replace `[NUMBER]` (WhatsApp), the phone number and address in `config/site.ts`
+- Replace the placeholder phone number and check the address in `config/site.ts`
 - Set `NEXT_PUBLIC_SITE_URL` for canonical URLs, the sitemap and OG tags
 - Replace placeholder testimonials (`data/testimonials.ts`, flagged `placeholder: true`)
 - Wire the `TODO`s in `app/api/*` to your email provider and CRM

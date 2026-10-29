@@ -3,7 +3,7 @@ import Link from "next/link";
 import { stays, getStay } from "@/data/stays";
 import { getDestination } from "@/data/destinations";
 import { tours } from "@/data/tours";
-import { whatsappHref } from "@/config/site";
+import { mailtoHref } from "@/config/site";
 import { pageMeta } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -90,7 +90,7 @@ export default async function StayPage({ params }: { params: Promise<{ slug: str
               </div>
               <div className="flex flex-col gap-2">
                 <PlanButton className="w-full">Include in my trip</PlanButton>
-                <ButtonLink href={whatsappHref(`Hi! I'd love to stay at ${s.name}.`)} external variant="outline" className="w-full">Ask on WhatsApp</ButtonLink>
+                <ButtonLink href={mailtoHref(`Staying at ${s.name}`)} variant="outline" className="w-full">Email us</ButtonLink>
               </div>
               <p className="t-xs text-faint">We book stays as part of tailor-made trips only.</p>
             </SideCard>

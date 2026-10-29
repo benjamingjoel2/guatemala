@@ -23,7 +23,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { ExperienceCard } from "@/components/cards/ExperienceCard";
 import { FinalCta } from "@/components/home/FinalCta";
 import { IconClock, IconMountain, IconPin } from "@/components/ui/icons";
-import { site, whatsappHref } from "@/config/site";
+import { mailtoHref, site } from "@/config/site";
 
 export function generateStaticParams() {
   return destinations.map((d) => ({ slug: d.slug }));
@@ -185,7 +185,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
               <p className="t-md font-normal text-mute">Want {d.name} in your trip? Your specialist will fit it into a route that flows.</p>
               <div className="flex flex-col gap-2">
                 <PlanButton route={routeForRegions([d.region])} className="w-full">Plan a trip here</PlanButton>
-                <ButtonLink href={whatsappHref(`Hi! I'd love to include ${d.name} in my Guatemala trip.`)} external variant="outline" className="w-full">Ask on WhatsApp</ButtonLink>
+                <ButtonLink href={mailtoHref(`Trip to Guatemala including ${d.name}`)} variant="outline" className="w-full">Email us</ButtonLink>
               </div>
             </SideCard>
           </div>

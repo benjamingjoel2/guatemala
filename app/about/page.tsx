@@ -20,7 +20,7 @@ export const metadata = pageMeta({
 });
 
 const values = [
-  { title: "One person, start to finish", text: "Your specialist plans every detail, knows every hotel and answers your WhatsApp from the road. No call centres, no hand-offs." },
+  { title: "One person, start to finish", text: "Your specialist plans every detail, knows every hotel and answers your messages from the road. No call centres, no hand-offs." },
   { title: "Local, not outsourced", text: "We live in Antigua. Our guides, drivers and hosts are long-standing friends and partners, not names on a supplier list." },
   { title: "Fair to everyone", text: "Transparent quotes for you, fair and prompt payment for our partners, and community projects chosen with them, not for them." },
   { title: "Premium, never precious", text: "Beautiful hotels and private guides, yes. But also market breakfasts, chicken-bus stories and the Guatemala most visitors miss." },
@@ -52,7 +52,7 @@ export default function AboutPage() {
               They came home and told their friends. Those friends told theirs. Today {site.name} is a small, Antigua-based team of specialists, each with a region they know by heart and a little black book of guides, drivers, hoteliers and families across the country.
             </p>
             <p className="t-md font-normal leading-relaxed">
-              Our promise has not changed: one dedicated local specialist designs your trip around you, books everything with partners we have known for years, and stays on WhatsApp from your first message to the day you fly home. Premium, personal and properly local.
+              Our promise has not changed: one dedicated local specialist designs your trip around you, books everything with partners we have known for years, and stays in touch from your first message to the day you fly home. Premium, personal and properly local.
             </p>
           </Reveal>
         </div>

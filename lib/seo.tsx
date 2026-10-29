@@ -58,7 +58,7 @@ export const organizationJsonLd = {
   foundingDate: String(site.foundedYear),
   areaServed: { "@type": "Country", name: "Guatemala" },
   address: { "@type": "PostalAddress", addressLocality: "Antigua Guatemala", addressRegion: "Sacatepéquez", addressCountry: "GT" },
-  sameAs: socials.map((s) => s.href),
+  ...(socials.length ? { sameAs: socials.map((s) => s.href) } : {}),
 };
 
 export const websiteJsonLd = {

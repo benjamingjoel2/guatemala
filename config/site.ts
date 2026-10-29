@@ -18,22 +18,20 @@ export const contact = {
   email: "antiguaandbeyond@tourground.com",
   phone: "+502 0000 0000",
   phoneHref: "tel:+50200000000",
-  /** Digits only, international format, for wa.me links */
-  whatsappNumber: "[NUMBER]",
-  whatsappMessage: "Hi Antigua & Beyond! I'd like help planning a trip to Guatemala.",
   address: "5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala",
-  hours: "Mon–Sat · 8:00–18:00 (GMT-6) · WhatsApp 24/7 while you travel",
+  hours: "Mon–Sat · 8:00–18:00 (GMT-6) · 24/7 support while you travel",
 };
 
-export const whatsappHref = (message: string = contact.whatsappMessage) =>
-  `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
+/** mailto: link to the team inbox with an optional pre-filled subject. */
+export const mailtoHref = (subject?: string) =>
+  `mailto:${contact.email}${subject ? `?subject=${encodeURIComponent(subject)}` : ""}`;
 
-export const socials = [
-  { label: "Instagram", href: "https://instagram.com/" },
-  { label: "Facebook", href: "https://facebook.com/" },
-  { label: "YouTube", href: "https://youtube.com/" },
-  { label: "Pinterest", href: "https://pinterest.com/" },
-];
+/**
+ * Social profiles. Empty until the accounts exist; the footer, contact page and
+ * structured data only show them when this list has entries, e.g.
+ * { label: "Instagram", href: "https://instagram.com/antiguaandbeyond" }
+ */
+export const socials: { label: string; href: string }[] = [];
 
 /** Brand palette — mirrored as CSS variables in app/globals.css (light theme, dark photo bands + footer) */
 export const colors = {

@@ -31,7 +31,7 @@ export function CombineBand() {
           </div>
           <Reveal className="flex flex-col items-start gap-8 lg:items-end lg:pt-3 lg:text-right" delay={0.2}>
             <p className="t-xl max-w-md">
-              Hotels, drivers, guides and once-in-a-lifetime moments, woven into one seamless plan. Instant answers on WhatsApp, and a specialist who handles every booking for you.
+              Hotels, drivers, guides and once-in-a-lifetime moments, woven into one seamless plan. Quick answers, and a specialist who handles every booking for you.
             </p>
             <PlanButton variant="light">Build my trip</PlanButton>
           </Reveal>

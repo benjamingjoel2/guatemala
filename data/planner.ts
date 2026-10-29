@@ -107,7 +107,7 @@ export const addOns: { id: string; label: string; description: string }[] = [
   },
 ];
 
-export const contactMethods = ["Email", "WhatsApp", "Telephone"] as const;
+export const contactMethods = ["Email", "Telephone"] as const;
 
 export const countryCodes: { code: string; label: string }[] = [
   { code: "+1", label: "United States / Canada (+1)" },

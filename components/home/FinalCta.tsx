@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { img } from "@/data/images";
-import { whatsappHref } from "@/config/site";
+import { mailtoHref } from "@/config/site";
 import { PlanButton } from "@/components/ui/PlanButton";
 import { ButtonLink } from "@/components/ui/Button";
 import { Parallax, Reveal, SplitHeading } from "@/components/ui/motion";
@@ -18,7 +18,7 @@ export function FinalCta({ title = "Ready when you are. Let's plan your Guatemal
           <p className="t-xl max-w-xl text-bone/85">Tell us a little about your trip. Your specialist will reply within one working day with ideas, not a sales pitch.</p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <PlanButton>Plan your trip</PlanButton>
-            <ButtonLink href={whatsappHref()} external variant="outline" className="backdrop-blur-sm">Chat on WhatsApp</ButtonLink>
+            <ButtonLink href={mailtoHref("Planning a trip to Guatemala")} variant="outline" className="backdrop-blur-sm">Email us</ButtonLink>
           </div>
         </Reveal>
       </div>

@@ -19,7 +19,7 @@ import { FinalCta } from "@/components/home/FinalCta";
 const homeMeta = pageMeta({
   title: "Tailor-made Guatemala trips",
   description:
-    "Private, tailor-made Guatemala trips planned by one local specialist in Antigua: Lake Atitlán, Tikal, volcano hikes and the highlands, with 24/7 WhatsApp support.",
+    "Private, tailor-made Guatemala trips planned by one local specialist in Antigua: Lake Atitlán, Tikal, volcano hikes and the highlands, with 24/7 support while you travel.",
   path: "/",
 });
 

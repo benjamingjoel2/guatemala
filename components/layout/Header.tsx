@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { contact, mainNav, whatsappHref } from "@/config/site";
+import { contact, mainNav } from "@/config/site";
 import { usePlannerModal } from "@/components/providers/PlannerModalProvider";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
@@ -150,9 +150,6 @@ export function Header() {
               >
                 Start planning
               </button>
-              <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="t-btn flex h-12 w-full items-center justify-center border border-line-strong">
-                Chat on WhatsApp
-              </a>
               <a href={`mailto:${contact.email}`} className="t-md text-center text-mute">
                 {contact.email}
               </a>

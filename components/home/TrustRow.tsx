@@ -9,7 +9,7 @@ const items = [
   { value: `${year - site.foundedYear}+`, label: "Years in Guatemala", text: "Antigua-based since " + site.foundedYear + "." },
   { value: "80+", label: "Partner guides & hotels", text: "Hand-picked, visited and paid fairly." },
   { value: "0%", label: "Hidden mark-ups", text: "Transparent, fair pricing. One clear quote." },
-  { value: "24/7", label: "WhatsApp support", text: "A real person, every day you travel." },
+  { value: "24/7", label: "On-trip support", text: "A real person, every day you travel." },
   { value: "7", label: "Regions covered", text: "Highlands, lakes, volcanoes, jungle and two coasts." },
 ];
 

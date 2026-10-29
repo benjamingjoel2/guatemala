@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { contact, footerNav, site, socials, whatsappHref } from "@/config/site";
+import { contact, footerNav, site, socials } from "@/config/site";
 import { img } from "@/data/images";
 import { Logo } from "./Logo";
 import { HuipilStripe } from "@/components/ui/HuipilStripe";
@@ -24,6 +24,7 @@ export function Footer() {
           <p className="t-md max-w-sm text-mute">
             {site.description}
           </p>
+          {socials.length > 0 && (
           <ul className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Social media">
             {socials.map((s) => (
               <li key={s.label}>
@@ -33,6 +34,7 @@ export function Footer() {
               </li>
             ))}
           </ul>
+          )}
         </div>
 
         <nav aria-label="Footer" className="grid grid-cols-2 gap-8 lg:col-span-5">
@@ -68,9 +70,6 @@ export function Footer() {
           <p className="t-eyebrow mb-2 text-faint">Get in touch</p>
           <a href={`mailto:${contact.email}`} className="t-lg transition-colors hover:text-adobe">{contact.email}</a>
           <a href={contact.phoneHref} className="t-lg transition-colors hover:text-adobe">{contact.phone}</a>
-          <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="t-lg transition-colors hover:text-adobe">
-            WhatsApp · wa.me/{contact.whatsappNumber}
-          </a>
           <address className="t-md mt-2 not-italic text-mute">{contact.address}</address>
           <p className="t-xs text-faint">{contact.hours}</p>
         </div>

@@ -19,7 +19,7 @@ export function AboutIntro() {
           <SplitHeading text="Not just an itinerary. A Guatemala we know by heart." className="t-h2" />
           <Reveal>
             <p className="t-xl text-bone/85">
-              We live in Antigua, and we have spent {years} years walking its cobbles, crossing its lake at dawn and sleeping on the shoulder of Acatenango. {site.name} pairs every traveller with one dedicated local specialist, who shapes a private route around you, books the guides and hotels we trust, and stays on WhatsApp until you are home.
+              We live in Antigua, and we have spent {years} years walking its cobbles, crossing its lake at dawn and sleeping on the shoulder of Acatenango. {site.name} pairs every traveller with one dedicated local specialist, who shapes a private route around you, books the guides and hotels we trust, and stays in touch until you are home.
             </p>
           </Reveal>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

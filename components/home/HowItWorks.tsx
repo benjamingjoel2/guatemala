@@ -4,7 +4,7 @@ import { Stagger, StaggerItem } from "@/components/ui/motion";
 const steps = [
   {
     title: "Tell us your ideas",
-    text: "Five quick questions about dates, pace, budget and who is travelling. Or just send a WhatsApp.",
+    text: "Five quick questions about dates, pace, budget and who is travelling. Or just send us an email.",
     icon: (
       <path d="M6 10h24v16H14l-8 6V10Z M12 16h12 M12 21h8" />
     ),
@@ -21,7 +21,7 @@ const steps = [
   },
   {
     title: "Travel, fully supported",
-    text: "Drivers waiting, guides briefed, and your specialist on WhatsApp 24/7 until the day you fly home.",
+    text: "Drivers waiting, guides briefed, and your specialist on call 24/7 until the day you fly home.",
     icon: <path d="M18 4a10 10 0 0 1 10 10c0 8-10 18-10 18S8 22 8 14A10 10 0 0 1 18 4Z M18 18a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" />,
   },
 ];

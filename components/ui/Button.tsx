@@ -48,6 +48,13 @@ export function ButtonLink({ href, children, variant = "accent", className, arro
       {arrow && <Arrow />}
     </>
   );
+  if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+    return (
+      <a href={href} className={buttonClass(variant, className)}>
+        {content}
+      </a>
+    );
+  }
   if (external) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={buttonClass(variant, className)}>

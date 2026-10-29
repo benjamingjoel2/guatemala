@@ -3,7 +3,7 @@ import Link from "next/link";
 import { experiences, getExperience } from "@/data/experiences";
 import { destinations } from "@/data/destinations";
 import { tours } from "@/data/tours";
-import { site, whatsappHref } from "@/config/site";
+import { mailtoHref, site } from "@/config/site";
 import { JsonLd, pageMeta } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -118,7 +118,7 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
               </div>
               <div className="flex flex-col gap-2">
                 <PlanButton className="w-full">Add to my trip</PlanButton>
-                <ButtonLink href={whatsappHref(`Hi! I'd love to add "${e.title}" to my Guatemala trip.`)} external variant="outline" className="w-full">Ask on WhatsApp</ButtonLink>
+                <ButtonLink href={mailtoHref(`Adding ${e.title} to my trip`)} variant="outline" className="w-full">Email us</ButtonLink>
               </div>
             </SideCard>
           </div>

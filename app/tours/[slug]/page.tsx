@@ -3,7 +3,7 @@ import Link from "next/link";
 import { tours, getTour } from "@/data/tours";
 import { destinations } from "@/data/destinations";
 import { stays } from "@/data/stays";
-import { regionLabels, site, whatsappHref } from "@/config/site";
+import { mailtoHref, regionLabels, site } from "@/config/site";
 import { pageMeta } from "@/lib/seo";
 import { routeForRegions } from "@/lib/routes";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -197,7 +197,7 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
               </div>
               <div className="flex flex-col gap-2">
                 <PlanButton route={route} className="w-full">Enquire about this tour</PlanButton>
-                <ButtonLink href={whatsappHref(`Hi! I'm interested in the ${t.title} tour.`)} external variant="outline" className="w-full">Ask on WhatsApp</ButtonLink>
+                <ButtonLink href={mailtoHref(`Enquiry: ${t.title}`)} variant="outline" className="w-full">Email us</ButtonLink>
               </div>
               <p className="t-xs text-faint">No deposit to enquire. Reply within one working day.</p>
             </SideCard>
