@@ -9,7 +9,7 @@ export const site = {
   tagline: "Tailor-made Guatemala, from Antigua to the jungle",
   description:
     "Tailor-made Guatemala trips with one dedicated local specialist, from the first message to the day you fly home. Antigua, Lake Atitlán, the volcanoes, the highlands and the Maya cities of Petén.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://antiguaandbeyond.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://antiguaandbeyond.tourground.com",
   locale: "en_US",
   foundedYear: 2012,
 };

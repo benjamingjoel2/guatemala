@@ -15,7 +15,7 @@ npm run lint
 
 ## Deployment
 
-Production runs on Vercel at https://antigua-and-beyond.vercel.app (project `antigua-and-beyond`, team `benjamin-sevo`). The project is connected to this GitHub repo:
+Production runs on Vercel at https://antiguaandbeyond.tourground.com (custom domain; also https://antigua-and-beyond.vercel.app) — project `antigua-and-beyond`, team `benjamin-sevo`. DNS: `antiguaandbeyond` CNAME record on tourground.com pointing at the value Vercel shows under Settings → Domains. The project is connected to this GitHub repo:
 
 - Every push to the production branch (`claude/modest-bohr-9wxjav` for now; change it under Vercel → Settings → Git) deploys to production.
 - Pushes to any other branch get a preview deployment. Previews are protected by Vercel Authentication.
