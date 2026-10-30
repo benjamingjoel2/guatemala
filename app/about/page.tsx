@@ -1,14 +1,12 @@
 import Image from "next/image";
 import { img } from "@/data/images";
 import { site } from "@/config/site";
-import { testimonials } from "@/data/testimonials";
 import { pageMeta } from "@/lib/seo";
 import { PageHeader } from "@/components/detail/PageHeader";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Parallax, Reveal, SplitHeading, Stagger, StaggerItem } from "@/components/ui/motion";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { TrustRow } from "@/components/home/TrustRow";
-import { TestimonialCard } from "@/components/cards/TestimonialCard";
 import { FinalCta } from "@/components/home/FinalCta";
 import { PlusLink } from "@/components/ui/Button";
 
@@ -101,17 +99,6 @@ export default function AboutPage() {
 
       <HowItWorks />
 
-      <section className="gutter section-pad" aria-labelledby="about-reviews">
-        <div className="mb-10 flex items-end justify-between gap-6">
-          <SplitHeading id="about-reviews" text="What travellers say" className="t-h2" />
-          <PlusLink href="/testimonials" className="t-lg text-mute hover:text-bone">All reviews</PlusLink>
-        </div>
-        <div className="grid gap-3 md:grid-cols-3">
-          {testimonials.slice(0, 3).map((t) => (
-            <div key={t.id} className="border border-line bg-ink-2/50"><TestimonialCard t={t} /></div>
-          ))}
-        </div>
-      </section>
       <FinalCta />
     </>
   );

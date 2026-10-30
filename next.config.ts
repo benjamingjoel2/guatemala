@@ -19,6 +19,10 @@ const nextConfig: NextConfig = isStatic
         formats: ["image/avif", "image/webp"],
         remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
       },
+      // Retired page (owner's fix list, October 2026): no testimonials.
+      async redirects() {
+        return [{ source: "/testimonials", destination: "/about", permanent: true }];
+      },
     };
 
 export default nextConfig;

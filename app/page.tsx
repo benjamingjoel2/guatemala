@@ -12,7 +12,6 @@ import { DestinationsExplorer } from "@/components/home/DestinationsExplorer";
 import { ExperiencesGrid } from "@/components/home/ExperiencesGrid";
 import { StaysGrid } from "@/components/home/StaysGrid";
 import { HowItWorks } from "@/components/home/HowItWorks";
-import { Testimonials } from "@/components/home/Testimonials";
 import { GuideSignup } from "@/components/home/GuideSignup";
 import { FinalCta } from "@/components/home/FinalCta";
 
@@ -42,7 +41,6 @@ export default function HomePage() {
       <ExperiencesGrid />
       <StaysGrid />
       <HowItWorks />
-      <Testimonials />
       <GuideSignup />
       <FinalCta />
     </>

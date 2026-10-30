@@ -55,8 +55,8 @@ This writes a fully static build to `./out`, which is published on the `gh-pages
 | Path | What it holds |
 | --- | --- |
 | `config/site.ts` | Brand name, palette, **currencies and conversion rates**, contact details (email, phone, address), socials, navigation |
-| `data/types.ts` | Content model (Destination, Experience, Tour, Stay, Testimonial, FAQ, planner options) |
-| `data/*.ts` | Seed content: 12 destinations, 13 experiences, 8 tours, 8 stays, 6 placeholder testimonials, 11 FAQs, planner options |
+| `data/types.ts` | Content model (Destination, Experience, Tour, Stay, FAQ, planner options) |
+| `data/*.ts` | Seed content: 12 destinations, 13 experiences, 8 tours, 8 stays, 11 FAQs, planner options; `data/legal.ts` holds the privacy policy, booking terms and cookie policy (en/fr/de/es) |
 | `data/images.ts` | Image catalog. Swap any `src` to replace photography site-wide |
 | `content/blog/*.mdx` | Blog posts (frontmatter + Markdown) |
 | `app/` | Routes. Index and `[slug]` pages are generated from `/data` |
@@ -66,12 +66,11 @@ This writes a fully static build to `./out`, which is published on the `gh-pages
 
 ### Before launch
 
-- Replace the placeholder phone number and check the address in `config/site.ts`
+- Confirm the business address in `config/site.ts` (owner's fix list asks for a premium coworking address in Guatemala City; not yet verified). By the owner's decision (October 2026) there is no phone, WhatsApp, social links or testimonials; `/testimonials` redirects to `/about`.
 - Set `NEXT_PUBLIC_SITE_URL` for canonical URLs, the sitemap and OG tags
-- Replace placeholder testimonials (`data/testimonials.ts`, flagged `placeholder: true`)
 - Wire the `TODO`s in `app/api/*` to your email provider and CRM
 - Update currency rates in `config/site.ts`, or swap `lib/currency.ts` for a live rates API
-- Have the Terms and Privacy placeholder pages reviewed
+- Have a lawyer review the privacy policy, booking terms and cookie policy (`data/legal.ts`)
 
 ### Moving to a CMS
 

@@ -10,7 +10,7 @@ import { getAllPosts } from "@/lib/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const statics = ["", "/destinations", "/tours", "/experiences", "/stays", "/about", "/testimonials", "/faq", "/contact", "/blog", "/plan-your-trip", "/terms", "/privacy"];
+  const statics = ["", "/destinations", "/tours", "/experiences", "/stays", "/about", "/faq", "/contact", "/blog", "/plan-your-trip", "/terms", "/privacy", "/cookies"];
   return [
     ...statics.map((p) => ({ url: `${site.url}${p}`, lastModified: now, priority: p === "" ? 1 : 0.7 })),
     ...destinations.map((d) => ({ url: `${site.url}/destinations/${d.slug}`, lastModified: now, priority: 0.8 })),

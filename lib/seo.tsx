@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { site, socials } from "@/config/site";
+import { contact, site } from "@/config/site";
 import { img } from "@/data/images";
 
 const BRAND_SUFFIX = ` · ${site.name}`;
@@ -45,7 +45,7 @@ export function pageMeta({
   };
 }
 
-/** Organisation schema shared by the layout (logo + social profiles). */
+/** Organisation schema shared by the layout. */
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
@@ -56,9 +56,9 @@ export const organizationJsonLd = {
   image: defaultOgImage,
   description: site.description,
   foundingDate: String(site.foundedYear),
+  email: contact.email,
   areaServed: { "@type": "Country", name: "Guatemala" },
   address: { "@type": "PostalAddress", addressLocality: "Antigua Guatemala", addressRegion: "Sacatepéquez", addressCountry: "GT" },
-  ...(socials.length ? { sameAs: socials.map((s) => s.href) } : {}),
 };
 
 export const websiteJsonLd = {

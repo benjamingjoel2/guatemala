@@ -24,7 +24,7 @@ export default function PlanYourTripPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-10">
               <p className="t-xl">&ldquo;Tell us how you like to travel. We&apos;ll take care of the rest.&rdquo;</p>
-              <p className="t-xs text-mute">Prefer to talk? Email <a className="underline hover:text-bone" href={`mailto:${contact.email}`}>{contact.email}</a> or call <a className="underline hover:text-bone" href={contact.phoneHref}>{contact.phone}</a></p>
+              <p className="t-xs text-mute">Prefer to write? Email <a className="underline hover:text-bone" href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
             </div>
           </div>
         </aside>

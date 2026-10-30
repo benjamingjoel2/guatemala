@@ -137,18 +137,6 @@ export type Stay = {
   whyWeLoveIt: string[];
 };
 
-export type Testimonial = {
-  id: string;
-  name: string;
-  from: string;
-  trip: string;
-  quote: string;
-  rating: number;
-  image?: Image;
-  /** All seed testimonials are placeholders until real reviews are added */
-  placeholder: boolean;
-};
-
 export type FaqCategory =
   | "Planning"
   | "Entry & borders"
