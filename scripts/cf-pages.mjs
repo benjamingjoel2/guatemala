@@ -6,6 +6,7 @@
 //    by Pages directly; every other request goes through the Worker.
 import { execSync } from "node:child_process";
 import fs from "node:fs";
+import { builtinModules } from "node:module";
 
 const run = (cmd) => execSync(cmd, { stdio: "inherit" });
 
@@ -14,7 +15,14 @@ fs.rmSync(".cf-bundle", { recursive: true, force: true });
 run("npx wrangler deploy --dry-run --outdir .cf-bundle");
 fs.rmSync("dist-pages", { recursive: true, force: true });
 fs.cpSync(".open-next/assets", "dist-pages", { recursive: true });
-fs.copyFileSync(".cf-bundle/worker.js", "dist-pages/_worker.js");
+// Pages bundles _worker.js again and only resolves Node built-ins with the "node:" prefix.
+const builtins = new Set(builtinModules.filter((m) => !m.startsWith("_")));
+const worker = fs
+  .readFileSync(".cf-bundle/worker.js", "utf8")
+  .replace(/(\bfrom\s*|\bimport\s*\(?\s*)(["'])([a-z_/]+)\2/g, (all, pre, q, mod) =>
+    builtins.has(mod) ? `${pre}${q}node:${mod}${q}` : all,
+  );
+fs.writeFileSync("dist-pages/_worker.js", worker);
 fs.writeFileSync(
   "dist-pages/_routes.json",
   JSON.stringify({ version: 1, include: ["/*"], exclude: ["/_next/static/*"] }),
