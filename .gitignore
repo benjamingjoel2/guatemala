@@ -40,3 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .api-static-stash
+
+# Cloudflare (OpenNext / Wrangler)
+/.open-next
+/.wrangler
+.dev.vars*
