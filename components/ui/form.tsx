@@ -1,3 +1,5 @@
+"use client";
+import { useT, useTf } from "@/i18n/client";
 import { cn } from "@/lib/utils";
 
 /** Underline-only inputs with small labels — the reference's form style. */
@@ -21,19 +23,20 @@ export function Field({
   className?: string;
   required?: boolean;
 }) {
+  const t = useT();
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <label htmlFor={htmlFor} className="t-xs text-mute">
-        {label}
+        {t(label)}
         {required && <span className="text-adobe"> *</span>}
       </label>
       {children}
       {error ? (
         <p id={htmlFor ? `${htmlFor}-error` : undefined} className="t-xs text-adobe" role="alert">
-          {error}
+          {t(error)}
         </p>
       ) : hint ? (
-        <p className="t-xs text-faint">{hint}</p>
+        <p className="t-xs text-faint">{t(hint)}</p>
       ) : null}
     </div>
   );
@@ -52,16 +55,17 @@ export function Fieldset({
   className?: string;
   required?: boolean;
 }) {
+  const t = useT();
   return (
     <fieldset className={cn("flex flex-col gap-3", className)}>
       <legend className="t-xs mb-3 text-mute">
-        {legend}
+        {t(legend)}
         {required && <span className="text-adobe"> *</span>}
       </legend>
       {children}
       {error && (
         <p className="t-xs text-adobe" role="alert">
-          {error}
+          {t(error)}
         </p>
       )}
     </fieldset>
@@ -124,11 +128,12 @@ export function Stepper({
   max: number;
   label: string;
 }) {
+  const tf = useTf();
   return (
     <div className="flex items-center gap-0 border border-line-strong">
       <button
         type="button"
-        aria-label={`Decrease ${label}`}
+        aria-label={tf("Decrease {label}", { label })}
         disabled={value <= min}
         onClick={() => onChange(Math.max(min, value - 1))}
         className="flex size-11 items-center justify-center text-xl transition-colors hover:bg-line disabled:opacity-30"
@@ -151,7 +156,7 @@ export function Stepper({
       />
       <button
         type="button"
-        aria-label={`Increase ${label}`}
+        aria-label={tf("Increase {label}", { label })}
         disabled={value >= max}
         onClick={() => onChange(Math.min(max, value + 1))}
         className="flex size-11 items-center justify-center text-xl transition-colors hover:bg-line disabled:opacity-30"

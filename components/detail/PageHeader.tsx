@@ -1,3 +1,4 @@
+import { t } from "@/i18n/server";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -40,7 +41,7 @@ export function PageHeader({
       {image && (
         <div className="gutter">
           <div className="relative aspect-[16/9] overflow-hidden md:aspect-[21/8]">
-            <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="object-cover" />
+            <Image src={image.src} alt={t(image.alt)} fill priority sizes="100vw" className="object-cover" />
           </div>
         </div>
       )}

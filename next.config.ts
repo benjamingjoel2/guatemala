@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 /**
  * STATIC_EXPORT=1 builds a fully static preview (e.g. for GitHub Pages):
- * no API routes, images served straight from the Unsplash CDN, optional base path.
+ * no API routes, images served straight from the image CDN, optional base path.
  */
 const isStatic = process.env.STATIC_EXPORT === "1";
 const basePath = process.env.BASE_PATH ?? "";

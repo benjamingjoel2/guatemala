@@ -1,4 +1,7 @@
-import Link from "next/link";
+"use client";
+
+import { useT, useTf } from "@/i18n/client";
+import Link from "@/i18n/Link";
 import { site } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -15,16 +18,18 @@ export function LogoMark({ className }: { className?: string }) {
 
 /** Wordmark: italic Cormorant Garamond with a swash ampersand, in brand orange. */
 export function Logo({ className, onClick }: { className?: string; onClick?: () => void }) {
+  const t = useT();
+  const tf = useTf();
   return (
     <Link
       href="/"
       onClick={onClick}
-      aria-label={`${site.name} — home`}
+      aria-label={tf("{name} — home", { name: site.name })}
       className={cn("group inline-flex items-center gap-2.5 text-logo", className)}
     >
       <LogoMark className="size-[1.375rem] transition-transform duration-500 group-hover:-translate-y-0.5" />
       <span className="whitespace-nowrap font-serif text-[1.75rem] font-bold italic leading-none tracking-[-0.01em] md:text-[2rem]">
-        Antigua<span className="mx-[0.06em] inline-block text-[1.12em] font-semibold">&amp;</span>Beyond
+        {t("Antigua")}<span className="mx-[0.06em] inline-block text-[1.12em] font-semibold">{t("&")}</span>{t("Beyond")}
       </span>
     </Link>
   );

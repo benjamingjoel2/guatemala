@@ -1,5 +1,6 @@
+import { t } from "@/i18n/server";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import type { Stay } from "@/data/types";
 import { Price } from "@/components/ui/Price";
 import { IconPin } from "@/components/ui/icons";
@@ -29,9 +30,9 @@ export function StayCard({ stay: s, className }: { stay: Stay; className?: strin
       </div>
       <p className="t-md flex items-baseline justify-between gap-2 border-t border-line pt-4">
         <span>
-          <span className="text-mute">From </span>
+          <span className="text-mute">{t("From")} </span>
           <Price usd={s.priceFrom} className="font-semibold" />
-          <span className="text-mute"> per person · night</span>
+          <span className="text-mute"> {t("per person · night")}</span>
         </span>
         <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
       </p>

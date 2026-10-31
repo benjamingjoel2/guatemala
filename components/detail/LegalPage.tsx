@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { t } from "@/i18n/server";
+import Link from "@/i18n/Link";
 import { PageHeader } from "./PageHeader";
 
 /** Renders "[text](/path)" inside legal text as links. */
@@ -12,7 +13,7 @@ function linkify(text: string) {
 export function LegalPage({ title, updated, sections }: { title: string; updated: string; sections: { h: string; p: string[] }[] }) {
   return (
     <>
-      <PageHeader crumbs={[{ label: title }]} eyebrow={`Last updated ${updated}`} title={title} />
+      <PageHeader crumbs={[{ label: title }]} eyebrow={`${t("Last updated")} ${updated}`} title={title} />
       <section className="gutter pb-24">
         <div className="prose-ab max-w-3xl border-t border-line pt-10">
           {sections.map((s) => (

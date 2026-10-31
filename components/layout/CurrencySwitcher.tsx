@@ -1,5 +1,6 @@
 "use client";
 
+import { useT, useTf } from "@/i18n/client";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { currencies, type CurrencyCode } from "@/config/site";
@@ -9,6 +10,8 @@ import { cn } from "@/lib/utils";
 const codes = Object.keys(currencies) as CurrencyCode[];
 
 export function CurrencySwitcher({ className, align = "right", up = false }: { className?: string; align?: "left" | "right"; up?: boolean }) {
+  const t = useT();
+  const tf = useTf();
   const { currency, setCurrency } = useCurrency();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -33,7 +36,7 @@ export function CurrencySwitcher({ className, align = "right", up = false }: { c
         type="button"
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label={`Currency: ${currency}. Change currency`}
+        aria-label={tf("Currency: {currency}. Change currency", { currency })}
         onClick={() => setOpen((o) => !o)}
         className="t-btn inline-flex h-9 items-center gap-1.5 text-mute transition-colors hover:text-bone"
         suppressHydrationWarning
@@ -48,7 +51,7 @@ export function CurrencySwitcher({ className, align = "right", up = false }: { c
         {open && (
           <motion.ul
             role="listbox"
-            aria-label="Select currency"
+            aria-label={t("Select currency")}
             initial={{ opacity: 0, y: up ? 6 : -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: up ? 6 : -6 }}

@@ -1,5 +1,6 @@
+import { t, tf } from "@/i18n/server";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import type { Destination } from "@/data/types";
 import { regionLabels } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -15,7 +16,7 @@ export function DestinationCard({ destination: d, className, index }: { destinat
             {d.name}
           </Link>
         </h3>
-        <span className="t-md shrink-0 text-mute">/ {index !== undefined ? String(index + 1).padStart(2, "0") : regionLabels[d.region]}</span>
+        <span className="t-md shrink-0 text-mute">/ {index !== undefined ? String(index + 1).padStart(2, "0") : t(regionLabels[d.region])}</span>
       </div>
       <div className="relative aspect-[400/437] overflow-hidden">
         <Image
@@ -27,12 +28,12 @@ export function DestinationCard({ destination: d, className, index }: { destinat
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         <span className="t-btn absolute bottom-4 left-4 translate-y-2 text-bone opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-          Explore {d.name} →
+          {tf("Explore {name}", { name: d.name })} →
         </span>
       </div>
       <div className="flex items-start justify-between gap-4">
         <p className="t-md font-normal text-mute">{d.tagline}</p>
-        <span className="t-xs shrink-0 text-faint">{regionLabels[d.region]}</span>
+        <span className="t-xs shrink-0 text-faint">{t(regionLabels[d.region])}</span>
       </div>
     </article>
   );

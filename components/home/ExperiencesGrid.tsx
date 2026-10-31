@@ -1,4 +1,5 @@
-import { experiences } from "@/data/experiences";
+import { t } from "@/i18n/server";
+import { experiences } from "@/lib/content";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { ButtonLink } from "@/components/ui/Button";
 import { ExperienceCard } from "@/components/cards/ExperienceCard";
@@ -16,12 +17,12 @@ const homeSlugs = [
 export function ExperiencesGrid() {
   const list = homeSlugs.map((s) => experiences.find((e) => e.slug === s)).filter((e) => e !== undefined);
   return (
-    <section className="gutter section-pad" aria-label="Experiences">
+    <section className="gutter section-pad" aria-label={t("Experiences")}>
       <SectionHead
-        eyebrow="Experiences"
-        title="Moments you will talk about for years"
-        text="Sleep beside an erupting volcano, watch Tikal wake up, learn to weave with a Maya cooperative. Add any of them to your trip."
-        action={<ButtonLink href="/experiences" variant="outline">All experiences</ButtonLink>}
+        eyebrow={t("Experiences")}
+        title={t("Moments you will talk about for years")}
+        text={t("Sleep beside an erupting volcano, watch Tikal wake up, learn to weave with a Maya cooperative. Add any of them to your trip.")}
+        action={<ButtonLink href="/experiences" variant="outline">{t("All experiences")}</ButtonLink>}
         className="mb-10 md:mb-14"
       />
       <Stagger className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

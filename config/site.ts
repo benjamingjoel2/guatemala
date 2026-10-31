@@ -1,3 +1,4 @@
+import { msg } from "@/i18n/locales";
 /**
  * Single source of truth for brand, contact details, currencies and navigation.
  */
@@ -51,50 +52,50 @@ export const currencies: Record<
   CurrencyCode,
   { code: CurrencyCode; symbol: string; label: string; rate: number; locale: string }
 > = {
-  USD: { code: "USD", symbol: "$", label: "US Dollar", rate: 1, locale: "en-US" },
-  EUR: { code: "EUR", symbol: "€", label: "Euro", rate: 0.92, locale: "de-DE" },
-  GBP: { code: "GBP", symbol: "£", label: "British Pound", rate: 0.79, locale: "en-GB" },
-  CAD: { code: "CAD", symbol: "CA$", label: "Canadian Dollar", rate: 1.37, locale: "en-CA" },
-  GTQ: { code: "GTQ", symbol: "Q", label: "Guatemalan Quetzal", rate: 7.75, locale: "es-GT" },
+  USD: { code: "USD", symbol: "$", label: msg("US Dollar"), rate: 1, locale: "en-US" },
+  EUR: { code: "EUR", symbol: "€", label: msg("Euro"), rate: 0.92, locale: "de-DE" },
+  GBP: { code: "GBP", symbol: "£", label: msg("British Pound"), rate: 0.79, locale: "en-GB" },
+  CAD: { code: "CAD", symbol: "CA$", label: msg("Canadian Dollar"), rate: 1.37, locale: "en-CA" },
+  GTQ: { code: "GTQ", symbol: "Q", label: msg("Guatemalan Quetzal"), rate: 7.75, locale: "es-GT" },
 };
 
 export const defaultCurrency: CurrencyCode = "USD";
 
 export const mainNav = [
-  { label: "Destinations", href: "/destinations" },
-  { label: "Tours", href: "/tours" },
-  { label: "Experiences", href: "/experiences" },
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: msg("Destinations"), href: "/destinations" },
+  { label: msg("Tours"), href: "/tours" },
+  { label: msg("Experiences"), href: "/experiences" },
+  { label: msg("About"), href: "/about" },
+  { label: msg("Blog"), href: "/blog" },
+  { label: msg("Contact"), href: "/contact" },
 ];
 
 export const footerNav = {
   explore: [
-    { label: "Destinations", href: "/destinations" },
-    { label: "Tours", href: "/tours" },
-    { label: "Experiences", href: "/experiences" },
-    { label: "Plan your trip", href: "/plan-your-trip" },
+    { label: msg("Destinations"), href: "/destinations" },
+    { label: msg("Tours"), href: "/tours" },
+    { label: msg("Experiences"), href: "/experiences" },
+    { label: msg("Plan your trip"), href: "/plan-your-trip" },
   ],
   company: [
-    { label: "About us", href: "/about" },
-    { label: "Journal", href: "/blog" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Contact", href: "/contact" },
+    { label: msg("About us"), href: "/about" },
+    { label: msg("Journal"), href: "/blog" },
+    { label: msg("FAQ"), href: "/faq" },
+    { label: msg("Contact"), href: "/contact" },
   ],
   legal: [
-    { label: "Privacy policy", href: "/privacy" },
-    { label: "Booking terms", href: "/terms" },
-    { label: "Cookie policy", href: "/cookies" },
+    { label: msg("Privacy policy"), href: "/privacy" },
+    { label: msg("Booking terms"), href: "/terms" },
+    { label: msg("Cookie policy"), href: "/cookies" },
   ],
 };
 
 export const regionLabels: Record<string, string> = {
-  antigua: "Antigua",
-  highlands: "Western Highlands",
-  atitlan: "Lake Atitlán",
-  peten: "Petén",
-  verapaces: "Las Verapaces",
-  caribbean: "Caribbean coast",
-  pacific: "Pacific coast",
+  antigua: msg("Antigua"),
+  highlands: msg("Western Highlands"),
+  atitlan: msg("Lake Atitlán"),
+  peten: msg("Petén"),
+  verapaces: msg("Las Verapaces"),
+  caribbean: msg("Caribbean coast"),
+  pacific: msg("Pacific coast"),
 };

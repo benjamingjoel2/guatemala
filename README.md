@@ -2,7 +2,16 @@
 
 Marketing site for **Antigua & Beyond**, a tailor-made Guatemala travel company. Built with Next.js (App Router), TypeScript, Tailwind CSS v4 and Framer Motion.
 
-The layout, grid system and interaction patterns follow the structure of the reference template (hairline-framed grids, oversized tight headings, "+ link" navigation, image-led cards, split-text reveals). All code, copy and branding are original, and imagery is placeholder Unsplash photography.
+The layout, grid system and interaction patterns follow the structure of the reference template (hairline-framed grids, oversized tight headings, "+ link" navigation, image-led cards, split-text reveals). All code, copy and branding are original, and imagery is placeholder stock photography until the owner supplies photos.
+
+## Languages
+
+The site is in English, French, German and Spanish. English lives at the plain URLs (`/tours`), the others under `/fr`, `/de` and `/es` (`middleware.ts` rewrites plain URLs to the `en` tree and redirects `/en/...` back). A language selector (EN · FR · DE · ES) sits in the header and the mobile menu, and every page sets canonical and `hreflang` alternates for all four.
+
+- UI text and content from `/data` are translated through dictionaries keyed by the English text (`i18n/fr.json`, `de.json`, `es.json`). Server components call `t()` / `tf()` (with `{placeholders}`) and pages run content through the `localized` getters in `lib/content.ts`; client components use `useT()`. A value of `"="` keeps the English (proper names).
+- A string with no translation fails the build, so no page ships half in English. When you add or change copy, run `I18N_COLLECT=/tmp/missing.txt npm run build` to list the new strings, add them to the three dictionaries, then build normally. `I18N_PSEUDO=1` brackets untranslated strings in the output for a visual check.
+- Strings used by `"use client"` components are collected into `i18n/client-keys.json` by `npm run i18n:keys` (runs automatically before `dev` and `build`); wrap module-level labels in `msg()` so the script finds them.
+- Legal pages are written per language in `data/legal.ts`; blog posts per language in `content/blog/{fr,de,es}/`.
 
 ## Getting started
 
@@ -58,8 +67,9 @@ This writes a fully static build to `./out`, which is published on the `gh-pages
 | `data/types.ts` | Content model (Destination, Experience, Tour, Stay, FAQ, planner options) |
 | `data/*.ts` | Seed content: 12 destinations, 13 experiences, 8 tours, 8 stays, 11 FAQs, planner options; `data/legal.ts` holds the privacy policy, booking terms and cookie policy (en/fr/de/es) |
 | `data/images.ts` | Image catalog. Swap any `src` to replace photography site-wide |
-| `content/blog/*.mdx` | Blog posts (frontmatter + Markdown) |
-| `app/` | Routes. Index and `[slug]` pages are generated from `/data` |
+| `content/blog/*.mdx` | Blog posts (frontmatter + Markdown); translations in `content/blog/{fr,de,es}/` with the same file names |
+| `app/[locale]/` | Routes, one tree per language. Index and `[slug]` pages are generated from `/data` |
+| `i18n/` | Languages: `locales.ts`, server `t()`/`tr()`, client `useT()`, dictionaries `fr.json`, `de.json`, `es.json` |
 | `app/api/plan` | Trip planner endpoint: validates, logs the payload, `TODO` for email/CRM |
 | `app/api/newsletter`, `app/api/contact` | Guide signup and contact form endpoints (log + `TODO`) |
 | `components/` | `layout/` (header, footer, logo, currency switcher), `home/` sections, `cards/`, `detail/` page templates, `planner/`, `ui/` primitives |
@@ -70,7 +80,9 @@ This writes a fully static build to `./out`, which is published on the `gh-pages
 - Set `NEXT_PUBLIC_SITE_URL` for canonical URLs, the sitemap and OG tags
 - Wire the `TODO`s in `app/api/*` to your email provider and CRM
 - Update currency rates in `config/site.ts`, or swap `lib/currency.ts` for a live rates API
-- Have a lawyer review the privacy policy, booking terms and cookie policy (`data/legal.ts`)
+- Have a lawyer review the privacy policy, booking terms and cookie policy (`data/legal.ts`) in all four languages
+- Have a native speaker proofread the French, German and Spanish copy (`i18n/*.json`, `content/blog/{fr,de,es}/`)
+- The eight stays in `data/stays.ts` are illustrative properties; replace them with the real partner hotels before launch
 
 ### Moving to a CMS
 
