@@ -1,7 +1,8 @@
 "use client";
 
+import { useT } from "@/i18n/client";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Destination } from "@/data/types";
@@ -12,16 +13,17 @@ import { ButtonLink } from "@/components/ui/Button";
 
 /** Region list with hover-reveal image (desktop) and image rows (mobile) — reference "explore by destination". */
 export function DestinationsExplorer({ destinations }: { destinations: Destination[] }) {
+  const t = useT();
   const [active, setActive] = useState(0);
   const current = destinations[active];
 
   return (
-    <section className="gutter section-pad" aria-label="Explore by destination">
+    <section className="gutter section-pad" aria-label={t("Explore by destination")}>
       <SectionHead
-        eyebrow="Destinations"
-        title="Explore by destination"
-        text="From Antigua's cobbles to the temples of Petén: twelve places our specialists know first-hand, and how long to give each one."
-        action={<ButtonLink href="/destinations" variant="outline">All destinations</ButtonLink>}
+        eyebrow={t("Destinations")}
+        title={t("Explore by destination")}
+        text={t("From Antigua's cobbles to the temples of Petén: twelve places our specialists know first-hand, and how long to give each one.")}
+        action={<ButtonLink href="/destinations" variant="outline">{t("All destinations")}</ButtonLink>}
         className="mb-10 md:mb-14"
       />
 
@@ -42,7 +44,7 @@ export function DestinationsExplorer({ destinations }: { destinations: Destinati
                   </span>
                 </span>
                 <span className="t-md flex items-center gap-4 pl-10 text-mute md:pl-0">
-                  <span>/ {regionLabels[d.region]}</span>
+                  <span>/ {t(regionLabels[d.region])}</span>
                   <span className="hidden w-24 text-right text-faint md:inline">{d.idealStay}</span>
                   <span aria-hidden className="text-terra opacity-0 transition-opacity group-hover:opacity-100">→</span>
                 </span>

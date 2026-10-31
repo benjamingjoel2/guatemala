@@ -1,11 +1,15 @@
+"use client";
+
+import { useT } from "@/i18n/client";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import type { Experience } from "@/data/types";
 import { Price } from "@/components/ui/Price";
 import { cn } from "@/lib/utils";
 
 /** Tall image-led card with overlaid title; image zooms and copy lifts on hover. */
 export function ExperienceCard({ experience: e, className, size = "md" }: { experience: Experience; className?: string; size?: "md" | "lg" }) {
+  const t = useT();
   return (
     <article className={cn("theme-dark group relative overflow-hidden bg-ink-2", size === "lg" ? "aspect-[4/5] md:aspect-auto md:min-h-[34rem]" : "aspect-[4/5]", className)}>
       <Image
@@ -31,7 +35,7 @@ export function ExperienceCard({ experience: e, className, size = "md" }: { expe
         </p>
         <p className="t-xs flex items-center justify-between border-t border-bone/20 pt-3 text-bone/80">
           <span>
-            From <Price usd={e.priceFrom} className="font-semibold text-bone" /> per person
+            {t("From")} <Price usd={e.priceFrom} className="font-semibold text-bone" /> {t("per person")}
           </span>
           <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
         </p>

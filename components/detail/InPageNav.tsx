@@ -1,10 +1,12 @@
 "use client";
 
+import { useT } from "@/i18n/client";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /** Sticky in-page section nav with scroll-spy (reference detail-page tabs). */
 export function InPageNav({ items }: { items: { id: string; label: string }[] }) {
+  const t = useT();
   const [active, setActive] = useState(items[0]?.id);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export function InPageNav({ items }: { items: { id: string; label: string }[] })
   }, [items]);
 
   return (
-    <nav aria-label="On this page" className="sticky top-[4.5rem] z-20 -mx-5 border-y border-line bg-ink/90 backdrop-blur-xl md:-mx-10">
+    <nav aria-label={t("On this page")} className="sticky top-[4.5rem] z-20 -mx-5 border-y border-line bg-ink/90 backdrop-blur-xl md:-mx-10">
       <ul className="flex gap-6 overflow-x-auto px-5 [scrollbar-width:none] md:gap-8 md:px-10">
         {items.map((i) => (
           <li key={i.id} className="shrink-0">

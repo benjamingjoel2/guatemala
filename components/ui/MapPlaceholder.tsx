@@ -1,3 +1,4 @@
+import { t, tf } from "@/i18n/server";
 /** Stylised route map placeholder — swap for Mapbox/Google Maps embed later. */
 export function MapPlaceholder({ stops }: { stops: string[] }) {
   const points = stops.map((s, i) => {
@@ -6,7 +7,7 @@ export function MapPlaceholder({ stops }: { stops: string[] }) {
   });
   return (
     <figure className="relative aspect-[4/3] w-full overflow-hidden border border-line bg-ink-2 md:aspect-[16/8]">
-      <svg viewBox="0 0 100 75" preserveAspectRatio="xMidYMid meet" className="absolute inset-0 size-full" role="img" aria-label={`Route map placeholder: ${stops.join(" to ")}`}>
+      <svg viewBox="0 0 100 75" preserveAspectRatio="xMidYMid meet" className="absolute inset-0 size-full" role="img" aria-label={tf("Route map: {stops}", { stops: stops.join(" → ") })}>
         <defs>
           <pattern id="grid" width="5" height="5" patternUnits="userSpaceOnUse">
             <path d="M5 0H0V5" fill="none" stroke="var(--color-line)" strokeWidth="0.2" />
@@ -24,7 +25,7 @@ export function MapPlaceholder({ stops }: { stops: string[] }) {
           </g>
         ))}
       </svg>
-      <figcaption className="t-xs absolute bottom-3 left-3 text-faint">Map placeholder · not to scale</figcaption>
+      <figcaption className="t-xs absolute bottom-3 left-3 text-faint">{t("Map placeholder · not to scale")}</figcaption>
     </figure>
   );
 }

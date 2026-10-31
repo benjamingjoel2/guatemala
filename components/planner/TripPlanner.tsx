@@ -1,7 +1,9 @@
 "use client";
 
+import { useT, useTf } from "@/i18n/client";
+import { msg } from "@/i18n/locales";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { addOns, budgetOptions, contactMethods, countryCodes, routeCombos } from "@/data/planner";
@@ -17,14 +19,16 @@ import { postJson } from "@/lib/api";
 const STORAGE_KEY = "ab-trip-planner-v1";
 
 const stepCopy = [
-  { title: "When are you travelling?", text: "Rough dates are perfect. We will fine-tune together." },
-  { title: "Where would you like to go?", text: "Pick one or more routes. Every one of them can be mixed and matched." },
-  { title: "What budget feels right?", text: "Approximate per person, per day, including hotels, private transport, guides and most activities." },
-  { title: "Who is coming along?", text: "Tell us about your group and anything you would like us to arrange." },
-  { title: "How can we reach you?", text: "Your specialist will reply within one working day." },
+  { title: msg("When are you travelling?"), text: msg("Rough dates are perfect. We will fine-tune together.") },
+  { title: msg("Where would you like to go?"), text: msg("Pick one or more routes. Every one of them can be mixed and matched.") },
+  { title: msg("What budget feels right?"), text: msg("Approximate per person, per day, including hotels, private transport, guides and most activities.") },
+  { title: msg("Who is coming along?"), text: msg("Tell us about your group and anything you would like us to arrange.") },
+  { title: msg("How can we reach you?"), text: msg("Your specialist will reply within one working day.") },
 ];
 
 export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRoute?: string; onDone?: () => void; compact?: boolean }) {
+  const t = useT();
+  const tf = useTf();
   const [data, setData] = useState<PlannerData>(emptyPlanner);
   const [step, setStep] = useState(0);
   const [dir, setDir] = useState(1);
@@ -161,7 +165,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
   return (
     <div data-planner className="flex flex-col">
       {/* Progress indicator */}
-      <nav aria-label="Trip planner progress" className="mb-10">
+      <nav aria-label={t("Trip planner progress")} className="mb-10">
         <ol className="grid grid-cols-5 gap-1.5">
           {plannerSteps.map((s, i) => {
             const state = i < step ? "done" : i === step ? "current" : "todo";
@@ -171,7 +175,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                   type="button"
                   onClick={() => goTo(i)}
                   disabled={i >= step}
-                  aria-label={`Step ${i + 1}: ${s.label}${state === "done" ? " (completed, go back)" : state === "current" ? " (current step)" : ""}`}
+                  aria-label={`${tf("Step {n}: {label}", { n: i + 1, label: t(s.label) })}${state === "done" ? t(" (completed, go back)") : state === "current" ? t(" (current step)") : ""}`}
                   aria-current={state === "current" ? "step" : undefined}
                   className="group flex w-full flex-col gap-2 text-left disabled:cursor-default"
                 >
@@ -186,8 +190,8 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                   <span className={cn("t-xs flex items-center gap-1.5", state === "todo" ? "text-faint" : "text-bone", state === "done" && "group-hover:text-adobe")}>
                     <span className="hidden sm:inline">{pad2(i + 1)}</span>
                     {state === "done" ? <IconCheck className="size-3 text-jade-light sm:hidden" /> : null}
-                    <span className={cn(state === "current" ? "inline" : "hidden sm:inline")}>{s.label}</span>
-                    <span className="sr-only">{state === "done" ? " (completed)" : state === "current" ? " (current step)" : ""}</span>
+                    <span className={cn(state === "current" ? "inline" : "hidden sm:inline")}>{t(s.label)}</span>
+                    <span className="sr-only">{state === "done" ? t(" (completed)") : state === "current" ? t(" (current step)") : ""}</span>
                   </span>
                 </button>
               </li>
@@ -198,12 +202,12 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
 
       <div className="mb-8 flex flex-col gap-3">
         <p className="t-xs text-mute">
-          Step {step + 1} of {plannerSteps.length}
+          {tf("Step {n} of {total}", { n: step + 1, total: plannerSteps.length })}
         </p>
         <h2 ref={headingRef} tabIndex={-1} className={cn(compact ? "t-h3" : "t-h2", "focus:outline-none")}>
-          {stepCopy[step].title}
+          {t(stepCopy[step].title)}
         </h2>
-        <p className="t-md max-w-2xl font-normal text-mute">{stepCopy[step].text}</p>
+        <p className="t-md max-w-2xl font-normal text-mute">{t(stepCopy[step].text)}</p>
       </div>
 
       <div className="relative">
@@ -218,7 +222,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
           >
             {step === 0 && (
               <div className="grid gap-10 md:grid-cols-2">
-                <Field label="Arrival date" htmlFor="arrivalDate" error={errors.arrivalDate} required>
+                <Field label={t("Arrival date")} htmlFor="arrivalDate" error={errors.arrivalDate} required>
                   <input
                     id="arrivalDate"
                     type="date"
@@ -230,7 +234,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                     className={inputClass}
                   />
                 </Field>
-                <Field label={`Length of stay: ${data.nights} night${data.nights === 1 ? "" : "s"}`} htmlFor="nights" error={errors.nights} required>
+                <Field label={tf(data.nights === 1 ? msg("Length of stay: {n} night") : msg("Length of stay: {n} nights"), { n: data.nights })} htmlFor="nights" error={errors.nights} required>
                   <div className="flex items-center gap-5 pt-2">
                     <input
                       id="nights"
@@ -239,29 +243,29 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                       max={30}
                       value={data.nights}
                       onChange={(e) => set("nights", parseInt(e.target.value, 10))}
-                      aria-valuetext={`${data.nights} nights`}
+                      aria-valuetext={tf("{n} nights", { n: data.nights })}
                       className="h-1 flex-1 cursor-pointer appearance-none bg-line-strong accent-terra"
                     />
-                    <Stepper id="nights-number" label="nights" value={data.nights} min={1} max={30} onChange={(v) => set("nights", v)} />
+                    <Stepper id="nights-number" label={t("nights")} value={data.nights} min={1} max={30} onChange={(v) => set("nights", v)} />
                   </div>
                 </Field>
-                <Fieldset legend="Are your dates…" error={errors.dateFlexibility} required>
-                  <div role="radiogroup" aria-label="Date flexibility" className="flex flex-wrap gap-2">
-                    <Chip selected={data.dateFlexibility === "exact"} onClick={() => set("dateFlexibility", "exact")}>Exact</Chip>
-                    <Chip selected={data.dateFlexibility === "approximate"} onClick={() => set("dateFlexibility", "approximate")}>Approximate / flexible</Chip>
+                <Fieldset legend={msg("Are your dates…")} error={errors.dateFlexibility} required>
+                  <div role="radiogroup" aria-label={t("Date flexibility")} className="flex flex-wrap gap-2">
+                    <Chip selected={data.dateFlexibility === "exact"} onClick={() => set("dateFlexibility", "exact")}>{t("Exact")}</Chip>
+                    <Chip selected={data.dateFlexibility === "approximate"} onClick={() => set("dateFlexibility", "approximate")}>{t("Approximate / flexible")}</Chip>
                   </div>
                 </Fieldset>
-                <Fieldset legend="Have you been to Guatemala before?" error={errors.travellerType} required>
-                  <div role="radiogroup" aria-label="Traveller experience" className="flex flex-wrap gap-2">
-                    <Chip selected={data.travellerType === "first-timer"} onClick={() => set("travellerType", "first-timer")}>First time</Chip>
-                    <Chip selected={data.travellerType === "experienced"} onClick={() => set("travellerType", "experienced")}>I&apos;ve been before</Chip>
+                <Fieldset legend={msg("Have you been to Guatemala before?")} error={errors.travellerType} required>
+                  <div role="radiogroup" aria-label={t("Traveller experience")} className="flex flex-wrap gap-2">
+                    <Chip selected={data.travellerType === "first-timer"} onClick={() => set("travellerType", "first-timer")}>{t("First time")}</Chip>
+                    <Chip selected={data.travellerType === "experienced"} onClick={() => set("travellerType", "experienced")}>{t("I've been before")}</Chip>
                   </div>
                 </Fieldset>
               </div>
             )}
 
             {step === 1 && (
-              <Fieldset legend="Choose your route combinations (select as many as you like)" error={errors.routes} required>
+              <Fieldset legend={msg("Choose your route combinations (select as many as you like)")} error={errors.routes} required>
                 <div role="group" className="grid grid-cols-2 gap-2 md:grid-cols-4">
                   {routeCombos.map((r) => {
                     const selected = data.routes.includes(r.id);
@@ -289,20 +293,20 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                           {selected && <IconCheck />}
                         </span>
                         <span className="relative flex flex-col gap-1 p-3 md:p-4">
-                          <span className="t-lg font-semibold leading-tight">{r.title}</span>
-                          <span className="t-xs hidden text-bone/75 md:block">{r.description}</span>
+                          <span className="t-lg font-semibold leading-tight">{t(r.title)}</span>
+                          <span className="t-xs hidden text-bone/75 md:block">{t(r.description)}</span>
                         </span>
                       </button>
                     );
                   })}
                 </div>
-                <Field label="Anything specific in mind? (optional)" htmlFor="routeNotes" error={errors.routeNotes} className="mt-8">
+                <Field label={t("Anything specific in mind? (optional)")} htmlFor="routeNotes" error={errors.routeNotes} className="mt-8">
                   <textarea
                     id="routeNotes"
                     rows={2}
                     value={data.routeNotes}
                     onChange={(e) => set("routeNotes", e.target.value)}
-                    placeholder="e.g. We'd love a night on a coffee farm and to see a quetzal"
+                    placeholder={t("e.g. We'd love a night on a coffee farm and to see a quetzal")}
                     className={cn(inputClass, "resize-none")}
                   />
                 </Field>
@@ -310,8 +314,8 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
             )}
 
             {step === 2 && (
-              <Fieldset legend="Budget per person, per day" error={errors.budget} required>
-                <div role="radiogroup" aria-label="Budget" className="grid gap-2 md:grid-cols-2">
+              <Fieldset legend={msg("Budget per person, per day")} error={errors.budget} required>
+                <div role="radiogroup" aria-label={t("Budget")} className="grid gap-2 md:grid-cols-2">
                   {budgetOptions.map((b) => {
                     const selected = data.budget === b.id;
                     return (
@@ -327,20 +331,20 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                         )}
                       >
                         <span className="flex items-center justify-between gap-4">
-                          <span className="t-h4">{b.title}</span>
+                          <span className="t-h4">{t(b.title)}</span>
                           <span aria-hidden className={cn("flex size-5 items-center justify-center rounded-full border", selected ? "border-jade-light bg-jade-light" : "border-bone/40")}>
                             {selected && <span className="size-2 rounded-full bg-ink" />}
                           </span>
                         </span>
-                        <span className="t-md font-normal text-mute">{b.description}</span>
+                        <span className="t-md font-normal text-mute">{t(b.description)}</span>
                         <span className="t-lg text-adobe">
                           {b.perDay ? (
                             <>
                               ≈ <Price usd={b.perDay[0]} />–<Price usd={b.perDay[1]} />
-                              <span className="t-xs text-mute"> per person / day</span>
+                              <span className="t-xs text-mute"> {t("per person / day")}</span>
                             </>
                           ) : (
-                            <span className="t-md">We&apos;ll suggest options at different levels</span>
+                            <span className="t-md">{t("We'll suggest options at different levels")}</span>
                           )}
                         </span>
                       </button>
@@ -349,9 +353,9 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                 </div>
                 {data.budget && data.budget !== "unsure" && (
                   <p className="t-xs mt-2 text-faint">
-                    For {data.nights} nights that is roughly{" "}
+                    {tf("For {n} nights that is roughly", { n: data.nights })}{" "}
                     <Price usd={(budgetOptions.find((b) => b.id === data.budget)?.perDay?.[0] ?? 0) * (data.nights + 1)} />–
-                    <Price usd={(budgetOptions.find((b) => b.id === data.budget)?.perDay?.[1] ?? 0) * (data.nights + 1)} /> per person, excluding international flights.
+                    <Price usd={(budgetOptions.find((b) => b.id === data.budget)?.perDay?.[1] ?? 0) * (data.nights + 1)} /> {t("per person, excluding international flights.")}
                   </p>
                 )}
               </Fieldset>
@@ -359,19 +363,19 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
 
             {step === 3 && (
               <div className="grid gap-10 md:grid-cols-2">
-                <Field label="Adults (18+)" htmlFor="adults" error={errors.adults} required>
-                  <Stepper id="adults" label="adults" value={data.adults} min={1} max={20} onChange={(v) => set("adults", v)} />
+                <Field label={t("Adults (18+)")} htmlFor="adults" error={errors.adults} required>
+                  <Stepper id="adults" label={t("adults")} value={data.adults} min={1} max={20} onChange={(v) => set("adults", v)} />
                 </Field>
-                <Field label="Children (0–17)" htmlFor="children" error={errors.children}>
-                  <Stepper id="children" label="children" value={data.children} min={0} max={10} onChange={setChildren} />
+                <Field label={t("Children (0–17)")} htmlFor="children" error={errors.children}>
+                  <Stepper id="children" label={t("children")} value={data.children} min={0} max={10} onChange={setChildren} />
                 </Field>
                 {data.children > 0 && (
-                  <Fieldset legend="Children's ages on arrival" className="md:col-span-2" required>
+                  <Fieldset legend={msg("Children's ages on arrival")} className="md:col-span-2" required>
                     <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
                       {Array.from({ length: data.children }).map((_, i) => {
                         const err = errors[`childAges.${i}`];
                         return (
-                          <Field key={i} label={`Child ${i + 1}`} htmlFor={`child-${i}`} error={err}>
+                          <Field key={i} label={tf("Child {n}", { n: i + 1 })} htmlFor={`child-${i}`} error={err}>
                             <select
                               id={`child-${i}`}
                               value={data.childAges[i] ?? ""}
@@ -384,10 +388,10 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                               }}
                               className={cn(inputClass, "cursor-pointer [&>option]:bg-ink")}
                             >
-                              <option value="">Age</option>
+                              <option value="">{t("Age")}</option>
                               {Array.from({ length: 18 }).map((_, a) => (
                                 <option key={a} value={a}>
-                                  {a === 0 ? "Under 1" : `${a} year${a === 1 ? "" : "s"}`}
+                                  {a === 0 ? t("Under 1") : tf(a === 1 ? msg("{n} year") : msg("{n} years"), { n: a })}
                                 </option>
                               ))}
                             </select>
@@ -417,8 +421,8 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                             {selected && <IconCheck className="size-3" />}
                           </span>
                           <span className="flex flex-col gap-1">
-                            <span className="t-md">{a.label}</span>
-                            <span className="t-xs text-mute">{a.description}</span>
+                            <span className="t-md">{t(a.label)}</span>
+                            <span className="t-xs text-mute">{t(a.description)}</span>
                           </span>
                         </button>
                       );
@@ -430,7 +434,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
 
             {step === 4 && (
               <div className="grid gap-10 md:grid-cols-2">
-                <Field label="Full name" htmlFor="name" error={errors.name} required>
+                <Field label={t("Full name")} htmlFor="name" error={errors.name} required>
                   <input
                     id="name"
                     autoComplete="name"
@@ -438,11 +442,11 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                     onChange={(e) => set("name", e.target.value)}
                     aria-invalid={!!errors.name}
                     aria-describedby={errors.name ? "name-error" : undefined}
-                    placeholder="Your name"
+                    placeholder={t("Your name")}
                     className={inputClass}
                   />
                 </Field>
-                <Field label="Email" htmlFor="email" error={errors.email} required>
+                <Field label={t("Email")} htmlFor="email" error={errors.email} required>
                   <input
                     id="email"
                     type="email"
@@ -451,13 +455,13 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                     onChange={(e) => set("email", e.target.value)}
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? "email-error" : undefined}
-                    placeholder="you@example.com"
+                    placeholder={t("Your email address")}
                     className={inputClass}
                   />
                 </Field>
-                <Field label="Phone (with country code)" htmlFor="phone" error={errors.phone} hint="Needed if you'd like us to call you">
+                <Field label={t("Phone (with country code)")} htmlFor="phone" error={errors.phone} hint={msg("Needed if you'd like us to call you")}>
                   <div className="flex gap-3">
-                    <label htmlFor="phoneCode" className="sr-only">Country code</label>
+                    <label htmlFor="phoneCode" className="sr-only">{t("Country code")}</label>
                     <select
                       id="phoneCode"
                       value={data.phoneCode}
@@ -467,7 +471,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                     >
                       {countryCodes.map((c) => (
                         <option key={c.label} value={c.code}>
-                          {c.code} {c.label.replace(/ \(.*\)$/, "")}
+                          {c.code} {t(c.label).replace(/ \(.*\)$/, "")}
                         </option>
                       ))}
                     </select>
@@ -479,36 +483,36 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
                       onChange={(e) => set("phone", e.target.value)}
                       aria-invalid={!!errors.phone}
                       aria-describedby={errors.phone ? "phone-error" : undefined}
-                      placeholder="Phone number"
+                      placeholder={t("Phone number")}
                       className={cn(inputClass, "min-w-0 flex-1")}
                     />
                   </div>
                 </Field>
-                <Fieldset legend="Preferred contact methods" error={errors.contactMethods} required>
+                <Fieldset legend={msg("Preferred contact methods")} error={errors.contactMethods} required>
                   <div role="group" className="flex flex-wrap gap-2">
                     {contactMethods.map((m) => (
                       <Chip key={m} role="checkbox" selected={data.contactMethods.includes(m)} onClick={() => toggle("contactMethods", m)}>
-                        {m}
+                        {t(m)}
                       </Chip>
                     ))}
                   </div>
                 </Fieldset>
 <div aria-hidden="true" className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden">
-                  <label htmlFor="planner-website">Leave this field empty</label>
+                  <label htmlFor="planner-website">{t("Leave this field empty")}</label>
                   <input id="planner-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
                 </div>
-                <Field label="Anything else we should know? (optional)" htmlFor="notes" error={errors.notes} className="md:col-span-2">
+                <Field label={t("Anything else we should know? (optional)")} htmlFor="notes" error={errors.notes} className="md:col-span-2">
                   <textarea
                     id="notes"
                     rows={3}
                     value={data.notes}
                     onChange={(e) => set("notes", e.target.value)}
-                    placeholder="Special occasions, mobility needs, dietary requirements, must-sees…"
+                    placeholder={t("Special occasions, mobility needs, dietary requirements, must-sees…")}
                     className={cn(inputClass, "resize-none")}
                   />
                 </Field>
                 <p className="t-xs text-faint md:col-span-2">
-                  By sending this you agree to our <Link href="/privacy" className="underline hover:text-bone">privacy policy</Link>. We only use your details to plan your trip.
+                  {t("By sending this you agree to our")} <Link href="/privacy" className="underline hover:text-bone">{t("privacy policy")}</Link>{t(". We only use your details to plan your trip.")}
                 </p>
               </div>
             )}
@@ -518,7 +522,7 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
 
       {status === "error" && (
         <p role="alert" className="t-md mt-8 border border-adobe/50 bg-terra/10 p-4 text-adobe">
-          We couldn&apos;t send your request just now. Please try again, or email us at{" "}
+          {t("We couldn't send your request just now. Please try again, or email us at")}{" "}
           <a href={mailtoHref("Trip planning request")} className="underline">{contact.email}</a>.
         </p>
       )}
@@ -530,12 +534,12 @@ export function TripPlanner({ presetRoute, onDone, compact = false }: { presetRo
           disabled={step === 0}
           className="t-btn h-12 px-1 text-mute transition-colors hover:text-bone disabled:invisible"
         >
-          ← Back
+          {t("← Back")}
         </button>
         <div className="flex items-center gap-4">
-          <span className="t-xs hidden text-faint sm:inline">Progress saves automatically</span>
+          <span className="t-xs hidden text-faint sm:inline">{t("Progress saves automatically")}</span>
           <button type="button" onClick={next} disabled={status === "submitting"} className={buttonClass("accent", "disabled:opacity-60")}>
-            <span>{step === plannerSteps.length - 1 ? (status === "submitting" ? "Sending…" : "Send my trip request") : "Continue"}</span>
+            <span>{step === plannerSteps.length - 1 ? (status === "submitting" ? t("Sending…") : t("Send my trip request")) : t("Continue")}</span>
             <Arrow />
           </button>
         </div>
@@ -557,14 +561,16 @@ function Confirmation({
   onDone?: () => void;
   headingRef: React.RefObject<HTMLHeadingElement | null>;
 }) {
-  const routes = data.routes.map((id) => routeCombos.find((r) => r.id === id)?.title).filter(Boolean).join(", ");
+  const t = useT();
+  const tf = useTf();
+  const routes = data.routes.map((id) => routeCombos.find((r) => r.id === id)?.title).filter((x): x is string => !!x).map((x) => t(x)).join(", ");
   const budget = budgetOptions.find((b) => b.id === data.budget)?.title;
   const rows = [
-    ["Arrival", `${data.arrivalDate} (${data.dateFlexibility}) · ${data.nights} nights`],
-    ["Routes", routes || "Not sure yet"],
-    ["Budget", budget ?? "-"],
-    ["Travellers", `${data.adults} adult${data.adults === 1 ? "" : "s"}${data.children ? `, ${data.children} child${data.children === 1 ? "" : "ren"}` : ""}`],
-    ["Contact via", data.contactMethods.join(", ")],
+    [t("Arrival"), `${data.arrivalDate} (${data.dateFlexibility === "exact" ? t("Exact") : t("Approximate / flexible")}) · ${tf(data.nights === 1 ? msg("{n} night") : msg("{n} nights"), { n: data.nights })}`],
+    [t("Routes"), routes || t("Not sure yet")],
+    [t("Budget"), budget ? t(budget) : "-"],
+    [t("Travellers"), `${tf(data.adults === 1 ? msg("{n} adult") : msg("{n} adults"), { n: data.adults })}${data.children ? `, ${tf(data.children === 1 ? msg("{n} child") : msg("{n} children"), { n: data.children })}` : ""}`],
+    [t("Contact via"), data.contactMethods.map((m) => t(m)).join(", ")],
   ];
   return (
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="flex flex-col gap-8" role="status">
@@ -573,12 +579,12 @@ function Confirmation({
       </span>
       <div className="flex flex-col gap-4">
         <h2 ref={headingRef} tabIndex={-1} className="t-h2 focus:outline-none">
-          Gracias, {data.name.split(" ")[0]}. Your trip is in good hands.
+          {tf("Gracias, {name}. Your trip is in good hands.", { name: data.name.split(" ")[0] })}
         </h2>
         <p className="t-lg max-w-2xl font-normal text-mute">
-          Your request is with our team in Antigua. A dedicated specialist will reply to {data.email} within one working day with first ideas and a few questions.
+          {tf("Your request is with our team in Antigua. A dedicated specialist will reply to {email} within one working day with first ideas and a few questions.", { email: data.email })}
         </p>
-        {reference && <p className="t-md">Reference: <span className="font-semibold text-adobe">{reference}</span></p>}
+        {reference && <p className="t-md">{t("Reference:")} <span className="font-semibold text-adobe">{reference}</span></p>}
       </div>
       <dl className="grid border-t border-line">
         {rows.map(([k, v]) => (
@@ -590,20 +596,20 @@ function Confirmation({
       </dl>
       <div className="flex flex-col gap-3 sm:flex-row">
         <a href={mailtoHref(`Trip request${reference ? ` ${reference}` : ""}`)} className={buttonClass("accent")}>
-          Email your specialist <Arrow />
+          {t("Email your specialist")} <Arrow />
         </a>
         {onDone ? (
           <button type="button" onClick={onDone} className={buttonClass("outline")}>
-            Keep browsing
+            {t("Keep browsing")}
           </button>
         ) : (
           <Link href="/tours" className={buttonClass("outline")}>
-            Browse tours while you wait
+            {t("Browse tours while you wait")}
           </Link>
         )}
       </div>
       <button type="button" onClick={onRestart} className="t-xs self-start text-faint underline hover:text-bone">
-        Start a new request
+        {t("Start a new request")}
       </button>
     </motion.div>
   );

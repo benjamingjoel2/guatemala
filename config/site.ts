@@ -1,6 +1,6 @@
+import { msg } from "@/i18n/locales";
 /**
  * Single source of truth for brand, contact details, currencies and navigation.
- * Replace the [PLACEHOLDER] values before going live.
  */
 
 export const site = {
@@ -16,8 +16,6 @@ export const site = {
 
 export const contact = {
   email: "antiguaandbeyond@tourground.com",
-  phone: "+502 0000 0000",
-  phoneHref: "tel:+50200000000",
   address: "5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala",
   hours: "Mon–Sat · 8:00–18:00 (GMT-6) · 24/7 support while you travel",
 };
@@ -25,13 +23,6 @@ export const contact = {
 /** mailto: link to the team inbox with an optional pre-filled subject. */
 export const mailtoHref = (subject?: string) =>
   `mailto:${contact.email}${subject ? `?subject=${encodeURIComponent(subject)}` : ""}`;
-
-/**
- * Social profiles. Empty until the accounts exist; the footer, contact page and
- * structured data only show them when this list has entries, e.g.
- * { label: "Instagram", href: "https://instagram.com/antiguaandbeyond" }
- */
-export const socials: { label: string; href: string }[] = [];
 
 /** Brand palette — mirrored as CSS variables in app/globals.css (light theme, dark photo bands + footer) */
 export const colors = {
@@ -61,50 +52,50 @@ export const currencies: Record<
   CurrencyCode,
   { code: CurrencyCode; symbol: string; label: string; rate: number; locale: string }
 > = {
-  USD: { code: "USD", symbol: "$", label: "US Dollar", rate: 1, locale: "en-US" },
-  EUR: { code: "EUR", symbol: "€", label: "Euro", rate: 0.92, locale: "de-DE" },
-  GBP: { code: "GBP", symbol: "£", label: "British Pound", rate: 0.79, locale: "en-GB" },
-  CAD: { code: "CAD", symbol: "CA$", label: "Canadian Dollar", rate: 1.37, locale: "en-CA" },
-  GTQ: { code: "GTQ", symbol: "Q", label: "Guatemalan Quetzal", rate: 7.75, locale: "es-GT" },
+  USD: { code: "USD", symbol: "$", label: msg("US Dollar"), rate: 1, locale: "en-US" },
+  EUR: { code: "EUR", symbol: "€", label: msg("Euro"), rate: 0.92, locale: "de-DE" },
+  GBP: { code: "GBP", symbol: "£", label: msg("British Pound"), rate: 0.79, locale: "en-GB" },
+  CAD: { code: "CAD", symbol: "CA$", label: msg("Canadian Dollar"), rate: 1.37, locale: "en-CA" },
+  GTQ: { code: "GTQ", symbol: "Q", label: msg("Guatemalan Quetzal"), rate: 7.75, locale: "es-GT" },
 };
 
 export const defaultCurrency: CurrencyCode = "USD";
 
 export const mainNav = [
-  { label: "Destinations", href: "/destinations" },
-  { label: "Tours", href: "/tours" },
-  { label: "Experiences", href: "/experiences" },
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: msg("Destinations"), href: "/destinations" },
+  { label: msg("Tours"), href: "/tours" },
+  { label: msg("Experiences"), href: "/experiences" },
+  { label: msg("About"), href: "/about" },
+  { label: msg("Blog"), href: "/blog" },
+  { label: msg("Contact"), href: "/contact" },
 ];
 
 export const footerNav = {
   explore: [
-    { label: "Destinations", href: "/destinations" },
-    { label: "Tours", href: "/tours" },
-    { label: "Experiences", href: "/experiences" },
-    { label: "Plan your trip", href: "/plan-your-trip" },
+    { label: msg("Destinations"), href: "/destinations" },
+    { label: msg("Tours"), href: "/tours" },
+    { label: msg("Experiences"), href: "/experiences" },
+    { label: msg("Plan your trip"), href: "/plan-your-trip" },
   ],
   company: [
-    { label: "About us", href: "/about" },
-    { label: "Testimonials", href: "/testimonials" },
-    { label: "Journal", href: "/blog" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Contact", href: "/contact" },
+    { label: msg("About us"), href: "/about" },
+    { label: msg("Journal"), href: "/blog" },
+    { label: msg("FAQ"), href: "/faq" },
+    { label: msg("Contact"), href: "/contact" },
   ],
   legal: [
-    { label: "Terms & conditions", href: "/terms" },
-    { label: "Privacy policy", href: "/privacy" },
+    { label: msg("Privacy policy"), href: "/privacy" },
+    { label: msg("Booking terms"), href: "/terms" },
+    { label: msg("Cookie policy"), href: "/cookies" },
   ],
 };
 
 export const regionLabels: Record<string, string> = {
-  antigua: "Antigua",
-  highlands: "Western Highlands",
-  atitlan: "Lake Atitlán",
-  peten: "Petén",
-  verapaces: "Las Verapaces",
-  caribbean: "Caribbean coast",
-  pacific: "Pacific coast",
+  antigua: msg("Antigua"),
+  highlands: msg("Western Highlands"),
+  atitlan: msg("Lake Atitlán"),
+  peten: msg("Petén"),
+  verapaces: msg("Las Verapaces"),
+  caribbean: msg("Caribbean coast"),
+  pacific: msg("Pacific coast"),
 };

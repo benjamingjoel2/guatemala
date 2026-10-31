@@ -1,10 +1,11 @@
+import { msg } from "@/i18n/locales";
 import clsx, { type ClassValue } from "clsx";
 
 export const cn = (...inputs: ClassValue[]) => clsx(inputs);
 
 export const monthNames = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+  msg("Jan"), msg("Feb"), msg("Mar"), msg("Apr"), msg("May"), msg("Jun"),
+  msg("Jul"), msg("Aug"), msg("Sep"), msg("Oct"), msg("Nov"), msg("Dec"),
 ] as const;
 
 /** Guatemala's rainy season runs May to October */

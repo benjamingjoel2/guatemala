@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useT } from "@/i18n/client";
+import Link from "@/i18n/Link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,8 +10,11 @@ import { usePlannerModal } from "@/components/providers/PlannerModalProvider";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { CurrencySwitcher } from "./CurrencySwitcher";
+import { LanguageSelector } from "./LanguageSelector";
+import { stripLocale } from "@/i18n/locales";
 
 export function Header() {
+  const t = useT();
   const pathname = usePathname();
   const planner = usePlannerModal();
   const [scrolled, setScrolled] = useState(false);
@@ -32,9 +36,10 @@ export function Header() {
     };
   }, [menuOpen]);
 
-  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+  const path = stripLocale(pathname ?? "/");
+  const isActive = (href: string) => path === href || path.startsWith(href + "/");
   // Pages that open on a full-bleed photo get a dark header until the visitor scrolls
-  const darkHero = pathname === "/" || /^\/destinations\/[^/]+\/?$/.test(pathname);
+  const darkHero = path === "/" || /^\/destinations\/[^/]+\/?$/.test(path);
   const overDark = darkHero && !scrolled && !menuOpen;
 
   return (
@@ -47,7 +52,7 @@ export function Header() {
       )}
     >
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-bone focus:px-4 focus:py-2 focus:text-ink">
-        Skip to content
+        {t("Skip to content")}
       </a>
       <div className="relative flex h-[4.5rem] items-stretch justify-between">
         {/* hairline under the bar */}
@@ -57,7 +62,7 @@ export function Header() {
           <Logo onClick={() => setMenuOpen(false)} />
         </div>
 
-        <nav aria-label="Main" className="hidden flex-1 items-center justify-center lg:flex">
+        <nav aria-label={t("Main")} className="hidden flex-1 items-center justify-center lg:flex">
           <ul className="flex items-center gap-6 xl:gap-8">
             {mainNav.map((item) => (
               <li key={item.href}>
@@ -72,7 +77,7 @@ export function Header() {
                   <span aria-hidden className={cn("inline-block transition-transform duration-300 group-hover/nav:rotate-90", isActive(item.href) && "text-terra")}>
                     +
                   </span>
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               </li>
             ))}
@@ -80,6 +85,9 @@ export function Header() {
         </nav>
 
         <div className="flex items-stretch">
+          <div className="hidden items-center px-5 sm:flex lg:border-l lg:border-line-strong">
+            <LanguageSelector />
+          </div>
           <div className="hidden items-center px-6 sm:flex lg:border-l lg:border-line-strong">
             <CurrencySwitcher />
           </div>
@@ -88,11 +96,11 @@ export function Header() {
             onClick={() => planner.open()}
             className="t-btn hidden items-center gap-2 bg-terra px-8 text-cream transition-colors duration-200 hover:bg-terra-dark md:flex"
           >
-            Start planning
+            {t("Start planning")}
           </button>
           <button
             type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? t("Close menu") : t("Open menu")}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((o) => !o)}
@@ -117,7 +125,7 @@ export function Header() {
             transition={{ duration: 0.25 }}
             className="fixed inset-x-0 bottom-0 top-[4.5rem] z-40 flex flex-col justify-between overflow-y-auto bg-ink px-5 pb-8 pt-10 lg:hidden"
           >
-            <nav aria-label="Mobile">
+            <nav aria-label={t("Mobile")}>
               <ul className="flex flex-col">
                 {mainNav.map((item, i) => (
                   <motion.li
@@ -129,7 +137,7 @@ export function Header() {
                   >
                     <Link href={item.href} className="t-h3 flex items-baseline gap-2 py-4">
                       <span aria-hidden className="text-terra">+</span>
-                      {item.label}
+                      {t(item.label)}
                     </Link>
                   </motion.li>
                 ))}
@@ -137,7 +145,11 @@ export function Header() {
             </nav>
             <div className="mt-10 flex flex-col gap-4">
               <div className="flex items-center justify-between">
-                <span className="t-md text-mute">Currency</span>
+                <span className="t-md text-mute">{t("Language")}</span>
+                <LanguageSelector />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="t-md text-mute">{t("Currency")}</span>
                 <CurrencySwitcher up />
               </div>
               <button
@@ -148,7 +160,7 @@ export function Header() {
                 }}
                 className="t-btn h-12 w-full bg-terra text-cream"
               >
-                Start planning
+                {t("Start planning")}
               </button>
               <a href={`mailto:${contact.email}`} className="t-md text-center text-mute">
                 {contact.email}

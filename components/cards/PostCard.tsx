@@ -1,10 +1,11 @@
+import { getLocale, t } from "@/i18n/server";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/i18n/Link";
 import type { PostMeta } from "@/data/types";
 import { cn } from "@/lib/utils";
 
 export function formatDate(date: string) {
-  return new Date(date + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  return new Date(date + "T12:00:00Z").toLocaleDateString(getLocale() === "en" ? "en-GB" : getLocale(), { day: "numeric", month: "long", year: "numeric" });
 }
 
 export function PostCard({ post, className, large }: { post: PostMeta; className?: string; large?: boolean }) {
@@ -16,7 +17,7 @@ export function PostCard({ post, className, large }: { post: PostMeta; className
         </div>
         <div className="flex flex-col gap-5">
           <p className="t-xs flex gap-3 text-mute">
-            <span className="text-jade-light">Latest · {post.category}</span>
+            <span className="text-jade-light">{t("Latest")} · {post.category}</span>
             <span>{formatDate(post.date)}</span>
             <span>{post.readingTime}</span>
           </p>
@@ -24,7 +25,7 @@ export function PostCard({ post, className, large }: { post: PostMeta; className
             <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0 after:content-['']">{post.title}</Link>
           </h2>
           <p className="t-lg font-normal text-mute">{post.excerpt}</p>
-          <span className="t-btn text-bone transition-colors group-hover:text-adobe">Read the guide →</span>
+          <span className="t-btn text-bone transition-colors group-hover:text-adobe">{t("Read the guide →")}</span>
         </div>
       </article>
     );

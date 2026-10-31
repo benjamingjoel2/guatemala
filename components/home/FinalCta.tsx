@@ -1,3 +1,4 @@
+import { t } from "@/i18n/server";
 import Image from "next/image";
 import { img } from "@/data/images";
 import { mailtoHref } from "@/config/site";
@@ -6,6 +7,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Parallax, Reveal, SplitHeading } from "@/components/ui/motion";
 
 export function FinalCta({ title = "Ready when you are. Let's plan your Guatemala." }: { title?: string }) {
+  title = t(title);
   return (
     <section className="theme-dark relative overflow-hidden bg-ink" aria-labelledby="final-cta-title">
       <Parallax className="absolute inset-0" distance={60}>
@@ -15,10 +17,10 @@ export function FinalCta({ title = "Ready when you are. Let's plan your Guatemal
       <div className="gutter relative flex min-h-[34rem] flex-col items-center justify-center gap-8 py-24 text-center">
         <SplitHeading id="final-cta-title" text={title} className="t-h1 max-w-5xl" />
         <Reveal delay={0.2} className="flex flex-col items-center gap-6">
-          <p className="t-xl max-w-xl text-bone/85">Tell us a little about your trip. Your specialist will reply within one working day with ideas, not a sales pitch.</p>
+          <p className="t-xl max-w-xl text-bone/85">{t("Tell us a little about your trip. Your specialist will reply within one working day with ideas, not a sales pitch.")}</p>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <PlanButton>Plan your trip</PlanButton>
-            <ButtonLink href={mailtoHref("Planning a trip to Guatemala")} variant="outline" className="backdrop-blur-sm">Email us</ButtonLink>
+            <PlanButton>{t("Plan your trip")}</PlanButton>
+            <ButtonLink href={mailtoHref("Planning a trip to Guatemala")} variant="outline" className="backdrop-blur-sm">{t("Email us")}</ButtonLink>
           </div>
         </Reveal>
       </div>
