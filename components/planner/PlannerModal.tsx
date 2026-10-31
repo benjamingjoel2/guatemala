@@ -1,11 +1,13 @@
 "use client";
 
+import { useT } from "@/i18n/client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { TripPlanner } from "./TripPlanner";
 import { Logo } from "@/components/layout/Logo";
 
 export default function PlannerModal({ onClose, presetRoute }: { onClose: () => void; presetRoute?: string }) {
+  const t = useT();
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function PlannerModal({ onClose, presetRoute }: { onClose: () => 
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Plan your trip"
+        aria-label={t("Plan your trip")}
         tabIndex={-1}
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
@@ -63,8 +65,8 @@ export default function PlannerModal({ onClose, presetRoute }: { onClose: () => 
       >
         <div className="sticky top-0 z-10 flex h-[4.5rem] shrink-0 items-center justify-between border-b border-line-strong bg-ink/90 px-5 backdrop-blur md:px-10">
           <Logo onClick={onClose} />
-          <button type="button" onClick={onClose} aria-label="Close trip planner" className="t-btn flex items-center gap-2 text-mute hover:text-bone">
-            Close
+          <button type="button" onClick={onClose} aria-label={t("Close trip planner")} className="t-btn flex items-center gap-2 text-mute hover:text-bone">
+            {t("Close")}
             <svg aria-hidden viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="m3 3 10 10M13 3 3 13" /></svg>
           </button>
         </div>

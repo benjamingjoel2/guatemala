@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/i18n/client";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -11,6 +12,7 @@ import { HuipilStripe } from "@/components/ui/HuipilStripe";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
+  const t = useT();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.25]);
@@ -23,7 +25,7 @@ export function Hero() {
       <motion.div style={{ scale: imgScale, y: imgY }} className="absolute inset-0">
         <Image
           src={img.antiguaStreetAgua.src}
-          alt={img.antiguaStreetAgua.alt}
+          alt={t(img.antiguaStreetAgua.alt)}
           fill
           priority
           sizes="100vw"
@@ -37,7 +39,7 @@ export function Hero() {
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           {/* CSS-only entrance so the intro (LCP element) paints before hydration */}
           <p className="t-xxl max-w-xl text-bone motion-safe:animate-[rise_1s_cubic-bezier(.22,1,.36,1)_both]">
-            Tailor-made Guatemala trips with one dedicated local specialist, from your first message to the day you fly home.
+            {t("Tailor-made Guatemala trips with one dedicated local specialist, from your first message to the day you fly home.")}
           </p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -45,18 +47,18 @@ export function Hero() {
             transition={{ duration: 1, ease, delay: 0.7 }}
             className="flex flex-col gap-3 xs:flex-row"
           >
-            <PlanButton>Start planning</PlanButton>
+            <PlanButton>{t("Start planning")}</PlanButton>
             <ButtonLink href="/tours" variant="outline" className="backdrop-blur-sm">
-              Explore tours
+              {t("Explore tours")}
             </ButtonLink>
           </motion.div>
         </div>
 
         <h1 id="hero-title" className="mt-10 md:mt-14">
-          <span className="sr-only">Antigua &amp; Beyond: tailor-made trips to Guatemala. </span>
+          <span className="sr-only">{t("Antigua & Beyond: tailor-made trips to Guatemala.")} </span>
           <span aria-hidden className="mb-1 block overflow-hidden font-serif text-[clamp(1.5rem,2.6vw,2.5rem)] font-medium italic leading-tight text-bone/85 md:mb-0">
             <motion.span className="block" initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1, ease, delay: 0.2 }}>
-              Start in Antigua.
+              {t("Start in Antigua.")}
             </motion.span>
           </span>
           <span aria-hidden className="t-display -mb-[0.14em] block overflow-hidden whitespace-nowrap pb-[0.2em]">

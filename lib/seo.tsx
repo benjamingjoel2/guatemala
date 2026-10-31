@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
-import { site, socials } from "@/config/site";
+import { contact, site } from "@/config/site";
 import { img } from "@/data/images";
+import { getLocale, t } from "@/i18n/server";
+import { locales, localizeHref, ogLocales } from "@/i18n/locales";
+
+/** Canonical + hreflang alternates (en, fr, de, es, x-default) for a path in the current locale. */
+export function languageAlternates(path: string) {
+  const locale = getLocale();
+  return {
+    canonical: localizeHref(locale, path),
+    languages: { ...Object.fromEntries(locales.map((l) => [l, localizeHref(l, path)])), "x-default": path },
+  };
+}
 
 const BRAND_SUFFIX = ` · ${site.name}`;
 /** Google shows roughly 60 characters of a title and 155–160 of a description. */
@@ -31,7 +42,10 @@ export function pageMeta({
   image?: string;
   type?: "website" | "article";
 }): Metadata {
-  const url = `${site.url}${path === "/" ? "" : path}`;
+  title = t(title);
+  description = t(description);
+  const localPath = localizeHref(getLocale(), path);
+  const url = `${site.url}${localPath === "/" ? "" : localPath}`;
   const desc = clampDescription(description);
   const images = [{ url: `${image}&w=1200&h=630`, width: 1200, height: 630, alt: title }];
   // Keep the brand suffix only when the full title still fits in search results
@@ -39,14 +53,14 @@ export function pageMeta({
   return {
     title: { absolute: fullTitle },
     description: desc,
-    alternates: { canonical: path },
-    openGraph: { title: fullTitle, description: desc, url, siteName: site.name, type, images, locale: site.locale },
+    alternates: languageAlternates(path),
+    openGraph: { title: fullTitle, description: desc, url, siteName: site.name, type, images, locale: ogLocales[getLocale()] },
     twitter: { card: "summary_large_image", title: fullTitle, description: desc, images: images.map((i) => i.url) },
   };
 }
 
-/** Organisation schema shared by the layout (logo + social profiles). */
-export const organizationJsonLd = {
+/** Organisation schema shared by the layout. */
+export const organizationJsonLd = () => ({
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "@id": `${site.url}/#organization`,
@@ -54,22 +68,22 @@ export const organizationJsonLd = {
   url: site.url,
   logo: `${site.url}/icon.svg`,
   image: defaultOgImage,
-  description: site.description,
+  description: t(site.description),
   foundingDate: String(site.foundedYear),
+  email: contact.email,
   areaServed: { "@type": "Country", name: "Guatemala" },
   address: { "@type": "PostalAddress", addressLocality: "Antigua Guatemala", addressRegion: "Sacatepéquez", addressCountry: "GT" },
-  ...(socials.length ? { sameAs: socials.map((s) => s.href) } : {}),
-};
+});
 
-export const websiteJsonLd = {
+export const websiteJsonLd = () => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${site.url}/#website`,
   name: site.name,
   url: site.url,
-  inLanguage: "en",
+  inLanguage: getLocale(),
   publisher: { "@id": `${site.url}/#organization` },
-};
+});
 
 /** Render a JSON-LD block. */
 export function JsonLd({ data }: { data: object }) {

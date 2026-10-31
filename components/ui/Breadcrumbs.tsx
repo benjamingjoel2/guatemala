@@ -1,8 +1,9 @@
-import Link from "next/link";
+import { t } from "@/i18n/server";
+import Link from "@/i18n/Link";
 import { site } from "@/config/site";
 
 export function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) {
-  const all = [{ label: "Home", href: "/" }, ...items];
+  const all = [{ label: t("Home"), href: "/" }, ...items];
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -14,7 +15,7 @@ export function Breadcrumbs({ items }: { items: { label: string; href?: string }
     })),
   };
   return (
-    <nav aria-label="Breadcrumb">
+    <nav aria-label={t("Breadcrumb")}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <ol className="t-xs flex flex-wrap items-center gap-2 text-mute">
         {all.map((c, i) => (
