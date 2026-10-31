@@ -31,6 +31,22 @@ Production runs on Vercel at https://antiguaandbeyond.tourground.com (custom dom
 - `NEXT_PUBLIC_SITE_URL` is set in the Vercel project's environment variables.
 - The `gh-pages` branch is skipped through the project's Ignored Build Step setting.
 
+## Cloudflare Workers (OpenNext)
+
+The site can also run on Cloudflare Workers through the [OpenNext adapter](https://opennext.js.org/cloudflare) (`@opennextjs/cloudflare`). This is additive: Vercel still runs `npm run build` and ignores the Cloudflare files.
+
+```bash
+npm run cf-build   # npm run build (i18n script + next build), OpenNext bundle, prerendered pages copied into the assets
+npx wrangler dev   # serve the Worker locally on http://localhost:8787
+npm run preview    # cf-build, then OpenNext's local preview
+npm run deploy     # cf-build, then deploy the Worker (needs a Cloudflare login; not done yet)
+```
+
+- `wrangler.jsonc`: Worker `guatemala`, `nodejs_compat`, static assets from `.open-next/assets` and the `IMAGES` binding (Cloudflare Images) for `next/image` optimisation.
+- `open-next.config.ts`: prerendered pages are served read-only from Workers static assets (`static-assets-incremental-cache`). The site has no ISR, and pages that read `content/` with `node:fs` must come from the build because the filesystem is not available at request time on Workers. That is why `cf-build` also runs `opennextjs-cloudflare populateCache local`.
+- `cloudflare/_headers` is copied into the assets on `cf-build`: it gives `/_next/static/*` the same year-long immutable cache as on Vercel. Redirects come from `next.config.ts`, which OpenNext applies.
+- Secrets: `npx wrangler secret put <NAME>` (`RESEND_API_KEY`, `ENQUIRY_TO_EMAIL`, `EMAIL_FROM`), or a local `.dev.vars` file for `wrangler dev`. `NEXT_PUBLIC_*` values are inlined at build time, so set them in the build environment.
+
 ## Enquiry emails
 
 The trip planner (`/api/plan`) and contact form (`/api/contact`) email each submission to the team via [Resend](https://resend.com), with reply-to set to the traveller. Set in Vercel → Settings → Environment Variables:

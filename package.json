@@ -7,13 +7,17 @@
     "build": "node scripts/i18n-client-keys.mjs && next build",
     "start": "next start",
     "lint": "eslint",
-    "i18n:keys": "node scripts/i18n-client-keys.mjs"
+    "i18n:keys": "node scripts/i18n-client-keys.mjs",
+    "cf-build": "opennextjs-cloudflare build && opennextjs-cloudflare populateCache local && cp cloudflare/_headers .open-next/assets/_headers",
+    "preview": "npm run cf-build && opennextjs-cloudflare preview",
+    "deploy": "npm run cf-build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.15",
     "clsx": "^2.1.1",
     "framer-motion": "^14.1.0",
     "gray-matter": "^4.0.3",
-    "next": "15.5.27",
+    "next": "15.5.28",
     "next-mdx-remote": "^6.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
@@ -25,8 +29,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.5.27",
+    "eslint-config-next": "15.5.28",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.156.0"
   }
 }

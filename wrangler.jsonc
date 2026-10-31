@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Cloudflare Workers config for the OpenNext build (`npm run cf-build`).
+  // Vercel ignores this file.
+  "name": "guatemala",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-20",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      // Self-reference used by OpenNext for caching; must match "name".
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "guatemala"
+    }
+  ],
+  // next/image optimisation (AVIF/WebP of the Unsplash photos) through Cloudflare Images.
+  "images": {
+    "binding": "IMAGES"
+  },
+  "observability": {
+    "enabled": true
+  }
+  // Secrets (set with `npx wrangler secret put <NAME>`, or in .dev.vars locally):
+  // RESEND_API_KEY, EMAIL_FROM, ENQUIRY_TO_EMAIL.
+  // NEXT_PUBLIC_* values are inlined at build time: set them in the build environment.
+}
