@@ -1,6 +1,7 @@
 import { t } from "@/i18n/server";
 import Link from "@/i18n/Link";
 import { PageHeader } from "./PageHeader";
+import type { LegalSection } from "@/data/legal";
 
 /** Renders "[text](/path)" inside legal text as links. */
 function linkify(text: string) {
@@ -10,7 +11,7 @@ function linkify(text: string) {
   });
 }
 
-export function LegalPage({ title, updated, sections }: { title: string; updated: string; sections: { h: string; p: string[] }[] }) {
+export function LegalPage({ title, updated, sections }: { title: string; updated: string; sections: LegalSection[] }) {
   return (
     <>
       <PageHeader crumbs={[{ label: title }]} eyebrow={`${t("Last updated")} ${updated}`} title={title} />
@@ -20,6 +21,22 @@ export function LegalPage({ title, updated, sections }: { title: string; updated
             <div key={s.h}>
               <h2>{s.h}</h2>
               {s.p.map((p, i) => <p key={i}>{linkify(p)}</p>)}
+              {s.table && (
+                <div className="overflow-x-auto">
+                  <table>
+                    <thead>
+                      <tr>{s.table.head.map((c) => <th key={c} scope="col">{c}</th>)}</tr>
+                    </thead>
+                    <tbody>
+                      {s.table.rows.map((r) => (
+                        <tr key={r[0]}>{r.map((c, i) => i === 0
+                          ? <th key={i} scope="row">{c}</th>
+                          : <td key={i}>{c}</td>)}</tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           ))}
         </div>

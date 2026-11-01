@@ -72,7 +72,7 @@ export const organizationJsonLd = () => ({
   foundingDate: String(site.foundedYear),
   email: contact.email,
   areaServed: { "@type": "Country", name: "Guatemala" },
-  address: { "@type": "PostalAddress", addressLocality: "Antigua Guatemala", addressRegion: "Sacatepéquez", addressCountry: "GT" },
+  address: { "@type": "PostalAddress", streetAddress: "Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14", addressLocality: "Guatemala City", postalCode: "01014", addressCountry: "GT" },
 });
 
 export const websiteJsonLd = () => ({

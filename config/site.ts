@@ -16,7 +16,8 @@ export const site = {
 
 export const contact = {
   email: "antiguaandbeyond@tourground.com",
-  address: "5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala",
+  /** Business address: Regus Euro Plaza, premium coworking in Guatemala City (owner rule: premium coworking in the capital). */
+  address: "Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala",
   hours: "Mon–Sat · 8:00–18:00 (GMT-6) · 24/7 support while you travel",
 };
 
