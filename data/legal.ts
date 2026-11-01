@@ -1,205 +1,296 @@
 /**
  * Privacy policy, booking terms and cookie policy, per locale. Plain text; [text](/path)
- * becomes a link. A lawyer should review these before launch.
+ * becomes a link; a section may carry a table (the cookie policy's storage list).
  */
-export type LegalDoc = { title: string; description: string; sections: { h: string; p: string[] }[] };
+export type LegalSection = { h: string; p: string[]; table?: { head: string[]; rows: string[][] } };
+export type LegalDoc = { title: string; description: string; sections: LegalSection[] };
 export type LegalSet = { privacy: LegalDoc; terms: LegalDoc; cookies: LegalDoc };
 
-export const legalUpdated: Record<string, string> = {"en": "30 October 2026", "fr": "30 octobre 2026", "de": "30. Oktober 2026", "es": "30 de octubre de 2026"};
+export const legalUpdated: Record<string, string> = {"en": "1 November 2026", "fr": "1er novembre 2026", "de": "1. November 2026", "es": "1 de noviembre de 2026"};
 
 export const legal: Record<string, LegalSet> = {
   "en": {
     "privacy": {
       "title": "Privacy policy",
-      "description": "How Antigua & Beyond collects, uses and protects the personal details you send us.",
+      "description": "How Antigua & Beyond collects, uses and protects your personal data, and your rights.",
       "sections": [
         {
           "h": "Who we are",
           "p": [
-            "This website is run by Antigua & Beyond, 5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala. In this policy \"we\", \"us\" and \"our\" mean Antigua & Beyond.",
+            "This website is run by Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. In this policy \"we\", \"us\" and \"our\" mean Antigua & Beyond. We decide how and why your personal data is used, so we are the data controller.",
             "For anything about your personal data, email antiguaandbeyond@tourground.com."
           ]
         },
         {
-          "h": "What we collect",
+          "h": "What data we collect",
           "p": [
-            "Only what you choose to send us: through the enquiry form, through the trip planner, your name, email address, phone number if you give one, travel dates, the size of your party, your interests, budget and notes; through the contact form, your name, email address and message; through the newsletter signup, your email address. If you write to us by email, we keep that correspondence.",
-            "If you book, we also collect what is needed to arrange the trip, such as the names of everyone travelling, dates of birth and passport details where suppliers require them, dietary and access needs, and emergency contacts.",
-            "Please do not send payment card details or detailed health information by email or through the form."
+            "Details you send us through the enquiry or trip-planning forms on this website: usually your name, email address, preferred travel dates, the number of travellers, the kind of trip you have in mind, your budget range and anything you write in your message. If you sign up for our newsletter, your email address.",
+            "Emails and other messages you send us, and our replies.",
+            "If you book, what is needed to arrange the trip: the names of everyone travelling, dates of birth and passport details where suppliers or authorities require them, dietary, medical and accessibility needs you choose to share, emergency contacts, and records of the payments you make. We do not collect or store payment card numbers on this website.",
+            "Technical data: when you visit, our hosting provider automatically records your IP address, browser type, the pages requested and the time of the request in server logs, to keep the site running and secure.",
+            "We do not use analytics or advertising tools, and we do not build profiles of visitors."
           ]
         },
         {
-          "h": "Why we use it",
+          "h": "Why we use it and our legal bases",
           "p": [
-            "To answer your enquiry, plan a trip with you and, if you go ahead, book and run it. The legal basis is the steps you ask us to take before entering into a contract, the performance of that contract, your consent where we ask for it, and our legitimate interest in replying to people who contact us.",
-            "We do not sell your details, and we only send you news or offers if you ask us to."
+            "To reply to your enquiry and prepare a proposal: steps you ask us to take before entering into a contract, and our legitimate interest in answering people who contact us.",
+            "To book, run and support your trip, and to take payments: performance of our contract with you.",
+            "To handle health, dietary or accessibility information so that suppliers can look after you: your explicit consent, which you can withdraw at any time.",
+            "To keep accounting and booking records: our legal obligations.",
+            "To keep the website secure and working: our legitimate interests. To send you our newsletter: your consent, which you can withdraw with the link in every email.",
+            "We do not sell your personal data and we do not use it for automated decision-making."
           ]
         },
         {
           "h": "Who we share it with",
           "p": [
-            "Your enquiry reaches us through our website's server (hosted by Vercel Inc., United States) and our email delivery provider, Resend (United States).",
-            "If you book, we share only what is needed with the hotels, lodges, transport companies, guides and local partners in Guatemala who deliver your trip, and with your travel insurer if you ask us to. Some of them are outside your own country; where that is the case, we share the minimum needed to deliver the service you have asked for.",
-            "We may also disclose information where the law requires it."
+            "Service providers who process data for us under contract: Vercel Inc. (United States), which hosts this website, runs its form handling and keeps short-lived server logs; Resend (Plus Five Five, Inc., United States), which delivers the emails our forms send to us and to you; and our email provider, which stores the messages we exchange with you.",
+            "If you book: the hotels, lodges, transport companies, activity operators and local partners in Guatemala who deliver your trip, and only the details each of them needs. If you ask us to, your travel insurer.",
+            "Public authorities, courts or professional advisers where the law requires it or to establish or defend legal claims."
           ]
         },
         {
-          "h": "Cookies and local storage",
+          "h": "International transfers",
           "p": [
-            "We do not use analytics or advertising cookies on this website. See the [cookie policy](/cookies/) for what the site stores in your browser."
+            "Our hosting and email providers are based in the United States. Where your data leaves the UK or the European Economic Area, the transfer relies on the EU-US Data Privacy Framework and its UK extension where the provider is certified, or on the European Commission's standard contractual clauses (with the UK addendum), which oblige the provider to protect it to European standards.",
+            "When you book, we pass the details needed to deliver your trip to suppliers in Guatemala. That transfer is necessary to perform the contract you have asked us to arrange."
           ]
         },
         {
           "h": "How long we keep it",
           "p": [
-            "We keep enquiries that do not become a booking for 24 months from our last contact, then delete them. Booking records are kept for as long as accounting and consumer law require, usually six years after the trip."
+            "Enquiries that do not become a booking: 24 months after our last contact, then deleted.",
+            "Booking records: six years after the end of your trip, the period accounting and tax rules require. Health and dietary details are deleted once your trip is over and any claim has been settled.",
+            "Server logs: a short period, normally no more than 30 days. Newsletter: until you unsubscribe."
           ]
         },
         {
           "h": "How we protect it",
           "p": [
-            "Your details are kept in password-protected email and file storage that only the people planning your trip can reach. The website is served over an encrypted connection (HTTPS)."
+            "The site is served only over an encrypted connection (HTTPS). Your details are kept in password-protected accounts that only the people planning your trip can open, and we share with suppliers only what they need."
           ]
         },
         {
           "h": "Your rights",
           "p": [
-            "You can ask to see the personal data we hold about you, to correct or delete it, to restrict or object to how we use it, to receive a copy in a portable format, or to withdraw your consent at any time. Email antiguaandbeyond@tourground.com and we will reply within one month.",
-            "If you are unhappy with how we handle your data, please tell us first so that we can put it right. You also have the right to complain to the data-protection authority in the country where you live."
+            "Under data-protection law (including the GDPR and the UK GDPR) you have the right to: access the personal data we hold about you; have it rectified if it is wrong; have it erased; restrict how we use it; receive it in a portable format; object to processing based on our legitimate interests; and withdraw your consent at any time, without affecting what we did before you withdrew it.",
+            "To use any of these rights, email antiguaandbeyond@tourground.com. We reply within one month and do not charge for this.",
+            "You also have the right to complain to a data-protection supervisory authority, in particular in the country where you live or work (for example the Information Commissioner's Office in the UK, or your national authority in the EU). We would appreciate the chance to put things right first."
+          ]
+        },
+        {
+          "h": "Cookies",
+          "p": [
+            "This site uses no analytics or advertising cookies. Our [cookie policy](/cookies) explains exactly what it stores in your browser."
+          ]
+        },
+        {
+          "h": "Children",
+          "p": [
+            "This website and our services are not aimed at children under 16, and we do not knowingly collect their data online. We hold details of children only when a parent or guardian gives them to us to book a family trip."
           ]
         },
         {
           "h": "Changes to this policy",
           "p": [
-            "We will update this page if the way we use personal data changes. Last updated 30 October 2026."
+            "We will update this page if the way we handle personal data changes, and change the date below. Last updated: 1 November 2026."
+          ]
+        },
+        {
+          "h": "Contact",
+          "p": [
+            "Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. Email: antiguaandbeyond@tourground.com."
           ]
         }
       ]
     },
     "terms": {
       "title": "Booking terms",
-      "description": "The terms that apply when you enquire about, and book, a tailor-made trip with Antigua & Beyond.",
+      "description": "The terms that apply when you book a trip with Antigua & Beyond: deposit, balance, changes, cancellation and insurance.",
       "sections": [
         {
-          "h": "About these terms",
+          "h": "Who we are",
           "p": [
-            "These terms apply to every trip planned by Antigua & Beyond, 5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala. Please read them before you book. Your written quote and booking confirmation form part of the contract, together with these terms.",
-            "Everything on this website, including itineraries, timings, seasons and experiences, describes the kind of trip we plan. It is not an offer you can accept."
+            "These booking terms apply to every trip arranged by Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala (\"we\", \"us\"). Email: antiguaandbeyond@tourground.com. Please read them before you book: together with your written quote and booking confirmation, they form the contract between us."
           ]
         },
         {
-          "h": "Enquiries and quotes",
+          "h": "Prices on this website",
           "p": [
-            "Sending an enquiry is free and creates no obligation for you or for us.",
-            "We reply with ideas and questions, then shape the trip with you. When it is right, we send a written quote. A quote is valid for the period stated on it. Prices for flights, accommodation and services can change until the trip is confirmed, and we will tell you before you commit if they do."
+            "Prices on this website are shown \"from\": they are guide prices per person, usually based on two people sharing, and depend on dates, availability, group size and the choices you make. They are not an offer. The price you pay is the one in your final written quote, confirmed in writing before you book."
           ]
         },
         {
-          "h": "Booking and payment",
+          "h": "How a booking is made and confirmed",
           "p": [
-            "Your booking is confirmed when you accept the quote in writing, pay the deposit stated on it, and we send you a written confirmation. The person who makes the booking accepts these terms for everyone travelling and must be 18 or over.",
-            "The balance is due by the date shown on your quote and confirmation. If it is not paid on time, we may treat the booking as cancelled by you, and the cancellation charges below apply."
+            "Sending an enquiry is free and commits neither of us. We send you a proposal, shape it with you and then send a written quote, valid for the period stated on it.",
+            "Your booking is confirmed, and a contract exists, when you have accepted the quote in writing, paid the deposit and received our written confirmation. The person who books must be 18 or over and accepts these terms for everyone in the party. Please check your confirmation and tell us straight away if anything is wrong."
+          ]
+        },
+        {
+          "h": "Deposit and balance",
+          "p": [
+            "The deposit is stated on your quote; it is normally 30% of the trip price. The balance is due no later than 60 days before departure, unless your confirmation gives another date. If you book within 60 days of departure, the full price is due when you book.",
+            "If the balance is not paid on time, we may treat the booking as cancelled by you and apply the cancellation charges below."
+          ]
+        },
+        {
+          "h": "What is included and not included",
+          "p": [
+            "Your trip includes exactly what is listed in your quote and confirmation, such as accommodation, the transport, activities and entrance fees named there, and the meals shown.",
+            "Unless your quote says otherwise, it does not include international flights, travel insurance, visas and entry fees, vaccinations, tips, drinks, meals not listed, optional activities or personal expenses."
           ]
         },
         {
           "h": "Changes by you",
           "p": [
-            "If you want to change your trip after it is confirmed, tell us in writing. We will do our best to help. Changes are not always possible, and any extra costs charged by suppliers, plus a reasonable fee for our time, will be passed on to you."
+            "If you want to change a confirmed trip, tell us in writing. We will try to help, but cannot guarantee every change. You pay any extra costs charged by suppliers, and we tell you the cost before making the change. You may transfer your booking to another person who meets all the conditions of the trip if you tell us in writing at least 14 days before departure and pay any costs the transfer causes."
           ]
         },
         {
           "h": "Cancellation by you",
           "p": [
-            "You can cancel at any time by telling us in writing. The deposit is non-refundable. The closer to departure you cancel, the higher the charge, up to the full cost of the trip, because accommodation, transport and other services are reserved and paid for on your behalf. The charges that apply to your trip are set out on your quote and confirmation.",
-            "Travel insurance may cover cancellation charges in some circumstances."
+            "You can cancel at any time by telling us in writing; the cancellation takes effect on the day we receive it. Because we commit and pay for services on your behalf, the following charges apply, as a percentage of the total trip price:",
+            "More than 60 days before departure: loss of the deposit. 60 to 31 days: 50%. 30 to 15 days: 75%. 14 days or less, or if you do not travel: 100%.",
+            "Where your quote lists a supplier cost that is non-refundable once paid (for example certain permits, park fees or flights), that cost is also payable whenever you cancel. Your travel insurance may cover cancellation charges."
           ]
         },
         {
           "h": "Changes and cancellation by us",
           "p": [
-            "We plan carefully, but sometimes we have to change part of a trip, for example because of weather, road or route closures, or a supplier that cannot honour a booking. We will tell you as soon as possible and offer a comparable alternative.",
-            "If we have to make a significant change or cancel your trip, you can accept the change, take a comparable alternative if one is available, or cancel and receive a full refund of the money you have paid us."
-          ]
-        },
-        {
-          "h": "Events beyond anyone's control",
-          "p": [
-            "We are not liable for changes, delays or cancellations caused by events beyond our reasonable control, such as war or threat of war, civil unrest, natural disaster, epidemics, government action, airport or border closures, or severe weather. Where such an event affects your trip, we will help you make other arrangements and pass on any refunds we receive from suppliers."
+            "We sometimes have to make minor changes, such as a different hotel of the same standard or an adjusted route; we tell you as soon as we can.",
+            "If we have to make a significant change before departure, or cancel, you can accept the change, take a comparable alternative if we can offer one, or cancel and receive a full refund of everything you have paid us. We will not cancel after the balance is due except for unavoidable and extraordinary circumstances or your non-payment."
           ]
         },
         {
           "h": "Travel insurance",
           "p": [
-            "Comprehensive travel insurance is a condition of booking. It must cover medical treatment, repatriation and cancellation, and any activities in your trip. Please send us your policy details before you travel."
+            "Comprehensive travel insurance is a condition of booking. It must cover medical treatment, emergency evacuation and repatriation, cancellation and curtailment, and every activity in your trip. Please send us your policy details before you travel."
           ]
         },
         {
           "h": "Passports, visas and health",
           "p": [
-            "You are responsible for holding a valid passport, any visas or travel authorisations, and any vaccinations or health documents required for Guatemala and for any country you pass through. Entry rules change, so check them with the relevant embassy and your government's travel advice before you book and again before you travel.",
-            "Please tell us before booking about any medical condition or mobility need that could affect your trip, so that we can plan around it."
+            "You are responsible for holding a valid passport, any visa or travel authorisation, and the vaccinations and health documents required for Guatemala and any country you pass through, and for being fit to take part. The [FAQ](/faq) page on this site sets out the main entry and health points we know of, but it is general guidance and you must confirm it with official sources. Entry rules change, so check your government's travel advice and the relevant embassy before you book and again before you travel. Tell us before booking about any medical condition or mobility need that could affect your trip."
           ]
         },
         {
-          "h": "Your responsibilities",
+          "h": "Our responsibility",
           "p": [
-            "Please follow local laws and customs, the instructions of guides, drivers, crews and other suppliers, and the safety advice we give you. We may end the trip of anyone whose behaviour puts others at risk or causes serious disruption, without refund."
+            "We take reasonable care to plan your trip and to choose reliable suppliers, and we are responsible for the services in your confirmation being provided as described. We are not responsible where a problem is caused by you, by a third party unconnected with the trip, or by unavoidable and extraordinary circumstances.",
+            "Except for death or personal injury caused by our negligence, or anything else that cannot be limited by law, our liability is limited to the total price of your trip. Where an international convention limits the liability of an airline, hotel or other carrier, our liability is limited in the same way. Some activities carry inherent risks, which we explain and you accept when you choose them."
           ]
         },
         {
-          "h": "Our liability",
+          "h": "Your behaviour",
           "p": [
-            "We take reasonable care in planning and arranging your trip. We are not liable for loss, injury or damage caused by you, by someone not connected with the trip, or by events beyond our reasonable control.",
-            "Where airlines, hotels and other transport companies are concerned, our liability is limited in the same way as theirs is under the international conventions that apply to them. Nothing in these terms limits our liability for death or personal injury caused by our negligence, or any liability that cannot be limited by law."
+            "Please respect local laws, customs and communities, follow the safety instructions of drivers, crews and other suppliers, and do not put others at risk. If your behaviour endangers anyone or seriously disrupts the trip, we may end your trip without refund, and you are responsible for any damage you cause."
           ]
         },
         {
           "h": "Complaints",
           "p": [
-            "If something is not right during your trip, tell us straight away so that we can try to fix it on the spot. If it cannot be resolved, please write to antiguaandbeyond@tourground.com within 28 days of your return and we will reply promptly."
+            "If something is wrong during your trip, tell the supplier and us straight away so that we can try to put it right on the spot. If it cannot be resolved, write to antiguaandbeyond@tourground.com within 28 days of your return; we will acknowledge your complaint within 7 days and reply in full within 28 days."
+          ]
+        },
+        {
+          "h": "Force majeure",
+          "p": [
+            "We are not liable for any failure or delay caused by unavoidable and extraordinary circumstances beyond our control, such as war, terrorism, civil unrest, natural disaster, epidemics, severe weather, government action or the closure of airports or borders. If such an event stops your trip going ahead, we refund what we have paid on your behalf and can recover from suppliers, or offer an alternative."
+          ]
+        },
+        {
+          "h": "Data protection",
+          "p": [
+            "We use your personal data as described in our [privacy policy](/privacy)."
           ]
         },
         {
           "h": "Governing law",
           "p": [
-            "These terms are governed by the law that applies to the contract you make with us, as set out in your booking confirmation. You may also have the protection of the consumer law of the country where you live."
+            "These terms and any contract with us are governed by the laws of Guatemala, the country of our business address, and disputes are subject to the jurisdiction of the courts of Guatemala. If you are a consumer living in another country, you keep the protection of the mandatory consumer law of that country and may also bring proceedings there."
+          ]
+        },
+        {
+          "h": "Contact",
+          "p": [
+            "Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. Email: antiguaandbeyond@tourground.com. Last updated: 1 November 2026."
           ]
         }
       ]
     },
     "cookies": {
       "title": "Cookie policy",
-      "description": "Which cookies and similar storage the Antigua & Beyond website uses, and how to control them.",
+      "description": "What the Antigua & Beyond website stores in your browser, and how to manage it.",
       "sections": [
         {
-          "h": "Short version",
+          "h": "What cookies are",
           "p": [
-            "We do not use analytics or advertising cookies on this website. This website sets no cookies of its own."
+            "Cookies are small text files that a website saves in your browser. Similar technologies, such as your browser's local storage and session storage, let a site keep small pieces of information on your device. This policy covers all of them."
           ]
         },
         {
-          "h": "What the site stores in your browser",
+          "h": "What this site uses",
           "p": [
-            "If you change the display currency, your choice is saved in your browser's local storage under ab-currency. If you use the [trip planner](/plan-your-trip), your answers are saved in local storage under ab-trip-planner-v1 so you can pick up where you left off. They stay on your device until you send the planner, and are cleared when you do.",
-            "Fonts and photos are served from this website, so no third party is contacted when pages load."
+            "This site sets no cookies. It uses only the browser storage listed below, which stays on your device and is never sent to us. There are no analytics, advertising or tracking cookies, and no tracking pixels."
+          ]
+        },
+        {
+          "h": "What is stored",
+          "p": [],
+          "table": {
+            "head": [
+              "Name",
+              "Purpose",
+              "Duration",
+              "Type"
+            ],
+            "rows": [
+              [
+                "ab-currency",
+                "Remembers the display currency you chose for prices.",
+                "Until you clear it in your browser",
+                "Local storage · Preference (functional)"
+              ],
+              [
+                "ab-trip-planner-v1",
+                "Keeps your answers in the trip planner so you can pick up where you left off; cleared when you send it.",
+                "Until you send the form, or clear it in your browser",
+                "Local storage · Strictly necessary"
+              ]
+            ]
+          }
+        },
+        {
+          "h": "Third-party content",
+          "p": [
+            "Some photographs are loaded from images.unsplash.com (Unsplash, United States). To fetch them, your browser sends your IP address and browser details to Unsplash, as with any web request; these image requests do not set cookies.",
+            "Our hosting provider, Vercel, does not set cookies on this site."
           ]
         },
         {
           "h": "Consent",
           "p": [
-            "Anything listed above is strictly necessary for a feature you choose to use, so it does not need your consent. We will not add analytics or advertising cookies without asking you first."
+            "Everything listed above is either strictly necessary or remembers a choice you make, and none of it tracks you, so the site does not ask for cookie consent. If we ever add analytics or other optional cookies, we will ask for your consent first and update this page."
           ]
         },
         {
-          "h": "How to remove it or change your mind",
+          "h": "How to manage or remove it",
           "p": [
-            "You can clear this site's stored data at any time in your browser's settings (usually under Privacy, then Cookies and site data)."
+            "You can block cookies and clear stored site data at any time in your browser settings, usually under Privacy or Site data. The site still works if you do; it only forgets choices such as your currency or language and any unsent form answers."
+          ]
+        },
+        {
+          "h": "Changes to this policy",
+          "p": [
+            "If what the site stores changes, we will update this page and the date below. Last updated: 1 November 2026."
           ]
         },
         {
           "h": "Contact",
           "p": [
-            "Questions about this policy: email antiguaandbeyond@tourground.com."
+            "Questions about this policy: Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. Email: antiguaandbeyond@tourground.com."
           ]
         }
       ]
@@ -208,195 +299,285 @@ export const legal: Record<string, LegalSet> = {
   "fr": {
     "privacy": {
       "title": "Politique de confidentialité",
-      "description": "Comment Antigua & Beyond collecte, utilise et protège les informations personnelles que vous nous transmettez.",
+      "description": "Comment Antigua & Beyond collecte, utilise et protège vos données personnelles, et quels sont vos droits.",
       "sections": [
         {
           "h": "Qui sommes-nous",
           "p": [
-            "Ce site est édité par Antigua & Beyond, 5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala. Dans la présente politique, « nous » et « notre » désignent Antigua & Beyond.",
-            "Pour toute question relative à vos données personnelles, écrivez à antiguaandbeyond@tourground.com."
+            "Ce site est exploité par Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. Dans cette politique, « nous » et « notre » désignent Antigua & Beyond. Nous déterminons comment et pourquoi vos données personnelles sont utilisées : nous sommes donc le responsable du traitement.",
+            "Pour toute question sur vos données personnelles, écrivez à antiguaandbeyond@tourground.com."
           ]
         },
         {
-          "h": "Ce que nous collectons",
+          "h": "Les données que nous collectons",
           "p": [
-            "Uniquement ce que vous choisissez de nous transmettre : via le planificateur de voyage, votre nom, votre adresse e-mail, votre numéro de téléphone si vous le donnez, vos dates de voyage, le nombre de voyageurs, vos centres d’intérêt, votre budget et vos remarques ; via le formulaire de contact, votre nom, votre adresse e-mail et votre message ; via l’inscription à la lettre d’information, votre adresse e-mail. Si vous nous écrivez par e-mail, nous conservons cette correspondance.",
-            "Si vous réservez, nous recueillons aussi ce qui est nécessaire à l’organisation du voyage : le nom de chaque voyageur, les dates de naissance et les informations de passeport lorsque nos prestataires les exigent, les besoins alimentaires ou d’accessibilité et les contacts d’urgence.",
-            "Merci de ne jamais envoyer de numéro de carte bancaire ni d’informations de santé détaillées par e-mail ou via le formulaire."
+            "Les informations que vous nous envoyez par les formulaires de demande ou de préparation de voyage de ce site : en général votre nom, votre adresse e-mail, vos dates de voyage souhaitées, le nombre de voyageurs, le type de voyage envisagé, votre budget et le contenu de votre message. Si vous vous inscrivez à notre lettre d'information, votre adresse e-mail.",
+            "Les e-mails et autres messages que vous nous envoyez, ainsi que nos réponses.",
+            "Si vous réservez, ce qui est nécessaire pour organiser le voyage : le nom de chaque voyageur, les dates de naissance et les données de passeport lorsque les prestataires ou les autorités les exigent, les besoins alimentaires, médicaux et d'accessibilité que vous choisissez de nous communiquer, les contacts d'urgence et l'historique de vos paiements. Nous ne collectons ni ne conservons de numéros de carte bancaire sur ce site.",
+            "Des données techniques : lors de votre visite, notre hébergeur enregistre automatiquement dans des journaux serveur votre adresse IP, le type de navigateur, les pages demandées et l'heure de la requête, afin d'assurer le fonctionnement et la sécurité du site.",
+            "Nous n'utilisons aucun outil d'analyse d'audience ni de publicité et nous ne créons pas de profils des visiteurs."
           ]
         },
         {
-          "h": "Pourquoi nous les utilisons",
+          "h": "Pourquoi nous les utilisons et sur quelles bases légales",
           "p": [
-            "Pour répondre à votre demande, concevoir votre voyage avec vous et, si vous donnez suite, le réserver et l’organiser. Nous nous fondons sur les mesures précontractuelles que vous nous demandez, sur l’exécution du contrat, sur votre consentement lorsque nous le sollicitons et sur notre intérêt légitime à répondre aux personnes qui nous contactent.",
-            "Nous ne vendons jamais vos données et ne vous envoyons d’actualités ou d’offres que si vous l’avez demandé."
+            "Pour répondre à votre demande et préparer une proposition : les mesures précontractuelles que vous nous demandez de prendre et notre intérêt légitime à répondre aux personnes qui nous contactent.",
+            "Pour réserver, organiser et assurer le suivi de votre voyage et encaisser vos paiements : l'exécution du contrat qui nous lie.",
+            "Pour traiter les informations de santé, d'alimentation ou d'accessibilité afin que les prestataires puissent prendre soin de vous : votre consentement explicite, que vous pouvez retirer à tout moment.",
+            "Pour tenir notre comptabilité et nos dossiers de réservation : nos obligations légales.",
+            "Pour assurer la sécurité et le bon fonctionnement du site : notre intérêt légitime. Pour vous envoyer notre lettre d'information : votre consentement, que vous pouvez retirer grâce au lien présent dans chaque e-mail.",
+            "Nous ne vendons pas vos données personnelles et ne les utilisons pour aucune décision automatisée."
           ]
         },
         {
           "h": "Avec qui nous les partageons",
           "p": [
-            "Votre demande nous parvient via le serveur de notre site (hébergé par Vercel Inc., États-Unis) et notre prestataire d’envoi d’e-mails, Resend (États-Unis).",
-            "Si vous réservez, nous ne transmettons que le strict nécessaire aux hôtels, lodges, transporteurs, guides et partenaires locaux qui réalisent votre voyage au Guatemala, ainsi qu’à votre assureur voyage si vous nous le demandez. Certains sont établis hors de votre pays ; dans ce cas, nous ne partageons que le minimum requis pour fournir le service demandé.",
-            "Nous pouvons également communiquer des informations lorsque la loi l’exige."
+            "Des prestataires qui traitent des données pour notre compte, sous contrat : Vercel Inc. (États-Unis), qui héberge ce site, traite l'envoi des formulaires et conserve des journaux serveur de courte durée; Resend (Plus Five Five, Inc., États-Unis), qui achemine les e-mails envoyés par nos formulaires, à nous et à vous; et notre fournisseur de messagerie, qui conserve les messages que nous échangeons avec vous.",
+            "Si vous réservez : les hôtels, lodges, transporteurs, organisateurs d'activités et partenaires locaux sur place (Guatemala) qui assurent votre voyage, avec uniquement les informations dont chacun a besoin ; votre assureur voyage, si vous nous le demandez.",
+            "Les autorités publiques, les tribunaux ou nos conseillers professionnels, lorsque la loi l'exige ou pour constater, exercer ou défendre un droit en justice."
           ]
         },
         {
-          "h": "Cookies et stockage local",
+          "h": "Transferts internationaux",
           "p": [
-            "Nous n’utilisons aucun cookie de mesure d’audience ni de publicité sur ce site. Consultez la [politique relative aux cookies](/cookies/) pour savoir ce que le site enregistre dans votre navigateur."
+            "Nos prestataires d'hébergement et d'e-mail sont établis aux États-Unis. Lorsque vos données quittent le Royaume-Uni ou l'Espace économique européen, le transfert repose sur le cadre de protection des données UE-États-Unis (Data Privacy Framework) et son extension britannique lorsque le prestataire est certifié, ou sur les clauses contractuelles types de la Commission européenne (avec l'avenant britannique), qui l'obligent à protéger vos données selon les normes européennes.",
+            "Lorsque vous réservez, nous transmettons aux prestataires sur place (Guatemala) les informations nécessaires à votre voyage. Ce transfert est nécessaire à l'exécution du contrat que vous nous avez demandé d'organiser."
           ]
         },
         {
           "h": "Durée de conservation",
           "p": [
-            "Les demandes qui n’aboutissent pas à une réservation sont conservées 24 mois après notre dernier échange, puis supprimées. Les dossiers de réservation sont conservés aussi longtemps que l’exigent le droit comptable et le droit de la consommation, en général six ans après le voyage."
+            "Demandes qui n'aboutissent pas à une réservation : 24 mois après notre dernier échange, puis suppression.",
+            "Dossiers de réservation : six ans après la fin de votre voyage, durée imposée par les règles comptables et fiscales. Les informations de santé et d'alimentation sont supprimées une fois le voyage terminé et toute réclamation réglée.",
+            "Journaux serveur : une courte durée, normalement 30 jours au maximum. Lettre d'information : jusqu'à votre désinscription."
           ]
         },
         {
           "h": "Comment nous les protégeons",
           "p": [
-            "Vos informations sont conservées dans une messagerie et un espace de stockage protégés par mot de passe, accessibles aux seules personnes qui préparent votre voyage. Le site est servi via une connexion chiffrée (HTTPS)."
+            "Le site est servi uniquement par une connexion chiffrée (HTTPS). Vos informations sont conservées dans des comptes protégés par mot de passe, accessibles seulement aux personnes qui préparent votre voyage, et nous ne transmettons aux prestataires que ce dont ils ont besoin."
           ]
         },
         {
           "h": "Vos droits",
           "p": [
-            "Vous pouvez demander à consulter les données personnelles que nous détenons sur vous, à les rectifier ou à les effacer, à en limiter l’utilisation ou à vous y opposer, à en recevoir une copie dans un format portable, ou retirer votre consentement à tout moment. Écrivez à antiguaandbeyond@tourground.com : nous répondons sous un mois.",
-            "Si vous n’êtes pas satisfait de la manière dont nous traitons vos données, dites-le-nous d’abord afin que nous puissions corriger la situation. Vous pouvez aussi introduire une réclamation auprès de l’autorité de protection des données de votre pays de résidence."
+            "En vertu de la réglementation sur la protection des données (notamment le RGPD et le RGPD britannique), vous avez le droit : d'accéder aux données personnelles que nous détenons sur vous ; de les faire rectifier si elles sont inexactes ; de les faire effacer ; d'en limiter l'utilisation ; de les recevoir dans un format portable ; de vous opposer aux traitements fondés sur notre intérêt légitime ; et de retirer votre consentement à tout moment, sans remettre en cause les traitements effectués auparavant.",
+            "Pour exercer ces droits, écrivez à antiguaandbeyond@tourground.com. Nous répondons dans un délai d'un mois, sans frais.",
+            "Vous avez également le droit d'introduire une réclamation auprès d'une autorité de contrôle de la protection des données, notamment dans le pays où vous résidez ou travaillez (par exemple la CNIL en France). Nous apprécierions toutefois de pouvoir d'abord corriger la situation."
+          ]
+        },
+        {
+          "h": "Cookies",
+          "p": [
+            "Ce site n'utilise aucun cookie d'analyse ni de publicité. Notre [politique de cookies](/cookies) détaille exactement ce qu'il enregistre dans votre navigateur."
+          ]
+        },
+        {
+          "h": "Enfants",
+          "p": [
+            "Ce site et nos services ne s'adressent pas aux enfants de moins de 16 ans et nous ne collectons pas sciemment leurs données en ligne. Nous ne détenons des informations sur des enfants que lorsqu'un parent ou tuteur nous les transmet pour réserver un voyage en famille."
           ]
         },
         {
           "h": "Modifications de cette politique",
           "p": [
-            "Nous mettrons cette page à jour si notre utilisation des données personnelles évolue. Dernière mise à jour : 30 octobre 2026."
+            "Nous mettrons cette page à jour si notre manière de traiter les données personnelles change, et modifierons la date ci-dessous. Dernière mise à jour : 1er novembre 2026."
+          ]
+        },
+        {
+          "h": "Contact",
+          "p": [
+            "Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. E-mail : antiguaandbeyond@tourground.com."
           ]
         }
       ]
     },
     "terms": {
       "title": "Conditions de réservation",
-      "description": "Les conditions qui s’appliquent lorsque vous demandez et réservez un voyage sur mesure avec Antigua & Beyond.",
+      "description": "Les conditions applicables lorsque vous réservez un voyage avec Antigua & Beyond : acompte, solde, modifications, annulation et assurance.",
       "sections": [
         {
-          "h": "À propos de ces conditions",
+          "h": "Qui sommes-nous",
           "p": [
-            "Ces conditions s’appliquent à tout voyage organisé par Antigua & Beyond, 5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala. Merci de les lire avant de réserver. Votre devis écrit et votre confirmation de réservation font partie du contrat, avec les présentes conditions.",
-            "Tout ce qui figure sur ce site, y compris les itinéraires, durées, saisons et expériences, décrit le type de voyage que nous concevons. Il ne s’agit pas d’une offre que vous pouvez accepter."
+            "Les présentes conditions de réservation s'appliquent à tout voyage organisé par Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala (« nous »). E-mail : antiguaandbeyond@tourground.com. Merci de les lire avant de réserver : avec votre devis écrit et votre confirmation de réservation, elles forment le contrat qui nous lie."
           ]
         },
         {
-          "h": "Demandes et devis",
+          "h": "Les prix affichés sur ce site",
           "p": [
-            "Une demande est gratuite et n’engage ni vous ni nous.",
-            "Nous vous répondons avec des idées et des questions, puis nous affinons le voyage avec vous. Lorsqu’il vous convient, nous vous envoyons un devis écrit, valable pendant la durée qui y est indiquée. Les prix des vols, hébergements et prestations peuvent évoluer jusqu’à la confirmation ; si c’est le cas, nous vous prévenons avant tout engagement."
+            "Les prix de ce site sont indiqués « à partir de » : ce sont des prix indicatifs par personne, généralement sur la base de deux personnes partageant une chambre, qui varient selon les dates, les disponibilités, la taille du groupe et vos choix. Ils ne constituent pas une offre. Le prix que vous payez est celui de votre devis écrit définitif, confirmé par écrit avant votre réservation."
           ]
         },
         {
-          "h": "Réservation et paiement",
+          "h": "Comment une réservation est faite et confirmée",
           "p": [
-            "Votre réservation est confirmée lorsque vous acceptez le devis par écrit, réglez l’acompte qui y figure et recevez notre confirmation écrite. La personne qui réserve accepte ces conditions au nom de tous les voyageurs et doit être âgée d’au moins 18 ans.",
-            "Le solde est dû à la date indiquée sur votre devis et votre confirmation. À défaut de paiement dans les délais, nous pouvons considérer la réservation comme annulée de votre fait, et les frais d’annulation ci-dessous s’appliquent."
+            "Envoyer une demande est gratuit et n'engage ni vous ni nous. Nous vous adressons une proposition, l'ajustons avec vous, puis vous envoyons un devis écrit, valable pendant la durée qui y est indiquée.",
+            "Votre réservation est confirmée, et le contrat conclu, lorsque vous avez accepté le devis par écrit, versé l'acompte et reçu notre confirmation écrite. La personne qui réserve doit avoir au moins 18 ans et accepte ces conditions pour l'ensemble des voyageurs. Vérifiez votre confirmation et signalez-nous immédiatement toute erreur."
+          ]
+        },
+        {
+          "h": "Acompte et solde",
+          "p": [
+            "Le montant de l'acompte figure sur votre devis ; il correspond normalement à 30 % du prix du voyage. Le solde est dû au plus tard 60 jours avant le départ, sauf si votre confirmation indique une autre date. Si vous réservez moins de 60 jours avant le départ, la totalité du prix est due à la réservation.",
+            "Si le solde n'est pas réglé à temps, nous pouvons considérer la réservation comme annulée par vous et appliquer les frais d'annulation ci-dessous."
+          ]
+        },
+        {
+          "h": "Ce qui est inclus et ce qui ne l'est pas",
+          "p": [
+            "Votre voyage comprend exactement ce qui figure sur votre devis et votre confirmation : par exemple l'hébergement, les transports, les activités et droits d'entrée qui y sont mentionnés, et les repas indiqués.",
+            "Sauf mention contraire sur votre devis, ne sont pas inclus : les vols internationaux, l'assurance voyage, les visas et taxes d'entrée, les vaccins, les pourboires, les boissons, les repas non mentionnés, les activités optionnelles et les dépenses personnelles."
           ]
         },
         {
           "h": "Modifications de votre part",
           "p": [
-            "Si vous souhaitez modifier votre voyage après confirmation, prévenez-nous par écrit. Nous ferons de notre mieux, mais une modification n’est pas toujours possible ; les frais supplémentaires facturés par les prestataires, ainsi que des frais de dossier raisonnables, restent à votre charge."
+            "Si vous souhaitez modifier un voyage confirmé, prévenez-nous par écrit. Nous ferons notre possible, sans pouvoir garantir chaque modification. Les frais supplémentaires facturés par les prestataires sont à votre charge, et nous vous en indiquons le montant avant d'effectuer la modification. Vous pouvez céder votre réservation à une personne remplissant toutes les conditions du voyage, en nous prévenant par écrit au moins 14 jours avant le départ et en réglant les frais éventuels de cette cession."
           ]
         },
         {
           "h": "Annulation de votre part",
           "p": [
-            "Vous pouvez annuler à tout moment en nous prévenant par écrit. L’acompte n’est pas remboursable. Plus l’annulation est proche du départ, plus les frais sont élevés, jusqu’à la totalité du prix du voyage, car les hébergements, transports et autres prestations sont réservés et payés pour votre compte. Les frais applicables à votre voyage figurent sur votre devis et votre confirmation.",
-            "Votre assurance voyage peut couvrir ces frais dans certains cas."
+            "Vous pouvez annuler à tout moment en nous prévenant par écrit ; l'annulation prend effet le jour où nous la recevons. Comme nous engageons et payons des prestations pour votre compte, les frais suivants s'appliquent, en pourcentage du prix total du voyage :",
+            "Plus de 60 jours avant le départ : perte de l'acompte. De 60 à 31 jours : 50 %. De 30 à 15 jours : 75 %. 14 jours ou moins, ou si vous ne vous présentez pas : 100 %.",
+            "Lorsque votre devis mentionne un coût de prestataire non remboursable une fois payé (par exemple certains permis, droits d'entrée dans les parcs ou vols), ce coût reste dû quelle que soit la date d'annulation. Votre assurance voyage peut couvrir les frais d'annulation."
           ]
         },
         {
           "h": "Modifications et annulation de notre part",
           "p": [
-            "Nous préparons chaque voyage avec soin, mais il arrive que nous devions en modifier une partie, par exemple en raison de la météo, de la fermeture d’une route ou d’un itinéraire, ou d’un prestataire qui ne peut honorer une réservation. Nous vous prévenons au plus vite et vous proposons une solution équivalente.",
-            "En cas de modification importante ou d’annulation de notre part, vous pouvez accepter la modification, choisir une solution équivalente si elle existe, ou annuler et être intégralement remboursé des sommes versées."
-          ]
-        },
-        {
-          "h": "Circonstances exceptionnelles",
-          "p": [
-            "Nous ne sommes pas responsables des modifications, retards ou annulations dus à des événements échappant à notre contrôle raisonnable : guerre ou menace de guerre, troubles civils, catastrophe naturelle, épidémie, décision des autorités, fermeture d’aéroports ou de frontières, conditions météorologiques extrêmes. Le cas échéant, nous vous aidons à trouver d’autres solutions et vous reversons tout remboursement obtenu auprès des prestataires."
+            "Nous devons parfois apporter des modifications mineures, comme un autre hôtel de même catégorie ou un itinéraire ajusté ; nous vous en informons dès que possible.",
+            "Si nous devons apporter une modification importante avant le départ, ou annuler, vous pouvez accepter la modification, choisir une alternative équivalente si nous pouvons vous en proposer une, ou annuler et obtenir le remboursement intégral des sommes versées. Nous n'annulons pas après l'échéance du solde, sauf circonstances exceptionnelles et inévitables ou défaut de paiement de votre part."
           ]
         },
         {
           "h": "Assurance voyage",
           "p": [
-            "Une assurance voyage complète est une condition de réservation. Elle doit couvrir les frais médicaux, le rapatriement, l’annulation et les activités prévues. Merci de nous transmettre les références de votre contrat avant le départ."
+            "Une assurance voyage complète est une condition de réservation. Elle doit couvrir les frais médicaux, l'évacuation d'urgence et le rapatriement, l'annulation et l'interruption de voyage, ainsi que toutes les activités prévues. Merci de nous transmettre les références de votre contrat avant le départ."
           ]
         },
         {
           "h": "Passeports, visas et santé",
           "p": [
-            "Il vous appartient de disposer d’un passeport valide, des visas ou autorisations de voyage nécessaires et des vaccinations ou documents sanitaires exigés pour le Guatemala et pour tout pays de transit. Les règles d’entrée évoluent : vérifiez-les auprès de l’ambassade concernée et des conseils aux voyageurs de votre gouvernement au moment de réserver, puis avant le départ.",
-            "Signalez-nous avant la réservation tout problème de santé ou besoin d’accessibilité susceptible d’influer sur le voyage, afin que nous puissions en tenir compte."
-          ]
-        },
-        {
-          "h": "Vos responsabilités",
-          "p": [
-            "Merci de respecter les lois et coutumes locales, les consignes des guides, chauffeurs, équipages et autres prestataires, ainsi que les conseils de sécurité que nous vous donnons. Nous pouvons mettre fin, sans remboursement, au voyage de toute personne dont le comportement met autrui en danger ou perturbe gravement le séjour."
+            "Il vous appartient de disposer d'un passeport valide, des visas ou autorisations de voyage, ainsi que des vaccins et documents sanitaires exigés pour votre destination (Guatemala) et pour tout pays de transit, et d'être en état de participer au voyage. La page [FAQ](/faq) de ce site résume les principales règles d'entrée et de santé que nous connaissons, mais il s'agit d'informations générales que vous devez vérifier auprès des sources officielles. Les règles d'entrée évoluent : consultez les conseils aux voyageurs de votre gouvernement et l'ambassade concernée avant de réserver, puis à nouveau avant de partir. Signalez-nous avant de réserver tout problème de santé ou de mobilité susceptible d'avoir une incidence sur votre voyage."
           ]
         },
         {
           "h": "Notre responsabilité",
           "p": [
-            "Nous apportons un soin raisonnable à la préparation et à l’organisation de votre voyage. Nous ne sommes pas responsables des pertes, blessures ou dommages causés par vous-même, par un tiers étranger au voyage ou par des événements échappant à notre contrôle raisonnable.",
-            "S’agissant des compagnies aériennes, hôtels et autres transporteurs, notre responsabilité est limitée de la même manière que la leur par les conventions internationales qui leur sont applicables. Rien dans ces conditions ne limite notre responsabilité en cas de décès ou de dommage corporel causé par notre négligence, ni toute responsabilité qui ne peut être limitée par la loi."
+            "Nous apportons un soin raisonnable à la préparation de votre voyage et au choix de prestataires fiables, et nous sommes responsables de la bonne exécution des prestations figurant sur votre confirmation. Nous ne sommes pas responsables lorsqu'un problème est imputable à vous-même, à un tiers étranger au voyage, ou à des circonstances exceptionnelles et inévitables.",
+            "Sauf en cas de décès ou de dommage corporel causé par notre négligence, ou pour tout ce qui ne peut être limité par la loi, notre responsabilité est limitée au prix total de votre voyage. Lorsqu'une convention internationale limite la responsabilité d'une compagnie aérienne, d'un hôtel ou d'un autre transporteur, notre responsabilité est limitée de la même manière. Certaines activités comportent des risques inhérents, que nous vous expliquons et que vous acceptez en les choisissant."
+          ]
+        },
+        {
+          "h": "Votre comportement",
+          "p": [
+            "Merci de respecter les lois, les coutumes et les communautés locales, de suivre les consignes de sécurité des chauffeurs, équipages et autres prestataires, et de ne mettre personne en danger. Si votre comportement met autrui en danger ou perturbe gravement le voyage, nous pouvons y mettre fin sans remboursement, et vous êtes responsable des dommages que vous causez."
           ]
         },
         {
           "h": "Réclamations",
           "p": [
-            "Si quelque chose ne va pas pendant votre voyage, prévenez-nous immédiatement pour que nous puissions tenter d’y remédier sur place. À défaut de solution, écrivez à antiguaandbeyond@tourground.com dans les 28 jours suivant votre retour : nous vous répondrons rapidement."
+            "Si quelque chose ne va pas pendant votre voyage, prévenez immédiatement le prestataire et nous-mêmes afin que nous puissions tenter d'y remédier sur place. Si le problème ne peut être résolu, écrivez à antiguaandbeyond@tourground.com dans les 28 jours suivant votre retour ; nous accusons réception sous 7 jours et répondons de manière complète sous 28 jours."
+          ]
+        },
+        {
+          "h": "Force majeure",
+          "p": [
+            "Nous ne sommes pas responsables d'une inexécution ou d'un retard dus à des circonstances exceptionnelles et inévitables échappant à notre contrôle, telles que guerre, terrorisme, troubles civils, catastrophe naturelle, épidémie, conditions météorologiques extrêmes, décision des autorités ou fermeture d'aéroports ou de frontières. Si un tel événement empêche votre voyage d'avoir lieu, nous vous remboursons les sommes versées pour votre compte que nous pouvons récupérer auprès des prestataires, ou vous proposons une alternative."
+          ]
+        },
+        {
+          "h": "Protection des données",
+          "p": [
+            "Nous utilisons vos données personnelles comme décrit dans notre [politique de confidentialité](/privacy)."
           ]
         },
         {
           "h": "Droit applicable",
           "p": [
-            "Ces conditions sont régies par le droit applicable au contrat conclu avec nous, tel qu’indiqué dans votre confirmation de réservation. Vous pouvez également bénéficier de la protection du droit de la consommation de votre pays de résidence."
-          ]
-        }
-      ]
-    },
-    "cookies": {
-      "title": "Politique relative aux cookies",
-      "description": "Les cookies et autres stockages utilisés par le site Antigua & Beyond, et comment les gérer.",
-      "sections": [
-        {
-          "h": "En bref",
-          "p": [
-            "Nous n’utilisons aucun cookie de mesure d’audience ni de publicité sur ce site. Ce site ne dépose aucun cookie qui lui soit propre."
-          ]
-        },
-        {
-          "h": "Ce que le site enregistre dans votre navigateur",
-          "p": [
-            "Si vous changez la devise d’affichage, votre choix est enregistré dans le stockage local de votre navigateur sous ab-currency. Si vous utilisez le [planificateur de voyage](/plan-your-trip), vos réponses sont enregistrées dans le stockage local sous ab-trip-planner-v1 pour que vous puissiez reprendre là où vous vous étiez arrêté. Elles restent sur votre appareil jusqu’à l’envoi du formulaire, puis sont effacées.",
-            "Les polices et les photos sont servies par ce site : aucun tiers n’est contacté lors du chargement des pages."
-          ]
-        },
-        {
-          "h": "Consentement",
-          "p": [
-            "Les éléments ci-dessus sont strictement nécessaires à une fonctionnalité que vous choisissez d’utiliser ; ils ne requièrent donc pas votre consentement. Nous n’ajouterons aucun cookie de mesure d’audience ou publicitaire sans vous le demander au préalable."
-          ]
-        },
-        {
-          "h": "Supprimer ces données ou changer d’avis",
-          "p": [
-            "Vous pouvez à tout moment effacer les données enregistrées par ce site dans les réglages de votre navigateur (en général sous Confidentialité, puis Cookies et données de site)."
+            "Les présentes conditions et tout contrat conclu avec nous sont régis par le droit du Guatemala, pays de notre adresse professionnelle, et les litiges relèvent de la compétence des tribunaux du Guatemala. Si vous êtes un consommateur résidant dans un autre pays, vous conservez la protection des dispositions impératives du droit de la consommation de ce pays et pouvez également y engager une action."
           ]
         },
         {
           "h": "Contact",
           "p": [
-            "Une question sur cette politique : écrivez à antiguaandbeyond@tourground.com."
+            "Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. E-mail : antiguaandbeyond@tourground.com. Dernière mise à jour : 1er novembre 2026."
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Politique de cookies",
+      "description": "Ce que le site de Antigua & Beyond enregistre dans votre navigateur et comment le gérer.",
+      "sections": [
+        {
+          "h": "Qu'est-ce qu'un cookie",
+          "p": [
+            "Les cookies sont de petits fichiers texte qu'un site enregistre dans votre navigateur. Des technologies similaires, comme le stockage local (localStorage) et le stockage de session de votre navigateur, permettent à un site de conserver de petites informations sur votre appareil. Cette politique les couvre toutes."
+          ]
+        },
+        {
+          "h": "Ce que ce site utilise",
+          "p": [
+            "Ce site ne dépose aucun cookie. Il utilise uniquement le stockage du navigateur décrit ci-dessous, qui reste sur votre appareil et ne nous est jamais transmis. Il n'y a ni cookie d'analyse, ni cookie publicitaire ou de suivi, ni pixel de suivi."
+          ]
+        },
+        {
+          "h": "Ce qui est enregistré",
+          "p": [],
+          "table": {
+            "head": [
+              "Nom",
+              "Finalité",
+              "Durée",
+              "Type"
+            ],
+            "rows": [
+              [
+                "ab-currency",
+                "Mémorise la devise d'affichage des prix que vous avez choisie.",
+                "Jusqu'à ce que vous l'effaciez dans votre navigateur",
+                "Stockage local · Préférence (fonctionnel)"
+              ],
+              [
+                "ab-trip-planner-v1",
+                "Conserve vos réponses dans le planificateur de voyage pour que vous puissiez reprendre plus tard ; effacé à l'envoi.",
+                "Jusqu'à l'envoi du formulaire, ou jusqu'à ce que vous l'effaciez",
+                "Stockage local · Strictement nécessaire"
+              ]
+            ]
+          }
+        },
+        {
+          "h": "Contenus tiers",
+          "p": [
+            "Certaines photographies sont chargées depuis images.unsplash.com (Unsplash, États-Unis). Pour les récupérer, votre navigateur transmet votre adresse IP et des informations sur le navigateur à Unsplash, comme pour toute requête web ; ces requêtes d'images ne déposent pas de cookies.",
+            "Notre hébergeur, Vercel, ne dépose pas de cookies sur ce site."
+          ]
+        },
+        {
+          "h": "Consentement",
+          "p": [
+            "Tout ce qui est décrit ci-dessus est soit strictement nécessaire, soit destiné à mémoriser un choix que vous faites, et rien ne sert à vous suivre : le site ne vous demande donc pas de consentement aux cookies. Si nous ajoutons un jour des cookies d'analyse ou d'autres cookies facultatifs, nous vous demanderons d'abord votre consentement et mettrons cette page à jour."
+          ]
+        },
+        {
+          "h": "Comment les gérer ou les supprimer",
+          "p": [
+            "Vous pouvez à tout moment bloquer les cookies et effacer les données enregistrées par le site dans les paramètres de votre navigateur, généralement sous Confidentialité ou Données de site. Le site continue de fonctionner ; il oublie seulement des choix comme votre devise ou votre langue et les réponses de formulaire non envoyées."
+          ]
+        },
+        {
+          "h": "Modifications de cette politique",
+          "p": [
+            "Si ce que le site enregistre change, nous mettrons cette page et la date ci-dessous à jour. Dernière mise à jour : 1er novembre 2026."
+          ]
+        },
+        {
+          "h": "Contact",
+          "p": [
+            "Pour toute question sur cette politique : Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. E-mail : antiguaandbeyond@tourground.com."
           ]
         }
       ]
@@ -405,195 +586,285 @@ export const legal: Record<string, LegalSet> = {
   "de": {
     "privacy": {
       "title": "Datenschutzerklärung",
-      "description": "Wie Antigua & Beyond die personenbezogenen Daten erhebt, nutzt und schützt, die Sie uns übermitteln.",
+      "description": "Wie Antigua & Beyond Ihre personenbezogenen Daten erhebt, verwendet und schützt, und welche Rechte Sie haben.",
       "sections": [
         {
           "h": "Wer wir sind",
           "p": [
-            "Diese Website wird von Antigua & Beyond, 5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala, betrieben. „Wir“, „uns“ und „unser“ bezeichnen in dieser Erklärung Antigua & Beyond.",
+            "Diese Website wird von Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala, betrieben. In dieser Erklärung bedeuten „wir“, „uns“ und „unser“ Antigua & Beyond. Wir entscheiden, wie und wofür Ihre personenbezogenen Daten verwendet werden, und sind daher der Verantwortliche.",
             "Bei Fragen zu Ihren personenbezogenen Daten schreiben Sie an antiguaandbeyond@tourground.com."
           ]
         },
         {
           "h": "Welche Daten wir erheben",
           "p": [
-            "Nur das, was Sie uns selbst mitteilen: über den Reiseplaner Ihren Namen, Ihre E-Mail-Adresse, Ihre Telefonnummer, falls Sie sie angeben, Reisedaten, die Zahl der Reisenden, Ihre Interessen, Ihr Budget und Anmerkungen; über das Kontaktformular Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht; bei der Newsletter-Anmeldung Ihre E-Mail-Adresse. Wenn Sie uns per E-Mail schreiben, bewahren wir diese Korrespondenz auf.",
-            "Wenn Sie buchen, erheben wir zusätzlich, was für die Organisation der Reise nötig ist, etwa die Namen aller Reisenden, Geburtsdaten und Passangaben, sofern Leistungsträger sie verlangen, Ernährungs- und Barrierefreiheitsbedürfnisse sowie Notfallkontakte.",
-            "Bitte senden Sie uns keine Kreditkartendaten und keine ausführlichen Gesundheitsinformationen per E-Mail oder über das Formular."
+            "Angaben, die Sie uns über die Anfrage- oder Reiseplanungsformulare dieser Website senden: in der Regel Ihren Namen, Ihre E-Mail-Adresse, gewünschte Reisedaten, die Zahl der Reisenden, die Art der Reise, Ihr Budget und den Inhalt Ihrer Nachricht. Wenn Sie unseren Newsletter abonnieren, Ihre E-Mail-Adresse.",
+            "E-Mails und andere Nachrichten, die Sie uns senden, sowie unsere Antworten.",
+            "Wenn Sie buchen, was für die Organisation der Reise nötig ist: die Namen aller Reisenden, Geburtsdaten und Passdaten, sofern Leistungsträger oder Behörden sie verlangen, Ernährungs-, Gesundheits- und Barrierefreiheitsbedürfnisse, die Sie uns mitteilen möchten, Notfallkontakte und Belege Ihrer Zahlungen. Kartennummern erheben oder speichern wir auf dieser Website nicht.",
+            "Technische Daten: Bei Ihrem Besuch speichert unser Hosting-Anbieter automatisch Ihre IP-Adresse, den Browsertyp, die aufgerufenen Seiten und den Zeitpunkt der Anfrage in Server-Logs, um den Betrieb und die Sicherheit der Website zu gewährleisten.",
+            "Wir setzen keine Analyse- oder Werbewerkzeuge ein und erstellen keine Besucherprofile."
           ]
         },
         {
-          "h": "Wozu wir sie nutzen",
+          "h": "Wofür wir sie verwenden und auf welcher Rechtsgrundlage",
           "p": [
-            "Um Ihre Anfrage zu beantworten, Ihre Reise mit Ihnen zu planen und sie, wenn Sie sich dafür entscheiden, zu buchen und durchzuführen. Rechtsgrundlage sind die von Ihnen gewünschten vorvertraglichen Maßnahmen, die Erfüllung des Vertrags, Ihre Einwilligung, wo wir sie einholen, und unser berechtigtes Interesse, Menschen zu antworten, die sich an uns wenden.",
-            "Wir verkaufen Ihre Daten nicht und senden Ihnen Neuigkeiten oder Angebote nur, wenn Sie das wünschen."
+            "Um Ihre Anfrage zu beantworten und einen Vorschlag zu erstellen: vorvertragliche Maßnahmen auf Ihre Anfrage (Art. 6 Abs. 1 lit. b DSGVO) und unser berechtigtes Interesse, Anfragen zu beantworten (Art. 6 Abs. 1 lit. f DSGVO).",
+            "Um Ihre Reise zu buchen, durchzuführen und zu betreuen und Zahlungen abzuwickeln: Erfüllung unseres Vertrags mit Ihnen.",
+            "Um Gesundheits-, Ernährungs- oder Barrierefreiheitsangaben zu verarbeiten, damit Leistungsträger sich um Sie kümmern können: Ihre ausdrückliche Einwilligung, die Sie jederzeit widerrufen können.",
+            "Um Buchhaltungs- und Buchungsunterlagen aufzubewahren: unsere gesetzlichen Pflichten.",
+            "Um die Website sicher und funktionsfähig zu halten: unser berechtigtes Interesse. Um Ihnen unseren Newsletter zu senden: Ihre Einwilligung, die Sie über den Link in jeder E-Mail widerrufen können.",
+            "Wir verkaufen Ihre personenbezogenen Daten nicht und nutzen sie nicht für automatisierte Entscheidungen."
           ]
         },
         {
           "h": "An wen wir sie weitergeben",
           "p": [
-            "Ihre Anfrage erreicht uns über den Server unserer Website (gehostet von Vercel Inc., USA) und unseren E-Mail-Versanddienst Resend (USA).",
-            "Wenn Sie buchen, geben wir nur das Nötige an die Hotels, Lodges, Transportunternehmen, Guides und lokalen Partner in Guatemala weiter, die Ihre Reise durchführen, sowie auf Ihren Wunsch an Ihre Reiseversicherung. Manche von ihnen haben ihren Sitz außerhalb Ihres Landes; in diesem Fall geben wir nur das Minimum weiter, das für die gewünschte Leistung erforderlich ist.",
-            "Darüber hinaus geben wir Daten weiter, wenn das Gesetz es verlangt."
+            "Dienstleister, die Daten in unserem Auftrag und auf vertraglicher Grundlage verarbeiten: Vercel Inc. (USA), die diese Website hostet, die Formularverarbeitung ausführt und kurzlebige Server-Logs speichert; Resend (Plus Five Five, Inc., USA), die die E-Mails zustellt, die unsere Formulare an uns und an Sie senden; und unser E-Mail-Anbieter, der die Nachrichten speichert, die wir mit Ihnen austauschen.",
+            "Wenn Sie buchen: die Hotels, Lodges, Transportunternehmen, Aktivitätsanbieter und örtlichen Partner vor Ort (Guatemala), die Ihre Reise durchführen, jeweils nur mit den Angaben, die sie benötigen; auf Ihren Wunsch Ihr Reiseversicherer.",
+            "Behörden, Gerichte oder unsere Berater, wenn das Gesetz es verlangt oder um Rechtsansprüche geltend zu machen oder abzuwehren."
           ]
         },
         {
-          "h": "Cookies und lokaler Speicher",
+          "h": "Internationale Übermittlungen",
           "p": [
-            "Wir verwenden auf dieser Website keine Analyse- oder Werbe-Cookies. Was die Website in Ihrem Browser speichert, lesen Sie in der [Cookie-Richtlinie](/cookies/)."
+            "Unsere Hosting- und E-Mail-Anbieter haben ihren Sitz in den USA. Verlassen Ihre Daten das Vereinigte Königreich oder den Europäischen Wirtschaftsraum, stützt sich die Übermittlung auf das EU-US Data Privacy Framework und dessen britische Erweiterung, sofern der Anbieter zertifiziert ist, oder auf die Standardvertragsklauseln der Europäischen Kommission (mit dem britischen Zusatz), die den Anbieter zu einem Schutz nach europäischem Standard verpflichten.",
+            "Wenn Sie buchen, geben wir die für Ihre Reise nötigen Angaben an Leistungsträger vor Ort (Guatemala) weiter. Diese Übermittlung ist für die Erfüllung des Vertrags erforderlich, den Sie mit uns schließen (Art. 49 Abs. 1 lit. b DSGVO)."
           ]
         },
         {
-          "h": "Wie lange wir sie aufbewahren",
+          "h": "Wie lange wir sie speichern",
           "p": [
-            "Anfragen, aus denen keine Buchung wird, bewahren wir 24 Monate nach unserem letzten Kontakt auf und löschen sie dann. Buchungsunterlagen bewahren wir so lange auf, wie Buchhaltungs- und Verbraucherrecht es verlangen, in der Regel sechs Jahre nach der Reise."
+            "Anfragen, aus denen keine Buchung wird: 24 Monate nach unserem letzten Kontakt, danach werden sie gelöscht.",
+            "Buchungsunterlagen: sechs Jahre nach Ende Ihrer Reise, wie es Buchhaltungs- und Steuervorschriften verlangen. Gesundheits- und Ernährungsangaben löschen wir, sobald die Reise beendet und etwaige Ansprüche erledigt sind.",
+            "Server-Logs: kurze Zeit, in der Regel höchstens 30 Tage. Newsletter: bis Sie sich abmelden."
           ]
         },
         {
           "h": "Wie wir sie schützen",
           "p": [
-            "Ihre Daten liegen in passwortgeschützten E-Mail- und Dateisystemen, auf die nur die Menschen zugreifen, die Ihre Reise planen. Die Website wird über eine verschlüsselte Verbindung (HTTPS) ausgeliefert."
+            "Die Website wird ausschließlich über eine verschlüsselte Verbindung (HTTPS) ausgeliefert. Ihre Angaben liegen in passwortgeschützten Konten, auf die nur die Personen zugreifen können, die Ihre Reise planen, und Leistungsträger erhalten nur, was sie benötigen."
           ]
         },
         {
           "h": "Ihre Rechte",
           "p": [
-            "Sie können Auskunft über die personenbezogenen Daten verlangen, die wir über Sie speichern, sie berichtigen oder löschen lassen, ihre Verarbeitung einschränken oder ihr widersprechen, eine Kopie in einem übertragbaren Format erhalten oder Ihre Einwilligung jederzeit widerrufen. Schreiben Sie an antiguaandbeyond@tourground.com; wir antworten innerhalb eines Monats.",
-            "Wenn Sie mit unserem Umgang mit Ihren Daten nicht zufrieden sind, sagen Sie es uns bitte zuerst, damit wir es in Ordnung bringen können. Sie haben außerdem das Recht, sich bei der Datenschutzbehörde Ihres Wohnsitzlandes zu beschweren."
+            "Nach dem Datenschutzrecht (einschließlich DSGVO und UK GDPR) haben Sie das Recht auf Auskunft über die bei uns gespeicherten Daten, auf Berichtigung unrichtiger Daten, auf Löschung, auf Einschränkung der Verarbeitung, auf Datenübertragbarkeit, auf Widerspruch gegen Verarbeitungen auf Grundlage unseres berechtigten Interesses sowie das Recht, eine Einwilligung jederzeit mit Wirkung für die Zukunft zu widerrufen.",
+            "Um diese Rechte auszuüben, schreiben Sie an antiguaandbeyond@tourground.com. Wir antworten innerhalb eines Monats und kostenlos.",
+            "Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, insbesondere in dem Land, in dem Sie leben oder arbeiten (in Deutschland etwa bei der Datenschutzbehörde Ihres Bundeslandes). Wir würden uns freuen, wenn Sie uns zuerst die Gelegenheit geben, die Sache zu klären."
+          ]
+        },
+        {
+          "h": "Cookies",
+          "p": [
+            "Diese Website verwendet keine Analyse- oder Werbe-Cookies. Unsere [Cookie-Richtlinie](/cookies) erklärt genau, was sie in Ihrem Browser speichert."
+          ]
+        },
+        {
+          "h": "Kinder",
+          "p": [
+            "Diese Website und unsere Leistungen richten sich nicht an Kinder unter 16 Jahren, und wir erheben online nicht wissentlich deren Daten. Angaben zu Kindern speichern wir nur, wenn ein Elternteil oder Erziehungsberechtigter sie uns für die Buchung einer Familienreise übermittelt."
           ]
         },
         {
           "h": "Änderungen dieser Erklärung",
           "p": [
-            "Wir aktualisieren diese Seite, wenn sich unser Umgang mit personenbezogenen Daten ändert. Zuletzt aktualisiert: 30. Oktober 2026."
+            "Wenn sich unser Umgang mit personenbezogenen Daten ändert, aktualisieren wir diese Seite und das Datum unten. Zuletzt aktualisiert: 1. November 2026."
+          ]
+        },
+        {
+          "h": "Kontakt",
+          "p": [
+            "Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. E-Mail: antiguaandbeyond@tourground.com."
           ]
         }
       ]
     },
     "terms": {
-      "title": "Reisebedingungen",
-      "description": "Die Bedingungen, die gelten, wenn Sie bei Antigua & Beyond eine maßgeschneiderte Reise anfragen und buchen.",
+      "title": "Buchungsbedingungen",
+      "description": "Die Bedingungen für Reisebuchungen bei Antigua & Beyond: Anzahlung, Restzahlung, Änderungen, Rücktritt und Versicherung.",
       "sections": [
         {
-          "h": "Über diese Bedingungen",
+          "h": "Wer wir sind",
           "p": [
-            "Diese Bedingungen gelten für jede von Antigua & Beyond, 5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala, geplante Reise. Bitte lesen Sie sie vor der Buchung. Ihr schriftliches Angebot und Ihre Buchungsbestätigung sind zusammen mit diesen Bedingungen Teil des Vertrags.",
-            "Alles auf dieser Website, auch Reiseverläufe, Zeiten, Jahreszeiten und Erlebnisse, beschreibt die Art von Reise, die wir planen. Es ist kein Angebot, das Sie annehmen können."
+            "Diese Buchungsbedingungen gelten für jede Reise, die von Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala („wir“), organisiert wird. E-Mail: antiguaandbeyond@tourground.com. Bitte lesen Sie sie vor der Buchung: Zusammen mit Ihrem schriftlichen Angebot und Ihrer Buchungsbestätigung bilden sie den Vertrag zwischen uns."
           ]
         },
         {
-          "h": "Anfragen und Angebote",
+          "h": "Preise auf dieser Website",
           "p": [
-            "Eine Anfrage ist kostenlos und verpflichtet weder Sie noch uns.",
-            "Wir antworten mit Ideen und Fragen und gestalten die Reise dann gemeinsam mit Ihnen. Wenn alles passt, schicken wir Ihnen ein schriftliches Angebot, das für den darin genannten Zeitraum gilt. Preise für Flüge, Unterkünfte und Leistungen können sich bis zur Bestätigung ändern; in diesem Fall sagen wir es Ihnen, bevor Sie sich festlegen."
+            "Die Preise auf dieser Website sind „ab“-Preise: Richtpreise pro Person, meist bei zwei Personen im Doppelzimmer, die von Reisedaten, Verfügbarkeit, Gruppengröße und Ihren Wünschen abhängen. Sie sind kein Angebot. Maßgeblich ist der Preis in Ihrem endgültigen schriftlichen Angebot, den wir Ihnen vor der Buchung schriftlich bestätigen."
           ]
         },
         {
-          "h": "Buchung und Zahlung",
+          "h": "Wie eine Buchung zustande kommt",
           "p": [
-            "Ihre Buchung ist bestätigt, wenn Sie das Angebot schriftlich annehmen, die darin genannte Anzahlung leisten und wir Ihnen eine schriftliche Bestätigung schicken. Wer bucht, akzeptiert diese Bedingungen für alle Reisenden und muss mindestens 18 Jahre alt sein.",
-            "Der Restbetrag ist zu dem in Angebot und Bestätigung genannten Datum fällig. Geht er nicht rechtzeitig ein, können wir die Buchung als von Ihnen storniert behandeln; dann gelten die unten beschriebenen Stornokosten."
+            "Eine Anfrage ist kostenlos und für beide Seiten unverbindlich. Wir senden Ihnen einen Vorschlag, passen ihn mit Ihnen an und schicken dann ein schriftliches Angebot, das für den darin genannten Zeitraum gilt.",
+            "Ihre Buchung ist bestätigt und der Vertrag geschlossen, wenn Sie das Angebot schriftlich angenommen, die Anzahlung geleistet und unsere schriftliche Bestätigung erhalten haben. Wer bucht, muss mindestens 18 Jahre alt sein und akzeptiert diese Bedingungen für alle Mitreisenden. Bitte prüfen Sie Ihre Bestätigung und melden Sie Fehler sofort."
+          ]
+        },
+        {
+          "h": "Anzahlung und Restzahlung",
+          "p": [
+            "Die Höhe der Anzahlung steht in Ihrem Angebot; sie beträgt in der Regel 30 % des Reisepreises. Der Restbetrag ist spätestens 60 Tage vor Abreise fällig, sofern Ihre Bestätigung kein anderes Datum nennt. Bei Buchung weniger als 60 Tage vor Abreise ist der volle Preis sofort fällig.",
+            "Wird der Restbetrag nicht rechtzeitig gezahlt, können wir die Buchung als von Ihnen storniert behandeln und die unten genannten Stornogebühren berechnen."
+          ]
+        },
+        {
+          "h": "Was enthalten ist und was nicht",
+          "p": [
+            "Ihre Reise umfasst genau die in Angebot und Bestätigung aufgeführten Leistungen, etwa die dort genannten Unterkünfte, Transporte, Aktivitäten und Eintrittsgelder sowie die angegebenen Mahlzeiten.",
+            "Sofern Ihr Angebot nichts anderes sagt, nicht enthalten sind: internationale Flüge, Reiseversicherung, Visa und Einreisegebühren, Impfungen, Trinkgelder, Getränke, nicht genannte Mahlzeiten, optionale Aktivitäten und persönliche Ausgaben."
           ]
         },
         {
           "h": "Änderungen durch Sie",
           "p": [
-            "Wenn Sie Ihre Reise nach der Bestätigung ändern möchten, teilen Sie es uns bitte schriftlich mit. Wir tun unser Bestes, doch Änderungen sind nicht immer möglich. Mehrkosten der Leistungsträger sowie eine angemessene Bearbeitungsgebühr gehen zu Ihren Lasten."
+            "Wenn Sie eine bestätigte Reise ändern möchten, teilen Sie uns das schriftlich mit. Wir helfen gern, können aber nicht jede Änderung garantieren. Zusätzliche Kosten der Leistungsträger tragen Sie; wir nennen sie Ihnen, bevor wir die Änderung vornehmen. Sie können Ihre Buchung auf eine andere Person übertragen, die alle Reisebedingungen erfüllt, wenn Sie uns dies spätestens 14 Tage vor Abreise schriftlich mitteilen und die dadurch entstehenden Kosten übernehmen."
           ]
         },
         {
           "h": "Rücktritt durch Sie",
           "p": [
-            "Sie können jederzeit schriftlich von der Reise zurücktreten. Die Anzahlung wird nicht erstattet. Je näher der Rücktritt am Abreisetag liegt, desto höher sind die Kosten, bis hin zum vollen Reisepreis, weil Unterkünfte, Transporte und andere Leistungen in Ihrem Namen reserviert und bezahlt werden. Die für Ihre Reise geltenden Stornokosten stehen in Angebot und Bestätigung.",
-            "Eine Reiseversicherung kann diese Kosten in bestimmten Fällen übernehmen."
+            "Sie können jederzeit schriftlich zurücktreten; der Rücktritt wird mit Eingang bei uns wirksam. Da wir Leistungen in Ihrem Namen verbindlich buchen und bezahlen, fallen folgende Gebühren an, in Prozent des gesamten Reisepreises:",
+            "Mehr als 60 Tage vor Abreise: Verfall der Anzahlung. 60 bis 31 Tage: 50 %. 30 bis 15 Tage: 75 %. 14 Tage oder weniger oder bei Nichtantritt: 100 %.",
+            "Nennt Ihr Angebot Kosten eines Leistungsträgers, die nach Zahlung nicht erstattet werden (etwa bestimmte Genehmigungen, Parkgebühren oder Flüge), sind diese bei jedem Rücktritt zusätzlich zu zahlen. Ihre Reiseversicherung kann Stornokosten abdecken."
           ]
         },
         {
           "h": "Änderungen und Absage durch uns",
           "p": [
-            "Wir planen sorgfältig, müssen aber manchmal einen Teil der Reise ändern, etwa wegen des Wetters, gesperrter Straßen oder Strecken oder eines Leistungsträgers, der eine Buchung nicht einhalten kann. Wir informieren Sie so früh wie möglich und bieten Ihnen eine gleichwertige Alternative an.",
-            "Ändern wir die Reise erheblich oder sagen wir sie ab, können Sie die Änderung annehmen, eine gleichwertige Alternative wählen, sofern verfügbar, oder zurücktreten und erhalten alle an uns geleisteten Zahlungen vollständig zurück."
-          ]
-        },
-        {
-          "h": "Unvermeidbare, außergewöhnliche Umstände",
-          "p": [
-            "Wir haften nicht für Änderungen, Verspätungen oder Absagen infolge von Ereignissen, die außerhalb unserer zumutbaren Kontrolle liegen, etwa Krieg oder Kriegsgefahr, Unruhen, Naturkatastrophen, Epidemien, behördliche Maßnahmen, Schließungen von Flughäfen oder Grenzen oder extremes Wetter. In solchen Fällen helfen wir Ihnen bei anderen Lösungen und geben Erstattungen der Leistungsträger an Sie weiter."
+            "Manchmal müssen wir kleinere Änderungen vornehmen, etwa ein anderes Hotel gleicher Kategorie oder eine angepasste Route; wir informieren Sie so früh wie möglich.",
+            "Müssen wir vor Abreise eine erhebliche Änderung vornehmen oder die Reise absagen, können Sie die Änderung annehmen, eine gleichwertige Alternative wählen, sofern wir eine anbieten können, oder zurücktreten und alle gezahlten Beträge vollständig zurückerhalten. Nach Fälligkeit des Restbetrags sagen wir nur bei unvermeidbaren, außergewöhnlichen Umständen oder bei Nichtzahlung ab."
           ]
         },
         {
           "h": "Reiseversicherung",
           "p": [
-            "Eine umfassende Reiseversicherung ist Voraussetzung für die Buchung. Sie muss medizinische Behandlung, Rücktransport, Reiserücktritt und alle Aktivitäten Ihrer Reise abdecken. Bitte senden Sie uns die Policendaten vor der Abreise."
+            "Eine umfassende Reiseversicherung ist Voraussetzung für die Buchung. Sie muss medizinische Behandlung, Notfallevakuierung und Rücktransport, Reiserücktritt und Reiseabbruch sowie alle Aktivitäten Ihrer Reise abdecken. Bitte senden Sie uns die Angaben zu Ihrer Police vor der Abreise."
           ]
         },
         {
-          "h": "Pass, Visum und Gesundheit",
+          "h": "Pässe, Visa und Gesundheit",
           "p": [
-            "Sie sind dafür verantwortlich, einen gültigen Reisepass, alle erforderlichen Visa oder Reisegenehmigungen sowie die für Guatemala und alle Transitländer vorgeschriebenen Impfungen oder Gesundheitsnachweise zu besitzen. Einreisebestimmungen ändern sich; prüfen Sie sie bei der zuständigen Botschaft und in den Reisehinweisen Ihrer Regierung bei der Buchung und erneut vor der Abreise.",
-            "Bitte informieren Sie uns vor der Buchung über gesundheitliche Einschränkungen oder Mobilitätsbedürfnisse, die Ihre Reise betreffen könnten, damit wir sie berücksichtigen können."
+            "Sie sind selbst verantwortlich für einen gültigen Reisepass, etwaige Visa oder Reisegenehmigungen sowie die Impfungen und Gesundheitsnachweise, die für Ihr Reiseziel (Guatemala) und alle Transitländer verlangt werden, und dafür, dass Sie gesundheitlich reisefähig sind. Die Seite [FAQ](/faq) auf dieser Website fasst die wichtigsten uns bekannten Einreise- und Gesundheitsbestimmungen zusammen; sie ist jedoch nur ein allgemeiner Hinweis, den Sie bei offiziellen Stellen überprüfen müssen. Einreisebestimmungen ändern sich; prüfen Sie die Reisehinweise Ihrer Regierung und die zuständige Botschaft vor der Buchung und erneut vor der Abreise. Informieren Sie uns vor der Buchung über gesundheitliche Einschränkungen oder Mobilitätsbedürfnisse, die Ihre Reise beeinflussen könnten."
           ]
         },
         {
-          "h": "Ihre Pflichten",
+          "h": "Unsere Verantwortung",
           "p": [
-            "Bitte beachten Sie die Gesetze und Gepflogenheiten vor Ort, die Anweisungen von Guides, Fahrern, Crews und anderen Leistungsträgern sowie unsere Sicherheitshinweise. Wer andere gefährdet oder die Reise ernsthaft stört, kann ohne Erstattung von der weiteren Reise ausgeschlossen werden."
+            "Wir planen Ihre Reise mit angemessener Sorgfalt, wählen zuverlässige Leistungsträger aus und sind dafür verantwortlich, dass die Leistungen Ihrer Bestätigung wie beschrieben erbracht werden. Nicht verantwortlich sind wir, wenn ein Problem von Ihnen, von einem unbeteiligten Dritten oder durch unvermeidbare, außergewöhnliche Umstände verursacht wird.",
+            "Außer bei Tod oder Körperverletzung durch unsere Fahrlässigkeit oder sonst gesetzlich nicht beschränkbarer Haftung ist unsere Haftung auf den Gesamtpreis Ihrer Reise begrenzt. Soweit internationale Übereinkommen die Haftung einer Fluggesellschaft, eines Hotels oder eines anderen Beförderers begrenzen, ist unsere Haftung in gleicher Weise begrenzt. Manche Aktivitäten bergen naturgemäße Risiken, die wir Ihnen erklären und die Sie mit der Wahl der Aktivität akzeptieren."
           ]
         },
         {
-          "h": "Unsere Haftung",
+          "h": "Ihr Verhalten",
           "p": [
-            "Wir planen und organisieren Ihre Reise mit angemessener Sorgfalt. Wir haften nicht für Verluste, Verletzungen oder Schäden, die Sie selbst, unbeteiligte Dritte oder Ereignisse außerhalb unserer zumutbaren Kontrolle verursachen.",
-            "Bei Fluggesellschaften, Hotels und anderen Beförderungsunternehmen ist unsere Haftung im gleichen Umfang begrenzt wie deren Haftung nach den für sie geltenden internationalen Übereinkommen. Nichts in diesen Bedingungen beschränkt unsere Haftung für Tod oder Körperverletzung infolge unserer Fahrlässigkeit oder eine Haftung, die gesetzlich nicht beschränkt werden kann."
+            "Bitte respektieren Sie Gesetze, Bräuche und Gemeinschaften vor Ort, befolgen Sie die Sicherheitsanweisungen von Fahrern, Crews und anderen Leistungsträgern und gefährden Sie niemanden. Gefährdet Ihr Verhalten andere oder stört es die Reise erheblich, können wir Ihre Reise ohne Erstattung beenden; für von Ihnen verursachte Schäden haften Sie."
           ]
         },
         {
           "h": "Beschwerden",
           "p": [
-            "Wenn während der Reise etwas nicht stimmt, sagen Sie es uns bitte sofort, damit wir es vor Ort beheben können. Lässt es sich nicht lösen, schreiben Sie bitte innerhalb von 28 Tagen nach Ihrer Rückkehr an antiguaandbeyond@tourground.com; wir antworten zeitnah."
+            "Wenn während der Reise etwas nicht stimmt, sagen Sie es sofort dem Leistungsträger und uns, damit wir es möglichst vor Ort beheben können. Lässt es sich nicht lösen, schreiben Sie innerhalb von 28 Tagen nach Ihrer Rückkehr an antiguaandbeyond@tourground.com; wir bestätigen den Eingang innerhalb von 7 Tagen und antworten vollständig innerhalb von 28 Tagen."
+          ]
+        },
+        {
+          "h": "Höhere Gewalt",
+          "p": [
+            "Wir haften nicht für Ausfälle oder Verzögerungen durch unvermeidbare, außergewöhnliche Umstände außerhalb unserer Kontrolle, etwa Krieg, Terrorismus, Unruhen, Naturkatastrophen, Epidemien, extreme Wetterlagen, behördliche Maßnahmen oder die Schließung von Flughäfen oder Grenzen. Verhindert ein solches Ereignis Ihre Reise, erstatten wir Ihnen, was wir in Ihrem Namen gezahlt haben und von Leistungsträgern zurückerhalten können, oder bieten Ihnen eine Alternative an."
+          ]
+        },
+        {
+          "h": "Datenschutz",
+          "p": [
+            "Wir verwenden Ihre personenbezogenen Daten wie in unserer [Datenschutzerklärung](/privacy) beschrieben."
           ]
         },
         {
           "h": "Anwendbares Recht",
           "p": [
-            "Für diese Bedingungen gilt das Recht, das auf den mit uns geschlossenen Vertrag anwendbar ist, wie in Ihrer Buchungsbestätigung angegeben. Zusätzlich können Sie sich auf das Verbraucherrecht Ihres Wohnsitzlandes berufen."
+            "Diese Bedingungen und jeder Vertrag mit uns unterliegen guatemaltekischem Recht, da sich unsere Geschäftsadresse in Guatemala befindet; für Streitigkeiten sind die Gerichte Guatemalas zuständig. Sind Sie Verbraucher mit Wohnsitz in einem anderen Land, behalten Sie den Schutz der zwingenden Verbraucherschutzvorschriften dieses Landes und können auch dort klagen."
+          ]
+        },
+        {
+          "h": "Kontakt",
+          "p": [
+            "Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. E-Mail: antiguaandbeyond@tourground.com. Zuletzt aktualisiert: 1. November 2026."
           ]
         }
       ]
     },
     "cookies": {
       "title": "Cookie-Richtlinie",
-      "description": "Welche Cookies und welchen Speicher die Website von Antigua & Beyond nutzt und wie Sie sie verwalten.",
+      "description": "Was die Website von Antigua & Beyond in Ihrem Browser speichert und wie Sie das verwalten.",
       "sections": [
         {
-          "h": "Kurz gesagt",
+          "h": "Was Cookies sind",
           "p": [
-            "Wir verwenden auf dieser Website keine Analyse- oder Werbe-Cookies. Diese Website setzt keine eigenen Cookies."
+            "Cookies sind kleine Textdateien, die eine Website in Ihrem Browser speichert. Ähnliche Techniken wie der lokale Speicher (localStorage) und der Sitzungsspeicher Ihres Browsers erlauben es einer Website, kleine Informationen auf Ihrem Gerät abzulegen. Diese Richtlinie gilt für all diese Techniken."
           ]
         },
         {
-          "h": "Was die Website in Ihrem Browser speichert",
+          "h": "Was diese Website verwendet",
           "p": [
-            "Wenn Sie die angezeigte Währung ändern, wird Ihre Wahl im lokalen Speicher Ihres Browsers unter ab-currency gespeichert. Wenn Sie den [Reiseplaner](/plan-your-trip) nutzen, werden Ihre Antworten im lokalen Speicher unter ab-trip-planner-v1 gespeichert, damit Sie später weitermachen können. Sie bleiben auf Ihrem Gerät, bis Sie den Planer absenden, und werden dann gelöscht.",
-            "Schriften und Fotos werden von dieser Website ausgeliefert, sodass beim Laden der Seiten kein Drittanbieter kontaktiert wird."
+            "Diese Website setzt keine Cookies. Sie nutzt nur den unten aufgeführten Browserspeicher, der auf Ihrem Gerät bleibt und nie an uns gesendet wird. Es gibt keine Analyse-, Werbe- oder Tracking-Cookies und keine Tracking-Pixel."
+          ]
+        },
+        {
+          "h": "Was gespeichert wird",
+          "p": [],
+          "table": {
+            "head": [
+              "Name",
+              "Zweck",
+              "Dauer",
+              "Art"
+            ],
+            "rows": [
+              [
+                "ab-currency",
+                "Merkt sich die Währung, die Sie für die Preisanzeige gewählt haben.",
+                "Bis Sie ihn im Browser löschen",
+                "Lokaler Speicher · Präferenz (funktional)"
+              ],
+              [
+                "ab-trip-planner-v1",
+                "Speichert Ihre Antworten im Reiseplaner, damit Sie später weitermachen können; wird beim Absenden gelöscht.",
+                "Bis Sie das Formular absenden oder ihn im Browser löschen",
+                "Lokaler Speicher · Unbedingt erforderlich"
+              ]
+            ]
+          }
+        },
+        {
+          "h": "Inhalte Dritter",
+          "p": [
+            "Einige Fotos werden von images.unsplash.com (Unsplash, USA) geladen. Dazu übermittelt Ihr Browser, wie bei jeder Webanfrage, Ihre IP-Adresse und Browserangaben an Unsplash; diese Bildanfragen setzen keine Cookies.",
+            "Unser Hosting-Anbieter Vercel setzt auf dieser Website keine Cookies."
           ]
         },
         {
           "h": "Einwilligung",
           "p": [
-            "Die oben genannten Einträge sind für Funktionen, die Sie selbst nutzen, unbedingt erforderlich und brauchen daher keine Einwilligung. Analyse- oder Werbe-Cookies setzen wir nur ein, nachdem wir Sie gefragt haben."
+            "Alles oben Genannte ist entweder unbedingt erforderlich oder merkt sich eine von Ihnen getroffene Wahl, und nichts davon verfolgt Sie; deshalb fragt die Website nicht nach einer Cookie-Einwilligung. Sollten wir jemals Analyse- oder andere optionale Cookies einführen, holen wir vorher Ihre Einwilligung ein und aktualisieren diese Seite."
           ]
         },
         {
-          "h": "Löschen oder Meinung ändern",
+          "h": "Verwalten oder löschen",
           "p": [
-            "Sie können die von dieser Website gespeicherten Daten jederzeit in den Einstellungen Ihres Browsers löschen (meist unter Datenschutz, dann Cookies und Websitedaten)."
+            "Sie können Cookies jederzeit in Ihren Browsereinstellungen blockieren und gespeicherte Website-Daten löschen, meist unter Datenschutz oder Website-Daten. Die Website funktioniert weiterhin; sie vergisst nur Einstellungen wie Ihre Währung oder Sprache und noch nicht gesendete Formularangaben."
+          ]
+        },
+        {
+          "h": "Änderungen dieser Richtlinie",
+          "p": [
+            "Wenn sich ändert, was die Website speichert, aktualisieren wir diese Seite und das Datum unten. Zuletzt aktualisiert: 1. November 2026."
           ]
         },
         {
           "h": "Kontakt",
           "p": [
-            "Fragen zu dieser Richtlinie: schreiben Sie an antiguaandbeyond@tourground.com."
+            "Fragen zu dieser Richtlinie: Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. E-Mail: antiguaandbeyond@tourground.com."
           ]
         }
       ]
@@ -602,195 +873,285 @@ export const legal: Record<string, LegalSet> = {
   "es": {
     "privacy": {
       "title": "Política de privacidad",
-      "description": "Cómo Antigua & Beyond recoge, utiliza y protege los datos personales que nos envía.",
+      "description": "Cómo Antigua & Beyond recoge, usa y protege sus datos personales, y cuáles son sus derechos.",
       "sections": [
         {
           "h": "Quiénes somos",
           "p": [
-            "Este sitio web lo gestiona Antigua & Beyond, 5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala. En esta política, «nosotros» y «nuestro» se refieren a Antigua & Beyond.",
+            "Este sitio web lo gestiona Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. En esta política, «nosotros» y «nuestro» se refieren a Antigua & Beyond. Decidimos cómo y para qué se usan sus datos personales, por lo que somos el responsable del tratamiento.",
             "Para cualquier cuestión sobre sus datos personales, escriba a antiguaandbeyond@tourground.com."
           ]
         },
         {
           "h": "Qué datos recogemos",
           "p": [
-            "Solo los que usted decide enviarnos: a través del planificador de viajes, su nombre, correo electrónico, teléfono si nos lo facilita, fechas de viaje, número de viajeros, intereses, presupuesto y comentarios; a través del formulario de contacto, su nombre, correo electrónico y mensaje; al suscribirse al boletín, su correo electrónico. Si nos escribe por correo electrónico, conservamos esa correspondencia.",
-            "Si reserva, recogemos además lo necesario para organizar el viaje: el nombre de cada viajero, las fechas de nacimiento y los datos del pasaporte cuando los proveedores los exigen, las necesidades alimentarias o de accesibilidad y los contactos de emergencia.",
-            "Le rogamos que no envíe datos de tarjetas de pago ni información médica detallada por correo electrónico o a través del formulario."
+            "Los datos que nos envía mediante los formularios de consulta o de planificación de viaje de este sitio: normalmente su nombre, correo electrónico, fechas de viaje preferidas, número de viajeros, el tipo de viaje que tiene en mente, su presupuesto y lo que escriba en su mensaje. Si se suscribe a nuestro boletín, su correo electrónico.",
+            "Los correos y otros mensajes que nos envía, y nuestras respuestas.",
+            "Si reserva, lo necesario para organizar el viaje: el nombre de cada viajero, fechas de nacimiento y datos del pasaporte cuando los proveedores o las autoridades los exigen, las necesidades alimentarias, médicas y de accesibilidad que decida compartir, contactos de emergencia y el registro de sus pagos. No recogemos ni guardamos números de tarjeta en este sitio.",
+            "Datos técnicos: cuando nos visita, nuestro proveedor de alojamiento registra automáticamente en los registros del servidor su dirección IP, el tipo de navegador, las páginas solicitadas y la hora de la petición, para mantener el sitio en funcionamiento y seguro.",
+            "No usamos herramientas de analítica ni de publicidad, ni elaboramos perfiles de los visitantes."
           ]
         },
         {
-          "h": "Para qué los utilizamos",
+          "h": "Para qué los usamos y bases legales",
           "p": [
-            "Para responder a su consulta, diseñar el viaje con usted y, si decide seguir adelante, reservarlo y gestionarlo. Nos basamos en las medidas precontractuales que nos solicita, en la ejecución del contrato, en su consentimiento cuando lo pedimos y en nuestro interés legítimo en responder a quienes se ponen en contacto con nosotros.",
-            "No vendemos sus datos y solo le enviamos novedades u ofertas si nos lo pide."
+            "Para responder a su consulta y preparar una propuesta: medidas precontractuales que usted nos pide y nuestro interés legítimo en responder a quien nos contacta.",
+            "Para reservar, organizar y atender su viaje, y gestionar los pagos: la ejecución de nuestro contrato con usted.",
+            "Para tratar información de salud, alimentación o accesibilidad de modo que los proveedores puedan atenderle: su consentimiento explícito, que puede retirar en cualquier momento.",
+            "Para conservar registros contables y de reservas: nuestras obligaciones legales.",
+            "Para mantener el sitio seguro y en funcionamiento: nuestro interés legítimo. Para enviarle nuestro boletín: su consentimiento, que puede retirar con el enlace de cada correo.",
+            "No vendemos sus datos personales ni los usamos para decisiones automatizadas."
           ]
         },
         {
           "h": "Con quién los compartimos",
           "p": [
-            "Su consulta nos llega a través de el servidor de nuestro sitio web (alojado por Vercel Inc., Estados Unidos) y nuestro proveedor de envío de correo, Resend (Estados Unidos).",
-            "Si reserva, solo compartimos lo imprescindible con los hoteles, lodges, empresas de transporte, guías y socios locales que hacen posible su viaje en Guatemala, y con su aseguradora de viaje si así nos lo pide. Algunos se encuentran fuera de su país; en ese caso, compartimos únicamente lo mínimo necesario para prestar el servicio solicitado.",
-            "También podemos comunicar información cuando la ley lo exija."
+            "Proveedores que tratan datos por cuenta nuestra y bajo contrato: Vercel Inc. (Estados Unidos), que aloja este sitio web, gestiona el envío de los formularios y conserva registros del servidor durante poco tiempo; Resend (Plus Five Five, Inc., Estados Unidos), que entrega los correos que envían nuestros formularios, a nosotros y a usted; y nuestro proveedor de correo electrónico, que guarda los mensajes que intercambiamos con usted.",
+            "Si reserva: los hoteles, lodges, empresas de transporte, operadores de actividades y socios locales en destino (Guatemala) que prestan su viaje, solo con los datos que cada uno necesita; su aseguradora de viaje, si nos lo pide.",
+            "Autoridades públicas, tribunales o asesores profesionales cuando la ley lo exija o para formular, ejercer o defender reclamaciones."
           ]
         },
         {
-          "h": "Cookies y almacenamiento local",
+          "h": "Transferencias internacionales",
           "p": [
-            "No utilizamos cookies de analítica ni de publicidad en este sitio. Consulte la [política de cookies](/cookies/) para saber qué guarda el sitio en su navegador."
+            "Nuestros proveedores de alojamiento web y de correo están en Estados Unidos. Cuando sus datos salen del Reino Unido o del Espacio Económico Europeo, la transferencia se basa en el Marco de Privacidad de Datos UE-EE. UU. y su extensión británica si el proveedor está certificado, o en las cláusulas contractuales tipo de la Comisión Europea (con el anexo británico), que obligan al proveedor a protegerlos según los estándares europeos.",
+            "Cuando reserva, facilitamos a los proveedores en destino (Guatemala) los datos necesarios para su viaje. Esa transferencia es necesaria para ejecutar el contrato que nos ha pedido organizar."
           ]
         },
         {
           "h": "Cuánto tiempo los conservamos",
           "p": [
-            "Conservamos las consultas que no se convierten en reserva durante 24 meses desde nuestro último contacto y después las eliminamos. Los expedientes de reserva se conservan durante el tiempo que exijan la normativa contable y de consumo, normalmente seis años después del viaje."
+            "Consultas que no terminan en reserva: 24 meses desde nuestro último contacto; después se eliminan.",
+            "Registros de reservas: seis años después del final del viaje, el plazo que exigen las normas contables y fiscales. Los datos de salud y alimentación se eliminan cuando termina el viaje y se resuelve cualquier reclamación.",
+            "Registros del servidor: poco tiempo, normalmente no más de 30 días. Boletín: hasta que se dé de baja."
           ]
         },
         {
           "h": "Cómo los protegemos",
           "p": [
-            "Sus datos se guardan en un correo electrónico y un almacenamiento de archivos protegidos con contraseña, a los que solo acceden las personas que preparan su viaje. El sitio se sirve mediante una conexión cifrada (HTTPS)."
+            "El sitio se sirve solo mediante conexión cifrada (HTTPS). Sus datos se guardan en cuentas protegidas con contraseña a las que solo acceden las personas que preparan su viaje, y a los proveedores solo les damos lo que necesitan."
           ]
         },
         {
           "h": "Sus derechos",
           "p": [
-            "Puede solicitar el acceso a los datos personales que tenemos sobre usted, su rectificación o supresión, limitar su uso u oponerse a él, recibir una copia en un formato portátil o retirar su consentimiento en cualquier momento. Escriba a antiguaandbeyond@tourground.com y le responderemos en el plazo de un mes.",
-            "Si no está satisfecho con el tratamiento de sus datos, díganoslo primero para que podamos solucionarlo. También tiene derecho a presentar una reclamación ante la autoridad de protección de datos del país en el que reside."
+            "Según la normativa de protección de datos (incluidos el RGPD y el RGPD del Reino Unido), tiene derecho a: acceder a los datos personales que tenemos sobre usted; rectificarlos si son incorrectos; suprimirlos; limitar su uso; recibirlos en un formato portátil; oponerse al tratamiento basado en nuestro interés legítimo; y retirar su consentimiento en cualquier momento, sin que ello afecte a lo realizado antes.",
+            "Para ejercer estos derechos, escriba a antiguaandbeyond@tourground.com. Respondemos en el plazo de un mes y sin coste.",
+            "También tiene derecho a presentar una reclamación ante una autoridad de control de protección de datos, en particular en el país donde vive o trabaja (por ejemplo, la Agencia Española de Protección de Datos en España). Le agradeceríamos que antes nos diera la oportunidad de resolverlo."
+          ]
+        },
+        {
+          "h": "Cookies",
+          "p": [
+            "Este sitio no usa cookies de analítica ni de publicidad. Nuestra [política de cookies](/cookies) explica exactamente qué guarda en su navegador."
+          ]
+        },
+        {
+          "h": "Menores",
+          "p": [
+            "Este sitio y nuestros servicios no están dirigidos a menores de 16 años y no recogemos conscientemente sus datos en línea. Solo tenemos datos de menores cuando un padre, madre o tutor nos los facilita para reservar un viaje en familia."
           ]
         },
         {
           "h": "Cambios en esta política",
           "p": [
-            "Actualizaremos esta página si cambia la forma en que utilizamos los datos personales. Última actualización: 30 de octubre de 2026."
+            "Actualizaremos esta página, y la fecha que figura abajo, si cambia la forma en que tratamos los datos personales. Última actualización: 1 de noviembre de 2026."
+          ]
+        },
+        {
+          "h": "Contacto",
+          "p": [
+            "Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. Correo electrónico: antiguaandbeyond@tourground.com."
           ]
         }
       ]
     },
     "terms": {
       "title": "Condiciones de reserva",
-      "description": "Las condiciones que se aplican cuando consulta y reserva un viaje a medida con Antigua & Beyond.",
+      "description": "Las condiciones que se aplican al reservar un viaje con Antigua & Beyond: depósito, saldo, cambios, cancelación y seguro.",
       "sections": [
         {
-          "h": "Sobre estas condiciones",
+          "h": "Quiénes somos",
           "p": [
-            "Estas condiciones se aplican a todos los viajes organizados por Antigua & Beyond, 5a Avenida Norte, Antigua Guatemala, Sacatepéquez, Guatemala. Léalas antes de reservar. Su presupuesto por escrito y su confirmación de reserva forman parte del contrato, junto con estas condiciones.",
-            "Todo lo que aparece en este sitio, incluidos itinerarios, duraciones, temporadas y experiencias, describe el tipo de viaje que diseñamos. No es una oferta que pueda aceptar."
+            "Estas condiciones de reserva se aplican a todos los viajes organizados por Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala («nosotros»). Correo electrónico: antiguaandbeyond@tourground.com. Léalas antes de reservar: junto con su presupuesto escrito y su confirmación de reserva, forman el contrato entre nosotros."
           ]
         },
         {
-          "h": "Consultas y presupuestos",
+          "h": "Precios en este sitio",
           "p": [
-            "Enviar una consulta es gratuito y no le compromete a usted ni a nosotros.",
-            "Le respondemos con ideas y preguntas, y después damos forma al viaje con usted. Cuando todo encaja, le enviamos un presupuesto por escrito, válido durante el plazo que en él se indica. Los precios de vuelos, alojamientos y servicios pueden variar hasta la confirmación; si es así, se lo diremos antes de que se comprometa."
+            "Los precios de este sitio se muestran «desde»: son precios orientativos por persona, normalmente para dos personas en habitación compartida, y dependen de las fechas, la disponibilidad, el tamaño del grupo y sus elecciones. No constituyen una oferta. El precio que paga es el de su presupuesto escrito definitivo, que le confirmamos por escrito antes de reservar."
           ]
         },
         {
-          "h": "Reserva y pago",
+          "h": "Cómo se hace y se confirma una reserva",
           "p": [
-            "Su reserva queda confirmada cuando acepta el presupuesto por escrito, abona el depósito indicado en él y le enviamos la confirmación por escrito. La persona que reserva acepta estas condiciones en nombre de todos los viajeros y debe ser mayor de 18 años.",
-            "El saldo debe abonarse en la fecha que figura en su presupuesto y su confirmación. Si no se paga a tiempo, podremos considerar la reserva cancelada por usted y se aplicarán los gastos de cancelación que se indican a continuación."
+            "Enviar una consulta es gratis y no compromete a nadie. Le enviamos una propuesta, la ajustamos con usted y después le enviamos un presupuesto escrito, válido durante el plazo indicado en él.",
+            "Su reserva queda confirmada, y el contrato celebrado, cuando ha aceptado el presupuesto por escrito, ha pagado el depósito y ha recibido nuestra confirmación escrita. Quien reserva debe ser mayor de 18 años y acepta estas condiciones en nombre de todo el grupo. Revise su confirmación y avísenos enseguida si algo no es correcto."
+          ]
+        },
+        {
+          "h": "Depósito y saldo",
+          "p": [
+            "El depósito figura en su presupuesto; normalmente es el 30 % del precio del viaje. El saldo debe pagarse a más tardar 60 días antes de la salida, salvo que su confirmación indique otra fecha. Si reserva con menos de 60 días de antelación, el precio total se paga al reservar.",
+            "Si el saldo no se paga a tiempo, podemos considerar la reserva cancelada por usted y aplicar los gastos de cancelación indicados abajo."
+          ]
+        },
+        {
+          "h": "Qué incluye y qué no",
+          "p": [
+            "Su viaje incluye exactamente lo que figura en su presupuesto y confirmación, como el alojamiento, los transportes, las actividades y entradas allí indicados y las comidas señaladas.",
+            "Salvo que su presupuesto diga lo contrario, no incluye vuelos internacionales, seguro de viaje, visados y tasas de entrada, vacunas, propinas, bebidas, comidas no indicadas, actividades opcionales ni gastos personales."
           ]
         },
         {
           "h": "Cambios por su parte",
           "p": [
-            "Si desea modificar el viaje una vez confirmado, comuníquenoslo por escrito. Haremos todo lo posible, aunque no siempre se pueden hacer cambios; los costes adicionales de los proveedores y unos gastos de gestión razonables correrán por su cuenta."
+            "Si quiere cambiar un viaje confirmado, díganoslo por escrito. Haremos lo posible, aunque no podemos garantizar todos los cambios. Usted paga los costes adicionales que cobren los proveedores, y se los indicamos antes de hacer el cambio. Puede ceder su reserva a otra persona que cumpla todas las condiciones del viaje si nos avisa por escrito al menos 14 días antes de la salida y paga los costes que genere la cesión."
           ]
         },
         {
           "h": "Cancelación por su parte",
           "p": [
-            "Puede cancelar en cualquier momento comunicándolo por escrito. El depósito no es reembolsable. Cuanto más cerca de la salida cancele, mayores serán los gastos, hasta el importe total del viaje, porque los alojamientos, transportes y demás servicios se reservan y pagan en su nombre. Los gastos aplicables a su viaje figuran en su presupuesto y su confirmación.",
-            "Su seguro de viaje puede cubrirlos en determinadas circunstancias."
+            "Puede cancelar en cualquier momento avisándonos por escrito; la cancelación surte efecto el día en que la recibimos. Como contratamos y pagamos servicios en su nombre, se aplican los siguientes gastos, en porcentaje del precio total del viaje:",
+            "Más de 60 días antes de la salida: pérdida del depósito. De 60 a 31 días: 50 %. De 30 a 15 días: 75 %. 14 días o menos, o si no se presenta: 100 %.",
+            "Cuando su presupuesto indique un coste de proveedor no reembolsable una vez pagado (por ejemplo, ciertos permisos, entradas a parques o vuelos), ese coste también se paga sea cual sea la fecha de cancelación. Su seguro de viaje puede cubrir los gastos de cancelación."
           ]
         },
         {
           "h": "Cambios y cancelación por nuestra parte",
           "p": [
-            "Planificamos con cuidado, pero a veces debemos cambiar parte de un viaje, por ejemplo por el tiempo, el cierre de una carretera o ruta, o un proveedor que no puede cumplir una reserva. Se lo comunicaremos lo antes posible y le ofreceremos una alternativa equivalente.",
-            "Si debemos introducir un cambio importante o cancelar el viaje, podrá aceptar el cambio, elegir una alternativa equivalente si la hay, o cancelar y recibir el reembolso íntegro de lo pagado."
-          ]
-        },
-        {
-          "h": "Circunstancias excepcionales",
-          "p": [
-            "No somos responsables de cambios, retrasos o cancelaciones causados por hechos fuera de nuestro control razonable, como guerra o amenaza de guerra, disturbios, catástrofes naturales, epidemias, decisiones de las autoridades, cierres de aeropuertos o fronteras, o condiciones meteorológicas extremas. Si ocurre, le ayudaremos a buscar alternativas y le trasladaremos los reembolsos que obtengamos de los proveedores."
+            "A veces debemos hacer cambios menores, como otro hotel de la misma categoría o una ruta ajustada; se lo comunicamos lo antes posible.",
+            "Si antes de la salida tenemos que hacer un cambio significativo o cancelar, puede aceptar el cambio, elegir una alternativa equivalente si podemos ofrecerla, o cancelar y recibir el reembolso íntegro de todo lo que nos ha pagado. No cancelaremos después del vencimiento del saldo salvo por circunstancias inevitables y extraordinarias o por impago."
           ]
         },
         {
           "h": "Seguro de viaje",
           "p": [
-            "Contratar un seguro de viaje completo es condición para reservar. Debe cubrir la asistencia médica, la repatriación, la cancelación y todas las actividades del viaje. Envíenos los datos de su póliza antes de la salida."
+            "Un seguro de viaje completo es condición para reservar. Debe cubrir asistencia médica, evacuación de emergencia y repatriación, cancelación e interrupción del viaje, y todas las actividades previstas. Envíenos los datos de su póliza antes de viajar."
           ]
         },
         {
           "h": "Pasaportes, visados y salud",
           "p": [
-            "Es responsabilidad suya disponer de un pasaporte válido, de los visados o autorizaciones de viaje necesarios y de las vacunas o documentos sanitarios exigidos para Guatemala y para cualquier país de tránsito. Las normas de entrada cambian: compruébelas con la embajada correspondiente y en las recomendaciones de viaje de su gobierno al reservar y de nuevo antes de viajar.",
-            "Infórmenos antes de reservar de cualquier problema de salud o necesidad de movilidad que pueda afectar al viaje, para que podamos tenerlo en cuenta."
-          ]
-        },
-        {
-          "h": "Sus responsabilidades",
-          "p": [
-            "Respete las leyes y costumbres locales, las indicaciones de guías, conductores, tripulaciones y demás proveedores, y los consejos de seguridad que le demos. Podremos poner fin, sin reembolso, al viaje de quien ponga en peligro a otras personas o cause graves molestias."
+            "Usted es responsable de tener un pasaporte válido, los visados o autorizaciones de viaje y las vacunas y documentos sanitarios exigidos para su destino (Guatemala) y para cualquier país de tránsito, así como de estar en condiciones de participar. La página [Preguntas frecuentes](/faq) de este sitio resume los principales requisitos de entrada y de salud que conocemos, pero es información general que debe confirmar con fuentes oficiales. Los requisitos de entrada cambian: consulte las recomendaciones de viaje de su gobierno y la embajada correspondiente antes de reservar y de nuevo antes de viajar. Avísenos antes de reservar de cualquier problema de salud o de movilidad que pueda afectar a su viaje."
           ]
         },
         {
           "h": "Nuestra responsabilidad",
           "p": [
-            "Ponemos un cuidado razonable en la planificación y organización de su viaje. No respondemos de pérdidas, lesiones o daños causados por usted, por terceros ajenos al viaje o por hechos fuera de nuestro control razonable.",
-            "En el caso de aerolíneas, hoteles y otras empresas de transporte, nuestra responsabilidad está limitada del mismo modo que la suya conforme a los convenios internacionales que les son aplicables. Nada en estas condiciones limita nuestra responsabilidad por muerte o lesiones personales causadas por nuestra negligencia, ni ninguna responsabilidad que la ley no permita limitar."
+            "Ponemos un cuidado razonable en planificar su viaje y elegir proveedores fiables, y somos responsables de que los servicios de su confirmación se presten tal como se describen. No somos responsables cuando un problema lo causa usted, un tercero ajeno al viaje o circunstancias inevitables y extraordinarias.",
+            "Salvo en caso de muerte o lesiones causadas por nuestra negligencia, o de cualquier otra responsabilidad que la ley no permita limitar, nuestra responsabilidad se limita al precio total de su viaje. Cuando un convenio internacional limita la responsabilidad de una aerolínea, hotel u otro transportista, nuestra responsabilidad queda limitada del mismo modo. Algunas actividades conllevan riesgos inherentes, que le explicamos y que usted acepta al elegirlas."
+          ]
+        },
+        {
+          "h": "Su comportamiento",
+          "p": [
+            "Respete las leyes, costumbres y comunidades locales, siga las instrucciones de seguridad de conductores, tripulaciones y otros proveedores y no ponga a nadie en riesgo. Si su comportamiento pone en peligro a otros o altera gravemente el viaje, podemos darlo por terminado sin reembolso, y usted responde de los daños que cause."
           ]
         },
         {
           "h": "Reclamaciones",
           "p": [
-            "Si algo no va bien durante el viaje, avísenos de inmediato para intentar resolverlo en el momento. Si no se soluciona, escriba a antiguaandbeyond@tourground.com en los 28 días siguientes a su regreso y le responderemos con prontitud."
+            "Si algo no va bien durante el viaje, dígaselo de inmediato al proveedor y a nosotros para intentar resolverlo sobre la marcha. Si no se resuelve, escriba a antiguaandbeyond@tourground.com en los 28 días siguientes a su regreso; acusaremos recibo en 7 días y responderemos por completo en 28 días."
+          ]
+        },
+        {
+          "h": "Fuerza mayor",
+          "p": [
+            "No somos responsables de incumplimientos o retrasos causados por circunstancias inevitables y extraordinarias ajenas a nuestro control, como guerra, terrorismo, disturbios, catástrofes naturales, epidemias, fenómenos meteorológicos extremos, decisiones de las autoridades o el cierre de aeropuertos o fronteras. Si un hecho así impide su viaje, le reembolsamos lo que hayamos pagado en su nombre y podamos recuperar de los proveedores, o le ofrecemos una alternativa."
+          ]
+        },
+        {
+          "h": "Protección de datos",
+          "p": [
+            "Usamos sus datos personales tal como se describe en nuestra [política de privacidad](/privacy)."
           ]
         },
         {
           "h": "Ley aplicable",
           "p": [
-            "Estas condiciones se rigen por la ley aplicable al contrato que celebre con nosotros, según se indique en su confirmación de reserva. También puede ampararle la normativa de consumo de su país de residencia."
+            "Estas condiciones y cualquier contrato con nosotros se rigen por las leyes de Guatemala, el país de nuestra dirección comercial, y las controversias se someten a los tribunales de Guatemala. Si es usted un consumidor residente en otro país, conserva la protección de las normas imperativas de consumo de ese país y también puede presentar una demanda allí."
+          ]
+        },
+        {
+          "h": "Contacto",
+          "p": [
+            "Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. Correo electrónico: antiguaandbeyond@tourground.com. Última actualización: 1 de noviembre de 2026."
           ]
         }
       ]
     },
     "cookies": {
       "title": "Política de cookies",
-      "description": "Qué cookies y qué almacenamiento utiliza el sitio de Antigua & Beyond y cómo gestionarlos.",
+      "description": "Qué guarda el sitio web de Antigua & Beyond en su navegador y cómo gestionarlo.",
       "sections": [
         {
-          "h": "En resumen",
+          "h": "Qué son las cookies",
           "p": [
-            "No utilizamos cookies de analítica ni de publicidad en este sitio. Este sitio no instala cookies propias."
+            "Las cookies son pequeños archivos de texto que un sitio web guarda en su navegador. Tecnologías similares, como el almacenamiento local (localStorage) y el almacenamiento de sesión del navegador, permiten a un sitio guardar pequeños datos en su dispositivo. Esta política se aplica a todas ellas."
           ]
         },
         {
-          "h": "Qué guarda el sitio en su navegador",
+          "h": "Qué usa este sitio",
           "p": [
-            "Si cambia la moneda en que se muestran los precios, su elección se guarda en el almacenamiento local de su navegador como ab-currency. Si utiliza el [planificador de viajes](/plan-your-trip), sus respuestas se guardan en el almacenamiento local como ab-trip-planner-v1 para que pueda continuar donde lo dejó. Permanecen en su dispositivo hasta que envía el planificador y entonces se borran.",
-            "Las fuentes y las fotos se sirven desde este sitio, por lo que no se contacta con terceros al cargar las páginas."
+            "Este sitio no instala cookies. Solo usa el almacenamiento del navegador que se detalla abajo, que se queda en su dispositivo y nunca se nos envía. No hay cookies de analítica, de publicidad ni de seguimiento, ni píxeles de seguimiento."
+          ]
+        },
+        {
+          "h": "Qué se guarda",
+          "p": [],
+          "table": {
+            "head": [
+              "Nombre",
+              "Finalidad",
+              "Duración",
+              "Tipo"
+            ],
+            "rows": [
+              [
+                "ab-currency",
+                "Recuerda la moneda que eligió para mostrar los precios.",
+                "Hasta que lo borre en su navegador",
+                "Almacenamiento local · Preferencia (funcional)"
+              ],
+              [
+                "ab-trip-planner-v1",
+                "Guarda sus respuestas en el planificador de viaje para que pueda continuar más tarde; se borra al enviarlo.",
+                "Hasta que envíe el formulario o lo borre en su navegador",
+                "Almacenamiento local · Estrictamente necesaria"
+              ]
+            ]
+          }
+        },
+        {
+          "h": "Contenido de terceros",
+          "p": [
+            "Algunas fotografías se cargan desde images.unsplash.com (Unsplash, Estados Unidos). Para obtenerlas, su navegador envía a Unsplash su dirección IP y datos del navegador, como en cualquier petición web; estas peticiones de imágenes no instalan cookies.",
+            "Nuestro proveedor de alojamiento, Vercel, no instala cookies en este sitio."
           ]
         },
         {
           "h": "Consentimiento",
           "p": [
-            "Lo anterior es estrictamente necesario para funciones que usted decide utilizar, por lo que no requiere su consentimiento. No añadiremos cookies de analítica ni de publicidad sin preguntarle antes."
+            "Todo lo anterior es estrictamente necesario o recuerda una elección suya, y nada sirve para seguirle; por eso el sitio no pide consentimiento para cookies. Si algún día añadimos cookies de analítica u otras opcionales, le pediremos antes su consentimiento y actualizaremos esta página."
           ]
         },
         {
-          "h": "Cómo eliminarlo o cambiar de opinión",
+          "h": "Cómo gestionarlo o eliminarlo",
           "p": [
-            "Puede borrar en cualquier momento los datos guardados por este sitio desde los ajustes de su navegador (normalmente en Privacidad, y luego Cookies y datos de sitios)."
+            "Puede bloquear las cookies y borrar los datos guardados por el sitio en cualquier momento desde la configuración de su navegador, normalmente en Privacidad o Datos de sitios. El sitio sigue funcionando; solo olvida elecciones como su moneda o idioma y las respuestas de formularios no enviadas."
+          ]
+        },
+        {
+          "h": "Cambios en esta política",
+          "p": [
+            "Si cambia lo que guarda el sitio, actualizaremos esta página y la fecha que figura abajo. Última actualización: 1 de noviembre de 2026."
           ]
         },
         {
           "h": "Contacto",
           "p": [
-            "Preguntas sobre esta política: escriba a antiguaandbeyond@tourground.com."
+            "Preguntas sobre esta política: Antigua & Beyond, Regus Euro Plaza, Euro Plaza World Business Center, 5a Avenida 5-55, Zona 14, Guatemala City 01014, Guatemala. Correo electrónico: antiguaandbeyond@tourground.com."
           ]
         }
       ]
