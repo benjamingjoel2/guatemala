@@ -94,7 +94,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
         <div className="gutter relative flex flex-col gap-6 pb-10 pt-32 md:pb-14">
           <Breadcrumbs items={[{ label: tx("Destinations"), href: "/destinations" }, { label: d.name }]} />
           <Eyebrow className="text-bone/80">{tx(regionLabels[d.region])} · {d.tagline}</Eyebrow>
-          <SplitHeading as="h1" text={d.name} className="t-display max-w-[14ch] !text-[clamp(3rem,10vw,8.5rem)]" immediate />
+          <SplitHeading as="h1" text={d.name} className="t-display max-w-[14ch]" immediate />
           <Reveal delay={0.4}>
             <p className="t-xl max-w-2xl text-bone/85">{d.excerpt}</p>
           </Reveal>

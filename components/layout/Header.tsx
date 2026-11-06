@@ -74,9 +74,6 @@ export function Header() {
                     isActive(item.href) ? "text-bone" : "text-mute hover:text-bone",
                   )}
                 >
-                  <span aria-hidden className={cn("inline-block transition-transform duration-300 group-hover/nav:rotate-90", isActive(item.href) && "text-terra")}>
-                    +
-                  </span>
                   {t(item.label)}
                 </Link>
               </li>
@@ -136,7 +133,6 @@ export function Header() {
                     className="border-b border-line"
                   >
                     <Link href={item.href} className="t-h3 flex items-baseline gap-2 py-4">
-                      <span aria-hidden className="text-terra">+</span>
                       {t(item.label)}
                     </Link>
                   </motion.li>

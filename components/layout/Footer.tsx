@@ -33,8 +33,7 @@ export function Footer() {
             <ul className="flex flex-col gap-2">
               {footerNav.explore.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="group/f t-h4 inline-flex items-baseline gap-1.5 transition-colors hover:text-adobe">
-                    <span aria-hidden className="inline-block text-terra transition-transform duration-300 group-hover/f:rotate-90">+</span>
+                  <Link href={l.href} className="t-md text-bone transition-colors hover:text-adobe">
                     {t(l.label)}
                   </Link>
                 </li>
@@ -46,8 +45,7 @@ export function Footer() {
             <ul className="flex flex-col gap-2">
               {footerNav.company.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="group/f t-h4 inline-flex items-baseline gap-1.5 transition-colors hover:text-adobe">
-                    <span aria-hidden className="inline-block text-terra transition-transform duration-300 group-hover/f:rotate-90">+</span>
+                  <Link href={l.href} className="t-md text-bone transition-colors hover:text-adobe">
                     {t(l.label)}
                   </Link>
                 </li>
