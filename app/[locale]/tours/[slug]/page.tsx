@@ -11,7 +11,6 @@ import { Gallery } from "@/components/detail/Gallery";
 import { InPageNav } from "@/components/detail/InPageNav";
 import { DetailSection, CheckList } from "@/components/detail/DetailSection";
 import { SideCard, MetaRow } from "@/components/detail/SideCard";
-import { MapPlaceholder } from "@/components/ui/MapPlaceholder";
 import { RelatedStays, RelatedTours } from "@/components/detail/Related";
 import { PlanButton } from "@/components/ui/PlanButton";
 import { ButtonLink } from "@/components/ui/Button";
@@ -48,7 +47,7 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
     { id: "overview", label: tx("Overview") },
     { id: "itinerary", label: tx("Itinerary") },
     { id: "included", label: tx("What's included") },
-    { id: "map", label: tx("Route map") },
+    { id: "route", label: tx("The route") },
     ...(tourStays.length ? [{ id: "stays", label: tx("Stays") }] : []),
     { id: "pricing", label: tx("Pricing") },
   ];
@@ -138,9 +137,8 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
               <CheckList items={t.excluded} variant="x" />
             </DetailSection>
 
-            <DetailSection id="map" title={tx("Route map")}>
-              <MapPlaceholder stops={stops} />
-              <p className="t-md mt-4 font-normal text-mute">
+            <DetailSection id="route" title={tx("The route")}>
+              <p className="t-md font-normal text-mute">
                 {stops.map((s, i) => {
                   const slug = t.destinationSlugs[i];
                   return (

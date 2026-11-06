@@ -1629,7 +1629,6 @@
  "How Antigua & Beyond collects, uses and protects the personal details you send us.": "Comment Antigua & Beyond collecte, utilise et protège les données personnelles que vous nous transmettez.",
  "Finca El Mirasol, Coffee finca": "Finca El Mirasol, finca de café",
  "Itinerary": "Itinéraire",
- "Route map": "Carte de l’itinéraire",
  "Pricing": "Tarifs",
  "Private, from 2 travellers": "Privé, à partir de 2 voyageurs",
  "About this tour": "À propos de ce circuit",
@@ -1654,8 +1653,6 @@
  "Enquire about this tour": "Se renseigner sur ce circuit",
  "No deposit to enquire. Reply within one working day.": "Aucun acompte pour se renseigner. Réponse sous un jour ouvré.",
  "Make this trip your own": "Faites de ce voyage le vôtre",
- "Route map: {stops}": "Carte de l’itinéraire : {stops}",
- "Map placeholder · not to scale": "Carte provisoire · pas à l’échelle",
  "Classic Guatemala: 10-day Guatemala tour": "Guatemala classique : circuit de 10 jours au Guatemala",
  "Personally inspected": "Inspectés personnellement",
  "Places to stay": "Hébergements",
@@ -1762,5 +1759,6 @@
  " (completed)": " (terminée)",
  "{name} FAQ": "FAQ : {name}",
  "{n} destinations · {r} regions": "{n} destinations · {r} régions",
- "{name} — home": "{name} — accueil"
+ "{name} — home": "{name} — accueil",
+ "The route": "L’itinéraire"
 }

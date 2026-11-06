@@ -21,8 +21,7 @@ export function RegionsShowcase() {
           <Eyebrow>{t("Guatemala, region by region")}</Eyebrow>
           <SplitHeading id="regions-title" text={t("Seven regions, one specialist who knows every road.")} className="t-h2" />
         </div>
-        <Link href="/destinations" className="group/plus t-h4 inline-flex items-baseline gap-1 text-mute transition-colors hover:text-bone">
-          <span aria-hidden className="inline-block text-terra transition-transform duration-300 group-hover/plus:rotate-90">+</span>
+        <Link href="/destinations" className="t-btn text-mute underline underline-offset-4 transition-colors hover:text-bone">
           {t("See for yourself")}
         </Link>
       </div>
