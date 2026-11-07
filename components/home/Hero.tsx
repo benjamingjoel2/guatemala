@@ -1,56 +1,81 @@
-import { t } from "@/i18n/server";
+"use client";
+
+import { useT } from "@/i18n/client";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { img } from "@/data/images";
 import { ButtonLink } from "@/components/ui/Button";
 import { PlanButton } from "@/components/ui/PlanButton";
 import { HuipilStripe } from "@/components/ui/HuipilStripe";
 
-/** H3 mosaic: headline and intro on the left, three photos of different regions beside it. */
-const tiles = [
-  { image: img.antiguaStreetAgua, place: "Antigua", className: "row-span-2" },
-  { image: img.atitlanDock, place: "Lake Atitlán", className: "" },
-  { image: img.tikalTemple, place: "Tikal", className: "" },
-] as const;
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
+  const t = useT();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.25]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-35%"]);
+  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
   return (
-    <section className="theme-dark relative bg-ink" aria-labelledby="hero-title">
-      <div className="gutter grid gap-10 pb-12 pt-28 md:pb-16 md:pt-36 lg:grid-cols-12 lg:items-end lg:gap-12">
-        <div className="flex flex-col gap-6 lg:col-span-5 lg:pb-4 motion-safe:animate-[rise_1s_cubic-bezier(.22,1,.36,1)_both]">
-          <p className="font-serif text-[clamp(1.25rem,2vw,1.75rem)] font-medium italic leading-tight text-bone/85">
-            {t("Start in Antigua.")}
-          </p>
-          <h1 id="hero-title" className="font-serif text-[clamp(2.75rem,5.5vw,4.5rem)] font-medium leading-[0.98] tracking-[-0.02em] text-bone">
-            <span className="sr-only">{t("Antigua & Beyond: tailor-made trips to Guatemala.")} </span>
-            <span aria-hidden>Go beyond</span>
-          </h1>
-          <p className="t-lg max-w-md text-mute">
+    <section ref={ref} className="theme-dark relative flex min-h-[100svh] flex-col overflow-hidden bg-ink" aria-labelledby="hero-title">
+      <motion.div style={{ scale: imgScale, y: imgY }} className="absolute inset-0">
+        <Image
+          src={img.antiguaStreetAgua.src}
+          alt={t(img.antiguaStreetAgua.alt)}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[50%_40%]"
+        />
+      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/10 to-ink" />
+      <div className="absolute inset-0 bg-ink/15" />
+
+      <motion.div style={{ y: textY, opacity: fade }} className="gutter relative z-10 flex flex-1 flex-col justify-end pb-10 pt-32 md:pb-14">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          {/* CSS-only entrance so the intro (LCP element) paints before hydration */}
+          <p className="t-xxl max-w-xl text-bone motion-safe:animate-[rise_1s_cubic-bezier(.22,1,.36,1)_both]">
             {t("Tailor-made Guatemala trips with one dedicated local specialist, from your first message to the day you fly home.")}
           </p>
-          <div className="flex flex-wrap items-center gap-5">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease, delay: 0.7 }}
+            className="flex flex-col gap-3 xs:flex-row"
+          >
             <PlanButton>{t("Start planning")}</PlanButton>
-            <ButtonLink href="/tours" variant="ghost">
+            <ButtonLink href="/tours" variant="outline" className="backdrop-blur-sm">
               {t("Explore tours")}
             </ButtonLink>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="grid h-[min(70svh,640px)] min-h-[380px] grid-cols-2 grid-rows-2 gap-2 lg:col-span-7 md:gap-3">
-          {tiles.map(({ image, place, className }, i) => (
-            <figure key={place} className={`relative overflow-hidden ${className}`}>
-              <Image
-                src={image.src}
-                alt={t(image.alt)}
-                fill
-                priority={i === 0}
-                sizes="(min-width:1024px) 30vw, 50vw"
-                className="object-cover"
-              />
-              <figcaption className="t-xs absolute bottom-3 left-3 bg-ink/60 px-2 py-1 text-bone">{place}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
+        <h1 id="hero-title" className="mt-10 md:mt-14">
+          <span className="sr-only">{t("Antigua & Beyond: tailor-made trips to Guatemala.")} </span>
+          <span aria-hidden className="mb-1 block overflow-hidden font-serif text-[clamp(1.5rem,2.6vw,2.5rem)] font-medium italic leading-tight text-bone/85 md:mb-0">
+            <motion.span className="block" initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1, ease, delay: 0.2 }}>
+              {t("Start in Antigua.")}
+            </motion.span>
+          </span>
+          <span aria-hidden className="t-display -mb-[0.14em] block overflow-hidden whitespace-nowrap pb-[0.2em]">
+            {"Go beyond".split("").map((ch, i) => (
+              <motion.span
+                key={i}
+                className="inline-block"
+                initial={{ y: "105%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1.1, ease, delay: 0.25 + i * 0.04 }}
+              >
+                {ch === " " ? " " : ch}
+              </motion.span>
+            ))}
+          </span>
+        </h1>
+      </motion.div>
       <HuipilStripe className="relative z-10" />
     </section>
   );
